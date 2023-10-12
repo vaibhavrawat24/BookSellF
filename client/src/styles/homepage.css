@@ -113,27 +113,6 @@
     margin-top: 75px;
 }
 
-
-@media only screen and (max-width: 1140px) {
-    .card {
-        max-width: none; /* Remove the maximum width on smaller screens */
-        width: 100%; /* Cards will take 100% of the container width */
-    }
-
-    .card img {
-        max-height: 50%; /* Adjust image height for mobile devices as needed */
-    }
-
-    .filter-container{
-        max-width: '80px';
-    }
-
-    .main-container{
-        flex-direction: column;
-    }
-}
-
-
 .d-flex.flex-column{
     margin-top: 10px;
 }
@@ -143,4 +122,30 @@
     margin-top: 10px;
 }
 
+@media only screen and (max-width: 767px) {
+    .card {
+        width: 250 px;
+        max-width: 100%; /* Ensure full width on mobile */
+    }
 
+    .btn-more {
+        position: static; /* Reset position for mobile */
+    }
+
+    .loadmore {
+        margin-top: 10px; /* Add space between Load More button and cards */
+    }
+
+    .filters.col-md-3 {
+        width: 100%; /* Ensure full width for the filter container */
+        margin-top: 0; /* Reset top margin for mobile screens */
+    }
+
+    .d-flex.flex-column {
+        margin-top: 10px;
+    }
+
+    .img-fluid {
+        margin-left: 0; /* Reset left margin for mobile screens */
+    }
+}

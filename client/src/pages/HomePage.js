@@ -174,7 +174,6 @@ const HomePage = () => {
                     >
                       More Details
                     </button>
-                    <button className="btn-more btn-info ms-1" style={{  backgroundColor: '#3778C2', border:'#3778C2' }} onClick={() => navigate(`/rent/${p.slug}`)}>Rent</button>
                     <button
                       className="btn-more btn-dark ms-1" style={{  backgroundColor: '#EE7789', border:'#EE7789' }}
                       onClick={() => {
