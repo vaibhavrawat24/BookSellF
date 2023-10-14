@@ -110,7 +110,7 @@ const HomePage = () => {
     <Layout title={"All Products - Best offers "}>
 
       <div className="filter-container" style={{ fontFamily: 'Calisto MT, serif' }}>
-        <div className="col-md-3 filters" style={{ position: 'fixed', top: 0,maxWidth:'100%', height: '100%', overflowY: 'scroll' }}>
+        <div className="col-md-3 filters">
           <h4 className="text-center">Filter By Category</h4>
           <div className="d-flex flex-column">
             {categories?.map((c) => (
@@ -144,13 +144,13 @@ const HomePage = () => {
         </div>
       
       
-        <div className="main-container" style={{ marginLeft: '25%' ,marginTop:'50px'}}>
+        <div className="main-container" >
        
-      <h1 className="text" style={{textAlign:'center'}}>All available books</h1> 
+      <h1 className="all-text" >All available books</h1> 
       
-          <div className="d-flex flex-wrap" style={{maxWidth:'100%'}}>
+          <div className="d-flex flex-wrap" >
             {products?.map((p) => (
-              <div className="card m-2"  style={{maxWidth:'20%'}} key={p._id}>
+              <div className="card m-2" key={p._id}>
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"

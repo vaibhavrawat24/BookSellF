@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../styles/homepage.css";
+
 const CategoryProduct = () => {
   const params = useParams();
   const navigate = useNavigate();
@@ -26,14 +28,14 @@ const CategoryProduct = () => {
   return (
     <Layout>
       <div className="container mt-3 category" style={{ fontFamily: 'Calisto MT, serif' }}>
-        <h4 className="text-center" style={{marginTop:'80px'}}>Category - {category?.name}</h4>
+        <h4 className="category text-center">Category - {category?.name}</h4>
         <h6 className="text-center">{products?.length} result found </h6>
         <div className="row">
           <div className="col-md-9 offset-1">
             <div className="d-flex flex-wrap">
               {products?.map((p) => (
-                <div className="card m-2" 
-                style={{height:'400px'}}
+                <div className="category card m-2" 
+                
                  key={p._id}>
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
@@ -41,7 +43,7 @@ const CategoryProduct = () => {
                     alt={p.name}
                   />
                   <div className="card-body">
-                    <div className="card-name-price"  style={{ marginTop: 'auto' }}>
+                    <div className="card-name-price" >
                       <h5 className="card-title">{p.name}</h5>
                       <h5 className="card-title card-price">
                         {p.price.toLocaleString("en-US", {
@@ -51,9 +53,9 @@ const CategoryProduct = () => {
                       </h5>
                     </div>
                     
-                    <div className="card-name-price"  style={{ marginTop: 'auto' }}>
+                    <div className="details card-name-price" >
                       <button
-                        className="btn btn-info ms-1"
+                        className="details btn btn-info ms-1"
                         
                         onClick={() => navigate(`/product/${p.slug}`)}
                        

@@ -7,7 +7,7 @@ import DropIn from "braintree-web-drop-in-react";
 import { AiFillWarning } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
-import "../styles/cartpage.css";
+import "../styles/homepage.css";
 
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
@@ -80,12 +80,46 @@ const CartPage = () => {
   return (
     <Layout>
                   <div className="cart-page" style={{ fontFamily: 'Calisto MT, serif' }}>
-                    <div className="row">
-                      <div className="col-md-12">
-                        <h1 className="heading">
+                    
+                  
+                    <div className="container ">
+                      <div className="row ">
+                      <div className="col-md-7 p-0 m-0">
+              <div className="d-flex flex-wrap">
+                {cart?.map((p) => (
+                  <div className="cart card flex-grow-1 m-2"  key={p._id}>
+                    
+                   
+                      <img
+                        src={`/api/v1/product/product-photo/${p._id}`}
+                        className="cart card-img-top"
+                        alt={p.name}
+                      />
+                     
+                   
+                    
+                      <h2>{p.name}</h2>
+                      <h3>Price: {p.price}</h3>
+                   
+                   
+                      <button 
+                        className="cart btn btn-danger"
+                        onClick={() => removeCartItem(p._id)}
+                      >
+                        Remove
+                      </button>
+                   
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="col-md-5 cart-summary ">
+              <h2>Cart Summary</h2>
+              <h1 className="cart heading">
                           {!auth?.user
                             ? "Hey guest"
-                            : `Hey  ${auth?.token && auth?.user?.name},`}
+                            : `Hey  ${auth?.token && auth?.user?.name}, `}
                           {/* <p className="heading"> */}
                             {cart?.length
                               ? `you have ${cart.length} items in your cart !${
@@ -94,48 +128,14 @@ const CartPage = () => {
                               : " your cart is empty !"}
                           {/* </p> */}
                         </h1>
-                      </div>
-                    </div>
-                    <div className="container ">
-                      <div className="row ">
-                      <div className="col-md-7 p-0 m-0">
-              <div className="d-flex flex-wrap">
-                {cart?.map((p) => (
-                  <div className="card flex-grow-1 m-2" style={{ width: '150px', height: '200px' }} key={p._id}>
-                    {/* <div className="img">
-                      <img
-                        src={`/api/v1/product/product-photo/${p._id}`}
-                        className="card-img-top"
-                        alt={p.name}
-                      />
-                    </div> */}
-                    <div className="name" style={{ marginLeft: '3px',marginBottom:'10px'}}>
-                      <p >{p.name}</p>
-                      <p >Price: {p.price}</p>
-                    </div>
-                    <div className="cart-remove-btn" style={{ marginBottom: '2px',display: 'flex', justifyContent: 'center', alignItems: 'center',textAlign: 'center' }}>
-                      <button style={{width:'100px',height:'30px',textAlign: 'center'}}
-                        className="btn btn-danger"
-                        onClick={() => removeCartItem(p._id)}
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="col-md-5 cart-summary ">
-              <h2>Cart Summary</h2>
-              <p>Total | Checkout | Payment</p>
-              <hr />
+                        <hr />
+              
               <h4>Total : {totalPrice()} </h4>
               {auth?.user?.address ? (
                 <>
                   <div className="mb-3">
-                    <h4>Current Address</h4>
-                    <h5>{auth?.user?.address}</h5>
+                    <h4>Current Address: <span style={{ color: '#6c6b6b' }}>{auth?.user?.address}</span></h4>
+                    
                     <button
                       className="btn btn-outline-warning"
                       onClick={() => navigate("/dashboard/user/profile")}

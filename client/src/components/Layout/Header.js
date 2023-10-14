@@ -63,17 +63,8 @@ const Header = () => {
                 </ul>
               </li>
 
-              <li className="nav-item">
-            <NavLink to="/recycle" className="nav-link">Recycle</NavLink>
-            </li>
-            <li className="nav-item" >
-                <NavLink to="/cart" className="nav-link" >
-                  <Badge count={cart?.length} showZero offset={[10, -5]} >
-                    Cart
-                  </Badge>
-                </NavLink>
-              </li>
-
+              
+           
             {
               !auth.user?(<>
               <li className="nav-item">
@@ -92,7 +83,17 @@ const Header = () => {
     <li><NavLink onClick={handleLogout} to="/login" className="dropdown-item" >Logout</NavLink></li>
     </ul>
 </li>
+<li className="nav-item" >
+                <NavLink to="/cart" className="nav-link" >
+                  <Badge count={cart?.length} showZero offset={[10, -5]} >
+                    Cart
+                  </Badge>
+                </NavLink>
+              </li>
 
+              <li className="nav-item">
+            <NavLink to="/recycle" className="nav-link">Recycle</NavLink>
+            </li>
                 
                </>)
             }
