@@ -33,7 +33,7 @@ const CategoryProduct = () => {
         style={{ fontFamily: "Calisto MT, serif" }}
       >
         <h4 className="category text-center">{category?.name} books</h4>
-        <h6 className="text-center">{products?.length} result found </h6>
+        <h6 className="text-center">({products?.length} result found )</h6>
         <hr />
         <div className="row">
           <div className="category col-md-9">
@@ -51,7 +51,7 @@ const CategoryProduct = () => {
                       <h5 className="card-title card-price">
                         {p.price.toLocaleString("en-US", {
                           style: "currency",
-                          currency: "USD",
+                          currency: "INR",
                         })}
                       </h5>
                     </div>

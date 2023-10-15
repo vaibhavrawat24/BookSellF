@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "./../components/Layout/Layout";
 import "../styles/responsive.css";
+import "../styles/homepage.css";
 
 const About = () => {
   return (
@@ -8,11 +9,7 @@ const About = () => {
       <div className="row about" style={{ fontFamily: "Calisto MT, serif" }}>
         <h1 className="text-center">BookSellF</h1>
         <br />
-        <img
-          src="/images/aboutus.jpg"
-          alt="aboutus"
-          style={{ width: "400px", marginLeft: "170px" }}
-        />
+        <img src="/images/aboutus.jpg" alt="aboutus" />
         <p className="text-center">
           Welcome to BookSellf, your trusted destination for all things books!
           Established with a passion for literature and a commitment to

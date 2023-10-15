@@ -282,9 +282,23 @@
   margin-top: 10px;
 }
 
-@media only screen and (max-width: 1140px) {
-  
+.search.text-center{
+ margin-top: 80px;
 }
 
+.search.text-center h4{
+  font-weight: bold;
+ }
 
-@media screen and (max-width: 767px) {}
+ .row.about{
+  margin-top: 80px;
+ }
+
+ .row.about img{
+width: 400px;
+margin-left: 170px;
+ }
+
+ .row.privacy{
+  margin-top: 80px;
+ }
