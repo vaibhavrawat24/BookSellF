@@ -9,6 +9,8 @@ const Categories = () => {
   return (
     <Layout title={"All Categories"}>
       <div className="container" style={{ fontFamily: 'Calisto MT, serif',marginTop: "100px" }} >
+        <h3 className="category centered-text">All Categories</h3>
+        <hr />
         <div className="category row container">
           {categories.map((c) => (
             <div className="col-md-4 mt-5 mb-3 gx-3 gy-3" key={c._id}>

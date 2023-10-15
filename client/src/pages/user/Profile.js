@@ -4,6 +4,8 @@ import Layout from "./../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import axios from "axios";
+import "../user/User.css";
+
 const Profile = () => {
   //context
   const [auth, setAuth] = useAuth();
@@ -56,7 +58,7 @@ const Profile = () => {
           <div className="col-md-3">
             <UserMenu />
           </div>
-          <div className="col-md-8">
+          <div className="profile col-md-8">
             <div className="form-container" style={{ marginTop: "-40px" }}>
               <form onSubmit={handleSubmit}>
                 <h4 className="title" style={{marginTop: '20px'}}>Edit Profile</h4>

@@ -27,8 +27,8 @@ const Orders = () => {
           <div className="col-md-3">
             <UserMenu />
           </div>
-          <div className="col-md-9">
-            <h1 className="text-center">All Orders</h1>
+          <div className="order col-md-9">
+            <h4 className="order-text">All Orders</h4>
             {orders?.map((o, i) => {
               return (
                 <div className="border shadow">

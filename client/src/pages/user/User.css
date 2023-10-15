@@ -1,0 +1,36 @@
+.container-fluid.m-3.p-3{
+    font-family: 'Calisto MT, serif';
+}
+
+.dash.card.p-3 {
+    max-width: 400px;
+    height: 180px;
+}
+
+.dash.card h3{
+ font-size: 16px;
+}
+
+.dash.bold-text{
+    font-weight: bold;
+}
+
+.col-md-3{
+    margin-top: 50px;
+}
+
+.col-md-9{
+    margin-top: 80px;
+}
+
+.profile.col-md-8{
+    margin-top: 80px;
+}
+
+.order.col-md-9{
+    margin-top:60px;
+}
+
+.profile.col-md-9{
+    margin-top: 60px;
+}
