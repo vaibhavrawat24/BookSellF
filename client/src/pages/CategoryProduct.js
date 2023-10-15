@@ -28,7 +28,7 @@ const CategoryProduct = () => {
   return (
     <Layout>
       <div className="container mt-3 category" style={{ fontFamily: 'Calisto MT, serif' }}>
-        <h4 className="category text-center">Category - {category?.name}</h4>
+        <h4 className="category text-center">{category?.name} books</h4>
         <h6 className="text-center">{products?.length} result found </h6>
         <div className="row">
           <div className="col-md-9 offset-1">
