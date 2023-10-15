@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { Select } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
+import "../Admin/admin.css";
 const { Option } = Select;
 
 const UpdateProduct = () => {

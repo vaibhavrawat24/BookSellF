@@ -2,7 +2,7 @@ import Layout from "../components/Layout/Layout";
 import React from "react";
 import "../styles/responsive.css";
 
-const Recycle = () => {
+const Authors = () => {
   return (
     <Layout>
       <div>recycle</div>
@@ -10,4 +10,4 @@ const Recycle = () => {
   );
 };
 
-export default Recycle;
+export default Authors;

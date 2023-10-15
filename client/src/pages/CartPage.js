@@ -8,6 +8,7 @@ import { AiFillWarning } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "../styles/homepage.css";
+import "../styles/responsive.css";
 
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
@@ -79,36 +80,28 @@ const CartPage = () => {
   };
   return (
     <Layout>
-                  <div className="cart-page" style={{ fontFamily: 'Calisto MT, serif' }}>
-                    
-                  
-                    <div className="container ">
-                      <div className="row ">
-                      <div className="col-md-7 p-0 m-0">
+      <div className="cart-page" style={{ fontFamily: "Calisto MT, serif" }}>
+        <div className="container ">
+          <div className="row ">
+            <div className="col-md-7 p-0 m-0">
               <div className="d-flex flex-wrap">
                 {cart?.map((p) => (
-                  <div className="cart card flex-grow-1 m-2"  key={p._id}>
-                    
-                   
-                      <img
-                        src={`/api/v1/product/product-photo/${p._id}`}
-                        className="cart card-img-top"
-                        alt={p.name}
-                      />
-                     
-                   
-                    
-                      <h2>{p.name}</h2>
-                      <h3>Price: {p.price}</h3>
-                   
-                   
-                      <button 
-                        className="cart btn btn-danger"
-                        onClick={() => removeCartItem(p._id)}
-                      >
-                        Remove
-                      </button>
-                   
+                  <div className="cart card flex-grow-1 m-2" key={p._id}>
+                    <img
+                      src={`/api/v1/product/product-photo/${p._id}`}
+                      className="cart card-img-top"
+                      alt={p.name}
+                    />
+
+                    <h2>{p.name}</h2>
+                    <h3>Price: {p.price}</h3>
+
+                    <button
+                      className="cart btn btn-danger"
+                      onClick={() => removeCartItem(p._id)}
+                    >
+                      Remove
+                    </button>
                   </div>
                 ))}
               </div>
@@ -117,25 +110,30 @@ const CartPage = () => {
             <div className="col-md-5 cart-summary ">
               <h2>Cart Summary</h2>
               <h1 className="cart heading">
-                          {!auth?.user
-                            ? "Hey guest"
-                            : `Hey  ${auth?.token && auth?.user?.name}, `}
-                          {/* <p className="heading"> */}
-                            {cart?.length
-                              ? `you have ${cart.length} items in your cart !${
-                                  auth?.token ? "" : "please login to checkout !"
-                                }`
-                              : " your cart is empty !"}
-                          {/* </p> */}
-                        </h1>
-                        <hr />
-              
+                {!auth?.user
+                  ? "Hey guest"
+                  : `Hey  ${auth?.token && auth?.user?.name}, `}
+                {/* <p className="heading"> */}
+                {cart?.length
+                  ? `you have ${cart.length} items in your cart !${
+                      auth?.token ? "" : "please login to checkout !"
+                    }`
+                  : " your cart is empty !"}
+                {/* </p> */}
+              </h1>
+              <hr />
+
               <h4>Total : {totalPrice()} </h4>
               {auth?.user?.address ? (
                 <>
                   <div className="mb-3">
-                    <h4>Current Address: <span style={{ color: '#6c6b6b' }}>{auth?.user?.address}</span></h4>
-                    
+                    <h4>
+                      Current Address:{" "}
+                      <span style={{ color: "#6c6b6b" }}>
+                        {auth?.user?.address}
+                      </span>
+                    </h4>
+
                     <button
                       className="btn btn-outline-warning"
                       onClick={() => navigate("/dashboard/user/profile")}

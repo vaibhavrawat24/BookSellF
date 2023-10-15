@@ -26,6 +26,11 @@ import CartPage from './pages/CartPage';
 import AdminOrders from './pages/Admin/AdminOrders';
 import Rent from './pages/Rent';
 import Recycle from './pages/recycle';
+import BestSelling from './pages/BestSell';
+import Trending from './pages/Trending';
+import Authors from './pages/Authors';
+import NewArrival from './pages/NewArrival';
+import Manga from './pages/Manga';
 
 function App() {
   return (
@@ -33,8 +38,13 @@ function App() {
       <Routes>
           <Route path='/' element={<HomePage/>} />
           <Route path='/product/:slug' element={<ProductDetails/>} />
-          <Route path='/rent/:slug' element={<Rent/>} />
+          <Route path='/rent' element={<Rent/>} />
           <Route path='/categories' element={<Categories/>} />
+          <Route path='/bestselling' element={<BestSelling/>} />
+          <Route path='/trending' element={<Trending/>} />
+          <Route path='/authors' element={<Authors/>} />
+          <Route path='/newarrival' element={<NewArrival/>} />
+          <Route path='/manga' element={<Manga/>} />
           <Route path='/cart' element={<CartPage/>} />
           <Route path='/category/:slug' element={<CategoryProduct/>} />
           <Route path='/search' element={<Search/>} />

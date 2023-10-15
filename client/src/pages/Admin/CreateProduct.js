@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { Select } from "antd";
 import { useNavigate } from "react-router-dom";
+import "../Admin/admin.css";
 const { Option } = Select;
 
 const CreateProduct = () => {
@@ -64,13 +65,16 @@ const CreateProduct = () => {
 
   return (
     <Layout title={"Dashboard - Create Product"}>
-      <div className="container-fluid m-3 p-3 dashboard" style={{ fontFamily: 'Calisto MT, serif' }}>
+      <div
+        className="container-fluid m-3 p-3 dashboard"
+        style={{ fontFamily: "Calisto MT, serif" }}
+      >
         <div className="row dashboard">
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className="col-md-9">
-            <h1 style={{marginLeft:'250px',marginTop:'40px'}}>Create Product</h1>
+          <div className="create col-md-9">
+            <h2>Create Product</h2>
             <div className="m-1 w-75">
               <Select
                 bordered={false}
@@ -116,7 +120,7 @@ const CreateProduct = () => {
                 <input
                   type="text"
                   value={name}
-                  placeholder="write a name"
+                  placeholder="Write the name of this book"
                   className="form-control"
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -125,7 +129,7 @@ const CreateProduct = () => {
                 <textarea
                   type="text"
                   value={description}
-                  placeholder="write a description"
+                  placeholder="Write the description"
                   className="form-control"
                   onChange={(e) => setDescription(e.target.value)}
                 />
@@ -135,7 +139,7 @@ const CreateProduct = () => {
                 <input
                   type="number"
                   value={price}
-                  placeholder="write a Price"
+                  placeholder="Write the price"
                   className="form-control"
                   onChange={(e) => setPrice(e.target.value)}
                 />
@@ -144,7 +148,7 @@ const CreateProduct = () => {
                 <input
                   type="number"
                   value={quantity}
-                  placeholder="write a quantity"
+                  placeholder="Write quantity of book available"
                   className="form-control"
                   onChange={(e) => setQuantity(e.target.value)}
                 />

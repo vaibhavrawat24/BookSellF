@@ -1,0 +1,21 @@
+/* .text-center{
+    position: fixed;
+} */
+
+.admin.card.p-3{
+    max-width: 400px;
+    height: 180px;
+}
+
+.admin.col-md-9{
+    margin-top: 60px;
+}
+
+.admin.card h3{
+    font-size: 16px;
+   }
+
+.admin.bold-text{
+    font-weight: bold;
+}
+   

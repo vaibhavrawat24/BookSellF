@@ -3,6 +3,7 @@ import Layout from "../components/Layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/homepage.css";
+import "../styles/responsive.css";
 
 const CategoryProduct = () => {
   const params = useParams();
@@ -27,23 +28,25 @@ const CategoryProduct = () => {
 
   return (
     <Layout>
-      <div className="container mt-3 category" style={{ fontFamily: 'Calisto MT, serif' }}>
+      <div
+        className="container mt-3 category"
+        style={{ fontFamily: "Calisto MT, serif" }}
+      >
         <h4 className="category text-center">{category?.name} books</h4>
         <h6 className="text-center">{products?.length} result found </h6>
+        <hr />
         <div className="row">
-          <div className="col-md-9 offset-1">
+          <div className="category col-md-9">
             <div className="d-flex flex-wrap">
               {products?.map((p) => (
-                <div className="category card m-2" 
-                
-                 key={p._id}>
+                <div className="category card m-2" key={p._id}>
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />
                   <div className="card-body">
-                    <div className="card-name-price" >
+                    <div className="card-name-price">
                       <h5 className="card-title">{p.name}</h5>
                       <h5 className="card-title card-price">
                         {p.price.toLocaleString("en-US", {
@@ -52,13 +55,11 @@ const CategoryProduct = () => {
                         })}
                       </h5>
                     </div>
-                    
-                    <div className="details card-name-price" >
+
+                    <div className="details card-name-price">
                       <button
                         className="details btn btn-info ms-1"
-                        
                         onClick={() => navigate(`/product/${p.slug}`)}
-                       
                       >
                         More Details
                       </button>

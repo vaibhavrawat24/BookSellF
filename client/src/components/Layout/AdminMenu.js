@@ -1,9 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "../Layout/layout.css";
+
 const AdminMenu = () => {
   return (
     <>
-      <div className="text-center" style={{marginTop:'50px',position:'fixed',width:'250px'}}>
+      <div className="text-center" >
         <div className="list-group dashboard-menu">
           <h4>Admin Panel</h4>
           <NavLink

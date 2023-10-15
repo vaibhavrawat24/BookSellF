@@ -15,7 +15,7 @@ const Dashboard = () => {
             </div>
             <div className="profile col-md-9">
               <h4>Your profile</h4>
-              <div className="dash card p-3" style={{ width: '900px' }}>
+              <div className="dash card p-3">
                 <h3><span className="dash bold-text">Name:</span> {auth?.user?.name}</h3>
                 <h3><span className="dash bold-text">Email:</span> {auth?.user?.email}</h3>
                 <h3><span className="dash bold-text">Phone:</span> {auth?.user?.phone}</h3>

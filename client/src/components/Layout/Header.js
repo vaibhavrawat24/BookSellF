@@ -42,24 +42,46 @@ const Header = () => {
                   to={"/categories"}
                   data-bs-toggle="dropdown"
                 >
-                  Categories
+                  Pick Yours
                 </Link>
                 <ul className="dropdown-menu">
                   <li>
                     <Link className="dropdown-item" to={"/categories"}>
-                      All Categories
+                      All Genres
                     </Link>
                   </li>
-                  {categories?.map((c) => (
-                    <li>
-                      <Link
-                        className="dropdown-item"
-                        to={`/category/${c.slug}`}
-                      >
-                        {c.name}
-                      </Link>
-                    </li>
-                  ))}
+                  <li>
+                    <Link className="dropdown-item" to={"/bestselling"}>
+                    Best Selling
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to={"/trending"}>
+                    Trending
+                      
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to={"/authors"}>
+                    All Authors
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to={"/newarrival"}>
+                      New Arrival
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to={"/manga"}>
+                      Manga
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to={"/rent"}>
+                      Rent It
+                    </Link>
+                  </li>
+                  
                 </ul>
               </li>
 

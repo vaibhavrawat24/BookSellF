@@ -3,6 +3,7 @@ import Layout from "./../components/Layout/Layout";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/homepage.css";
+import "../styles/responsive.css";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -38,7 +39,10 @@ const ProductDetails = () => {
   };
   return (
     <Layout>
-      <div className="row container product-details" style={{ fontFamily: 'Calisto MT, serif' ,marginTop:'80px'}}>
+      <div
+        className="row container product-details"
+        style={{ fontFamily: "Calisto MT, serif", marginTop: "80px" }}
+      >
         <div className="col-md-6 custom-width">
           <img
             src={`/api/v1/product/product-photo/${product._id}`}
@@ -46,39 +50,63 @@ const ProductDetails = () => {
             alt={product.name}
             // width={"300spx"}
             // height={"300px"}
-           style={{ width: '280px', height: '380px', marginRight: '200px' }}
+            style={{ width: "280px", height: "380px", marginRight: "200px" }}
           />
         </div>
         <div className="col-md-6 product-details-info">
           <h1 className="text-center">Details</h1>
           <hr />
-          <h6 > <span style={{ fontWeight: 'bold' }}>Name:</span> {product.name}</h6> <br />
-          <h6><span style={{ fontWeight: 'bold' }}>Description:</span> {product.description}</h6> <br />
           <h6>
-          <span style={{ fontWeight: 'bold' }}>Price :</span>
+            {" "}
+            <span style={{ fontWeight: "bold" }}>Name:</span> {product.name}
+          </h6>{" "}
+          <br />
+          <h6>
+            <span style={{ fontWeight: "bold" }}>Description:</span>{" "}
+            {product.description}
+          </h6>{" "}
+          <br />
+          <h6>
+            <span style={{ fontWeight: "bold" }}>Price :</span>
             {product?.price?.toLocaleString("en-US", {
               style: "currency",
               currency: "INR",
             })}
-          </h6> <br />
-          <h6><span style={{ fontWeight: 'bold' }}>Category :</span> {product?.category?.name}</h6>
-          <button class="btn btn-secondary ms-1" style={{  backgroundColor: '#3778C2', border:'#3778C2', marginTop: '50px' }}>Add to Cart</button>
+          </h6>{" "}
+          <br />
+          <h6>
+            <span style={{ fontWeight: "bold" }}>Category :</span>{" "}
+            {product?.category?.name}
+          </h6>
+          <button
+            class="btn btn-secondary ms-1"
+            style={{
+              backgroundColor: "#3778C2",
+              border: "#3778C2",
+              marginTop: "50px",
+            }}
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
       <hr />
-      <div className="row container similar-products" style={{ fontFamily: 'Calisto MT, serif' }}>
+      <div
+        className="row container similar-products"
+        style={{ fontFamily: "Calisto MT, serif" }}
+      >
         <h4>Similar Products ➡️</h4>
         {relatedProducts.length < 1 && (
           <p className="text-center">No Similar Products found</p>
         )}
         <div className="d-flex flex-wrap">
           {relatedProducts?.map((p) => (
-            <div className="card m-2" style={{height:'290px'}} key={p._id}>
+            <div className="card m-2" style={{ height: "290px" }} key={p._id}>
               <img
                 src={`/api/v1/product/product-photo/${p._id}`}
                 className="card-img-top"
                 alt={p.name}
-                style={{width:'120px', marginLeft:'40px'}}
+                style={{ width: "120px", marginLeft: "40px" }}
               />
               <div className="card-body">
                 <div className="card-name-price">

@@ -4,6 +4,7 @@ import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import "../Admin/admin.css";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -23,38 +24,38 @@ const Products = () => {
   }, []);
   return (
     <Layout>
-      <div className="container-fluid m-3 p-3" style={{ fontFamily: 'Calisto MT, serif' }}>
-      <div className="row dashboard" style={{ fontFamily: 'Calisto MT, serif' }}>
-        <div className="col-md-3">
-          <AdminMenu />
-        </div>
-        <div className="col-md-9 ">
-          <h1 className="text-center" style={{marginTop:'40px'}}>All Books List</h1>
-          <div className="d-flex flex-wrap">
-            {products?.map((p) => (
-              <Link
-                key={p._id}
-                to={`/dashboard/admin/product/${p.slug}`}
-                className="product-link"
-              >
-                <div className="card m-2" style={{ width: "160px" ,height:'250px'}}>
-                  <img
-                    src={`/api/v1/product/product-photo/${p._id}`}
-                    className="card-img-top"
-                    style={{ width: "160px" ,height:'250px'}}
-                    alt={p.name}
-
-                  />
-                  <div className="hey" >
-                    <h5 className="card-title" style={{marginBottom:'10px' , textAlign:'center',fontSize:'18px',fontWeight: 'bold'}}>{p.name}</h5>
-                  </div>
-                </div>
-              </Link>
-            ))}
+      <div
+        className="container-fluid m-3 p-3"
+        style={{ fontFamily: "Calisto MT, serif" }}
+      >
+        <div className="row dashboard">
+          <div className="col-md-3">
+            <AdminMenu />
           </div>
-          
+          <div className="col-md-9 ">
+            <h2 className="text-center">All Books List</h2>
+            <div className="d-flex flex-wrap">
+              {products?.map((p) => (
+                <Link
+                  key={p._id}
+                  to={`/dashboard/admin/product/${p.slug}`}
+                  className="product-link"
+                >
+                  <div className="product card m-1">
+                    <img
+                      src={`/api/v1/product/product-photo/${p._id}`}
+                      className="card-img-top"
+                      alt={p.name}
+                    />
+                    <div className="hey">
+                      <h5 className="card-title">{p.name}</h5>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
       </div>
     </Layout>
   );

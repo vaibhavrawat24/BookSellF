@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
 import { AiOutlineReload } from "react-icons/ai";
 import "../styles/homepage.css";
+import "../styles/responsive.css";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -108,8 +109,10 @@ const HomePage = () => {
   };
   return (
     <Layout title={"All Products - Best offers "}>
-
-      <div className="filter-container" style={{ fontFamily: 'Calisto MT, serif' }}>
+      <div
+        className="filter-container"
+        style={{ fontFamily: "Calisto MT, serif" }}
+      >
         <div className="col-md-3 filters">
           <h4 className="text-center">Filter By Category</h4>
           <div className="d-flex flex-column">
@@ -123,7 +126,7 @@ const HomePage = () => {
             ))}
           </div>
           {/* price filter */}
-          <h4 className="text-center mt-4" >Filter By Price</h4>
+          <h4 className="text-center mt-4">Filter By Price</h4>
           <div className="d-flex flex-column">
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
               {Prices?.map((p) => (
@@ -135,20 +138,18 @@ const HomePage = () => {
           </div>
           <div className="d-flex flex-column">
             <button
-              className="btn btn-danger" 
+              className="btn btn-danger"
               onClick={() => window.location.reload()}
             >
               Reset Filters
             </button>
           </div>
         </div>
-      
-      
-        <div className="main-container" >
-       
-      <h1 className="all-text" >All available books</h1> 
-      
-          <div className="d-flex flex-wrap" >
+
+        <div className="main-container">
+          <h1 className="all-text">All available books</h1>
+          <hr />
+          <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>
                 <img
@@ -166,16 +167,18 @@ const HomePage = () => {
                       })}
                     </h5>
                   </div>
-                  
+
                   <div className="card-name-price">
                     <button
-                      className="btn-more btn-info ms-1" style={{  backgroundColor: '#3778C2', border:'#3778C2' }}
+                      className="btn-more btn-info ms-1"
+                      style={{ backgroundColor: "#3778C2", border: "#3778C2" }}
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
                       More Details
                     </button>
                     <button
-                      className="btn-more btn-dark ms-1" style={{  backgroundColor: '#EE7789', border:'#EE7789' }}
+                      className="btn-more btn-dark ms-1"
+                      style={{ backgroundColor: "#EE7789", border: "#EE7789" }}
                       onClick={() => {
                         setCart([...cart, p]);
                         localStorage.setItem(
@@ -195,7 +198,7 @@ const HomePage = () => {
           <div className="m-2 p-3">
             {products && products.length < total && (
               <button
-                className="btn loadmore" 
+                className="btn loadmore"
                 onClick={(e) => {
                   e.preventDefault();
                   setPage(page + 1);
