@@ -14,7 +14,7 @@ const Users = () => {
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className="user col-md-9">
+          <div className="admin1 col-md-9">
             <h2>All Users</h2>
           </div>
         </div>

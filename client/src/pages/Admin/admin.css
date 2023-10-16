@@ -1,77 +1,75 @@
-.admin.table{
- font-size: 20px;
+.admin.table {
+  font-size: 20px;
 }
 
-.create.col-md-9{
-    font-size: 20px;
+.create.col-md-9 {
+  font-size: 20px;
 }
 
-.user.col-md-9{
-    text-align: center;
+.user.col-md-9 {
+  text-align: center;
 }
-   .product.card.m-1{
-    height: 200px;
-    border: 1px solid #ccc;
-   
-    display: flex;
-   
-    
-    overflow: hidden;
+.product.card.m-1 {
+  height: 200px;
+  border: 1px solid #ccc;
 
-    
-    width: 150px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
+  display: flex;
 
-    text-align: center;
-    transition: transform 0.3s;
-  }
-  
-  .product.card.m-1 img {
-    max-width: 100%;
-    max-height: 80%; 
-    object-fit: cover; 
-    flex-grow: 1;
-  }
-  
-  .product.card.m-1-body {
-    
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  overflow: hidden;
 
-  }
-  
-  .product.card.m-1-title {
-    margin: 0;
-  }
-  
-  .product.card.m-1-price {
-    font-weight: bold;
-  }
-  
-  .product.card.m-1-text {
-    
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-  
-  .product.card.m-1:hover {
-    transform: scale(1.05);
-  }
-  
- 
-  .product.card.m-1 h3 {
-    margin-top: 10px;
-  }
-  
-  .product.card.m-1 p {
-    color: #888;
-  }
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.product.card.m-1 img {
+  max-width: 100%;
+  max-height: 80%;
+  object-fit: cover;
+  flex-grow: 1;
+}
+
+.product.card.m-1-body {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product.card.m-1-title {
+  margin: 0;
+}
+
+.product.card.m-1-price {
+  font-weight: bold;
+}
+
+.product.card.m-1-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.product.card.m-1:hover {
+  transform: scale(1.05);
+}
+
+.product.card.m-1 h3 {
+  margin-top: 10px;
+}
+
+.product.card.m-1 p {
+  color: #888;
+}
+
+.admin1.col-md-9 {
+  margin-top: 50px;
+}

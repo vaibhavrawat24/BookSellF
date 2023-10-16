@@ -96,7 +96,7 @@ const CreateCategory = () => {
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className="col-md-9">
+          <div className="admin1 col-md-9">
             <h2>Create/Manage Category</h2>
             <div className="p3 w-50">
               <CategoryForm

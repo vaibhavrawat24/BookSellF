@@ -128,7 +128,7 @@ const UpdateProduct = () => {
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className="col-md-9">
+          <div className="admin1 col-md-9">
             <h1>Update Product</h1>
             <div className="m-1 w-75">
               <Select

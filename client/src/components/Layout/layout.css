@@ -2,29 +2,31 @@
     position: fixed;
 } */
 
-.admin.card.p-3{
-    max-width: 400px;
-    height: 180px;
+.admin.card.p-3 {
+  max-width: 400px;
+  height: 180px;
 }
 
-.admin.col-md-9{
-    margin-top: 60px;
+.admin.col-md-9 {
+  margin-top: 60px;
 }
 
-.admin.card h3{
-    font-size: 16px;
-   }
-
-.admin.bold-text{
-    font-weight: bold;
+.admin.card h3 {
+  font-size: 16px;
 }
 
-.admin.text-center{
-    position: fixed;
-    width: 280px;
+.admin.bold-text {
+  font-weight: bold;
 }
-   
-.user.text-center{
-    position: fixed;
-    width: 280px;
+
+.admin.text-center {
+  position: fixed;
+  width: 280px;
+  margin-top: 50px;
+}
+
+.user.text-center {
+  position: fixed;
+  width: 280px;
+  margin-top: 50px;
 }

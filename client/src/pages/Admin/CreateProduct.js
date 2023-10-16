@@ -91,7 +91,7 @@ const CreateProduct = () => {
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className="create col-md-9">
+          <div className="admin1 col-md-9">
             <h2>Create Product</h2>
             <div className="m-1 w-75">
               <Select
