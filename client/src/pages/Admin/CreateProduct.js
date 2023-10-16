@@ -11,10 +11,12 @@ const { Option } = Select;
 const CreateProduct = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
+  const [authors, setAuthors] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  const [author, setAuthor] = useState("");
   const [quantity, setQuantity] = useState("");
   const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
@@ -36,7 +38,22 @@ const CreateProduct = () => {
     getAllCategory();
   }, []);
 
-  //create product function
+  const getAllAuthor = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/author/get-author");
+      if (data?.success) {
+        setAuthors(data?.author);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong while getting author!");
+    }
+  };
+
+  useEffect(() => {
+    getAllAuthor();
+  }, []);
+
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
@@ -47,6 +64,7 @@ const CreateProduct = () => {
       productData.append("quantity", quantity);
       productData.append("photo", photo);
       productData.append("category", category);
+      productData.append("author", author);
       const { data } = axios.post(
         "/api/v1/product/create-product",
         productData
@@ -59,7 +77,7 @@ const CreateProduct = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong");
+      toast.error("Something went wrong!");
     }
   };
 
@@ -78,7 +96,7 @@ const CreateProduct = () => {
             <div className="m-1 w-75">
               <Select
                 bordered={false}
-                placeholder="Select a category"
+                placeholder="Select a genre"
                 size="large"
                 showSearch
                 className="form-select mb-3"
@@ -92,6 +110,23 @@ const CreateProduct = () => {
                   </Option>
                 ))}
               </Select>
+              <Select
+                bordered={false}
+                placeholder="Select the author"
+                size="large"
+                showSearch
+                className="form-select mb-3"
+                onChange={(value) => {
+                  setAuthor(value);
+                }}
+              >
+                {authors?.map((c) => (
+                  <Option key={c._id} value={c._id}>
+                    {c.name}
+                  </Option>
+                ))}
+              </Select>
+
               <div className="mb-3">
                 <label className="btn btn-outline-secondary col-md-12">
                   {photo ? photo.name : "Upload Photo"}

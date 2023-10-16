@@ -1,7 +1,7 @@
 import React from "react";
 import "../Form/category.css";
 
-const CategoryForm = ({ handleSubmit, value, setValue }) => {
+const AuthorForm = ({ handleSubmit, value, setValue }) => {
   return (
     <>
       <form onSubmit={handleSubmit} className="d-flex align-items-center">
@@ -9,7 +9,7 @@ const CategoryForm = ({ handleSubmit, value, setValue }) => {
           <input
             type="text"
             className="form-control"
-            placeholder="Enter name of genre"
+            placeholder="Enter name of author"
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
@@ -22,4 +22,4 @@ const CategoryForm = ({ handleSubmit, value, setValue }) => {
   );
 };
 
-export default CategoryForm;
+export default AuthorForm;

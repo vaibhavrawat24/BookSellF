@@ -12,10 +12,12 @@ const UpdateProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [categories, setCategories] = useState([]);
+  const [authors, setAuthors] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  const [author, setAuthor] = useState("");
   const [quantity, setQuantity] = useState("");
   const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
@@ -34,15 +36,15 @@ const UpdateProduct = () => {
       setQuantity(data.product.quantity);
       setShipping(data.product.shipping);
       setCategory(data.product.category._id);
+      setAuthor(data.product.author._id);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
     getSingleProduct();
-   
   }, []);
- 
+
   const getAllCategory = async () => {
     try {
       const { data } = await axios.get("/api/v1/category/get-category");
@@ -59,6 +61,22 @@ const UpdateProduct = () => {
     getAllCategory();
   }, []);
 
+  const getAllAuthor = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/author/get-author");
+      if (data?.success) {
+        setAuthors(data?.author);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong while getting author!");
+    }
+  };
+
+  useEffect(() => {
+    getAllAuthor();
+  }, []);
+
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -69,6 +87,7 @@ const UpdateProduct = () => {
       productData.append("quantity", quantity);
       photo && productData.append("photo", photo);
       productData.append("category", category);
+      productData.append("author", author);
       const { data } = axios.put(
         `/api/v1/product/update-product/${id}`,
         productData
@@ -81,27 +100,30 @@ const UpdateProduct = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("something went wrong");
+      toast.error("Something went wrong!");
     }
   };
 
   const handleDelete = async () => {
     try {
-      let answer = window.prompt("Are You Sure want to delete this product ? ");
+      let answer = window.prompt("Are you sure you want to delete this book?");
       if (!answer) return;
       const { data } = await axios.delete(
         `/api/v1/product/delete-product/${id}`
       );
-      toast.success("Product DEleted Succfully");
+      toast.success("Book deleted Succfully");
       navigate("/dashboard/admin/products");
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error("Something went wrong!");
     }
   };
   return (
     <Layout title={"Dashboard - Create Product"}>
-      <div className="container-fluid m-3 p-3" style={{ fontFamily: 'Calisto MT, serif' }}>
+      <div
+        className="container-fluid m-3 p-3"
+        style={{ fontFamily: "Calisto MT, serif" }}
+      >
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />
@@ -111,7 +133,7 @@ const UpdateProduct = () => {
             <div className="m-1 w-75">
               <Select
                 bordered={false}
-                placeholder="Select a category"
+                placeholder="Select a genre"
                 size="large"
                 showSearch
                 className="form-select mb-3"
@@ -126,6 +148,23 @@ const UpdateProduct = () => {
                   </Option>
                 ))}
               </Select>
+              <Select
+                bordered={false}
+                placeholder="Select the author"
+                size="large"
+                showSearch
+                className="form-select mb-3"
+                onChange={(value) => {
+                  setAuthor(value);
+                }}
+              >
+                {authors?.map((c) => (
+                  <Option key={c._id} value={c._id}>
+                    {c.name}
+                  </Option>
+                ))}
+              </Select>
+
               <div className="mb-3">
                 <label className="btn btn-outline-secondary col-md-12">
                   {photo ? photo.name : "Upload Photo"}

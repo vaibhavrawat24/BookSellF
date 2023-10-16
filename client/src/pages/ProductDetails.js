@@ -75,7 +75,7 @@ const ProductDetails = () => {
           </h6>{" "}
           <br />
           <h6>
-            <span style={{ fontWeight: "bold" }}>Category :</span>{" "}
+            <span style={{ fontWeight: "bold" }}>Genre :</span>{" "}
             {product?.category?.name}
           </h6>
           <button
@@ -114,7 +114,7 @@ const ProductDetails = () => {
                   <h5 className="card-title card-price">
                     {p.price.toLocaleString("en-US", {
                       style: "currency",
-                      currency: "USD",
+                      currency: "INR",
                     })}
                   </h5>
                 </div>

@@ -5,26 +5,32 @@ import "../Layout/layout.css";
 const AdminMenu = () => {
   return (
     <>
-      <div className="text-center" >
+      <div className="admin text-center">
         <div className="list-group dashboard-menu">
           <h4>Admin Panel</h4>
           <NavLink
             to="/dashboard/admin/create-category"
             className="list-group-item list-group-item-action"
           >
-            Create Category
+            Add Genre
+          </NavLink>
+          <NavLink
+            to="/dashboard/admin/create-author"
+            className="list-group-item list-group-item-action"
+          >
+            Add Author
           </NavLink>
           <NavLink
             to="/dashboard/admin/create-product"
             className="list-group-item list-group-item-action"
           >
-            Create Product
+            Add New Book
           </NavLink>
           <NavLink
             to="/dashboard/admin/products"
             className="list-group-item list-group-item-action"
           >
-            Products
+            All Books
           </NavLink>
           <NavLink
             to="/dashboard/admin/orders"

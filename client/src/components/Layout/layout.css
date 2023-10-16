@@ -18,4 +18,9 @@
 .admin.bold-text{
     font-weight: bold;
 }
+
+.admin.text-center{
+    position: fixed;
+    width: 280px;
+}
    
