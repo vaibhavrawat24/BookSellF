@@ -33,6 +33,7 @@ import NewArrival from "./pages/NewArrival";
 import Manga from "./pages/Manga";
 import CreateAuthor from "./pages/Admin/CreateAuthor";
 import AuthorProduct from "./pages/AuthorProduct";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (

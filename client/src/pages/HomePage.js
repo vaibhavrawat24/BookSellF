@@ -21,6 +21,23 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
+  const showModal = () => {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  };
+
+  const closeModal = () => {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  };
+
+  const handleOutsideClick = (event) => {
+    const modal = document.getElementById("myModal");
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+
   //get all cat
   const getAllCategory = async () => {
     try {
@@ -109,6 +126,38 @@ const HomePage = () => {
   };
   return (
     <Layout title={"All Products - Best offers "}>
+      <div className="navbar filter">
+        <button className="filter-button" onClick={showModal}>
+          Filter
+        </button>
+      </div>
+
+      <div id="myModal" className="modal" onClick={handleOutsideClick}>
+        <div className="modal-content">
+          <span className="close" onClick={closeModal}>
+            &times;
+          </span>
+          <div className="filter-options">
+            <label htmlFor="category">Filter by Category:</label>
+            <select id="category">
+              <option value="all">All</option>
+              <option value="category1">Category 1</option>
+              <option value="category2">Category 2</option>
+              <option value="category3">Category 3</option>
+            </select>
+            <label htmlFor="price">Filter by Price:</label>
+            <select id="price">
+              <option value="all">All</option>
+              <option value="price1">Price 1</option>
+              <option value="price2">Price 2</option>
+              <option value="price3">Price 3</option>
+            </select>
+            <div className="apply-button">
+              <button className="button">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div
         className="filter-container"
         style={{ fontFamily: "Calisto MT, serif" }}
