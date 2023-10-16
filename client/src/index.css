@@ -24,6 +24,10 @@
   border-bottom: 2px solid black;
 }
 
+.user.nav-link.dropdown-toggle.active{
+ border-bottom: 0px;
+}
+
 .navbar-brand{
   font-weight: 700;
   font-family: 'roboto',sans-serif;
@@ -113,7 +117,6 @@
   text-decoration: none !important;
   color: black !important;
 }
-
 
 /* font-family: 'Poppins', sans-serif; */
 /* font-family: 'Poppins', sans-serif; */

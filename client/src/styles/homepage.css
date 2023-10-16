@@ -302,3 +302,8 @@ margin-left: 170px;
  .row.privacy{
   margin-top: 80px;
  }
+ 
+ .filter-container {
+  display: flex;
+  /* Set other desktop styles here */
+}

@@ -1,11 +1,13 @@
 import React from "react";
 import Layout from "./../components/Layout/Layout";
 import { useSearch } from "../context/search";
+import { useNavigate } from "react-router-dom";
 import "../styles/homepage.css";
 import "../styles/responsive.css";
 
 const Search = () => {
   const [values, setValues] = useSearch();
+  const navigate = useNavigate();
   return (
     <Layout title={"Search results"}>
       <div className="container" style={{ fontFamily: "Calisto MT, serif" }}>
@@ -33,7 +35,10 @@ const Search = () => {
                       currency: "INR",
                     })}
                   </h5>
-                  <button class="details btn btn-info ms-1">
+                  <button
+                    class="details btn btn-info ms-1"
+                    onClick={() => navigate(`/product/${p.slug}`)}
+                  >
                     More Details
                   </button>
                 </div>

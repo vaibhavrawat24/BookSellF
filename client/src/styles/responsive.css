@@ -3,10 +3,6 @@
     body {
       font-size: 16px; 
     }
-   
-    .col-md-3.filters{
-        display: none;
-    }
 
     .card.m-2{
         max-width: 80%;
@@ -17,6 +13,6 @@
         width: 100%;
         
     }  
-      
+    
   }
   
