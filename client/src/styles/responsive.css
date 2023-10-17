@@ -9,6 +9,7 @@
 
   .main-container {
     margin-left: 0;
+    margin-top: 120px;
   }
 
   .card.m-2 {
@@ -17,13 +18,9 @@
   }
 
   .all-text {
-    margin-top: 0;
-    width: 100%;
+    display: none;
   }
 
-  .navbar.filter {
-    margin-top: 50px;
-  }
   .modal {
     display: none;
     position: fixed;
@@ -86,5 +83,50 @@
     margin-top: 20px;
     display: flex;
     justify-content: flex-end;
+  }
+
+  .navbar.filter {
+    margin-top: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    z-index: 100;
+  }
+
+  .navbar.filter button {
+    background-color: inherit;
+    border: none;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .navbar.filter button:not(:last-child) {
+    border-right: 1px solid rgb(0, 0, 0);
+  }
+  .navbar.filter p,
+  .navbar.filter button {
+    margin: 0;
+    padding: 10px;
+    border-right: 1px solid rgb(0, 0, 0);
+  }
+  .navbar.filter p:last-child,
+  .navbar.filter button:last-child {
+    border-right: none;
+  }
+
+  .navbar.filter p {
+    font-weight: bold;
+  }
+  .navbar.filter button:hover {
+    background-color: rgb(163, 156, 156);
   }
 }

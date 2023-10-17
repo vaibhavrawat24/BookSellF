@@ -126,13 +126,21 @@ const HomePage = () => {
   };
   return (
     <Layout title={"All Products - Best offers "}>
-      <div className="navbar filter">
-        <button className="filter-button" onClick={showModal}>
-          Filter
-        </button>
+      <div
+        className="navbar filter"
+        style={{ fontFamily: "Calisto MT, serif" }}
+      >
+        <p>All books</p>
+        <button onclick="toggleOptions('sort')">Sort Options</button>
+        <button onClick={showModal}>Filter Options</button>
       </div>
 
-      <div id="myModal" className="modal" onClick={handleOutsideClick}>
+      <div
+        id="myModal"
+        className="modal"
+        onClick={handleOutsideClick}
+        style={{ fontFamily: "Calisto MT, serif" }}
+      >
         <div className="modal-content">
           <span className="close" onClick={closeModal}>
             &times;
@@ -197,7 +205,7 @@ const HomePage = () => {
 
         <div className="main-container">
           <h1 className="all-text">All available books</h1>
-          <hr />
+          <hr className="all-text" />
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>
