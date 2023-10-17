@@ -192,6 +192,7 @@
 
 .card.m-2 .card-title {
   font-size: 14px;
+  margin: 0;
 }
 
 .card.m-2:hover {
@@ -210,12 +211,12 @@
 
   left: 50%;
   transform: translateX(-50%);
-  width: 80%; /* Adjust the width as needed */
-  max-height: 30px;
+  width: 70%; /* Adjust the width as needed */
+  max-height: 22px;
   text-align: center;
   padding: 10px;
   cursor: pointer;
-  line-height: 10px;
+  line-height: 4px;
 }
 
 .card.m-2 h3 {
