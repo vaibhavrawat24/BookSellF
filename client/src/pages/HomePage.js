@@ -130,9 +130,12 @@ const HomePage = () => {
         className="navbar filter"
         style={{ fontFamily: "Calisto MT, serif" }}
       >
-        <p>All books</p>
-        <button onclick="toggleOptions('sort')">Sort Options</button>
-        <button onClick={showModal}>Filter Options</button>
+        <p>
+          All books: <span className="total-text">{total}</span>
+        </p>
+
+        <button onclick="toggleOptions('sort')">Sort</button>
+        <button onClick={showModal}>Filter</button>
       </div>
 
       <div
@@ -171,6 +174,8 @@ const HomePage = () => {
         style={{ fontFamily: "Calisto MT, serif" }}
       >
         <div className="col-md-3 filters">
+          <h3 style={{ textAlign: "center" }}>All Books({total})</h3>
+          <hr />
           <h4 className="text-center">Filter By Category</h4>
           <div className="d-flex flex-column">
             {categories?.map((c) => (
@@ -204,8 +209,8 @@ const HomePage = () => {
         </div>
 
         <div className="main-container">
-          <h1 className="all-text">All available books</h1>
-          <hr className="all-text" />
+          {/* <h1 className="all-text">All available books</h1>
+          <hr className="all-text" /> */}
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>

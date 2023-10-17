@@ -13,8 +13,9 @@
   }
 
   .card.m-2 {
-    max-width: 80%;
-    width: 100px;
+    max-width: 100%;
+    width: 200px;
+    margin-right: 100px;
   }
 
   .all-text {
@@ -128,5 +129,10 @@
   }
   .navbar.filter button:hover {
     background-color: rgb(163, 156, 156);
+  }
+
+  .total-text {
+    color: #232323;
+    font-weight: lighter;
   }
 }
