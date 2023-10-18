@@ -107,7 +107,6 @@ const HomePage = () => {
     }
   };
 
-  // filter by cat
   const handleFilter = (value, id) => {
     let all = [...checked];
     if (value) {
@@ -201,27 +200,32 @@ const HomePage = () => {
 
           <h4 className="text-center mt-4">Filter By Genre</h4>
           <div className="d-flex flex-column">
-            {categories?.map((c) => (
-              <Checkbox
-                key={c._id}
-                onChange={(e) => handleFilter(e.target.checked, c._id)}
-              >
-                {c.name}
-              </Checkbox>
-            ))}
+            {categories
+              .slice()
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map((c) => (
+                <Checkbox
+                  key={c._id}
+                  onChange={(e) => handleFilter(e.target.checked, c._id)}
+                >
+                  {c.name}
+                </Checkbox>
+              ))}
           </div>
           <h4 className="text-center mt-4">Filter By Author</h4>
           <div className="d-flex flex-column">
-            {authors?.map((c) => (
-              <Checkbox
-                key={c._id}
-                onChange={(e) => handleFilter(e.target.checked, c._id)}
-              >
-                {c.name}
-              </Checkbox>
-            ))}
+            {authors
+              .slice()
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map((c) => (
+                <Checkbox
+                  key={c._id}
+                  onChange={(e) => handleFilter(e.target.checked, c._id)}
+                >
+                  {c.name}
+                </Checkbox>
+              ))}
           </div>
-          {/* price filter */}
 
           <div className="d-flex flex-column">
             <button
