@@ -9,6 +9,7 @@ import Layout from "./../components/Layout/Layout";
 import { AiOutlineReload } from "react-icons/ai";
 import "../styles/homepage.css";
 import "../styles/responsive.css";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -240,7 +241,11 @@ const HomePage = () => {
         <div className="main-container">
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
-              <div className="card m-2" key={p._id}>
+              <div
+                className="card m-2"
+                key={p._id}
+                onClick={() => navigate(`/product/${p.slug}`)}
+              >
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
@@ -248,7 +253,13 @@ const HomePage = () => {
                 />
                 <div className="card-body">
                   <div className="card-name-price">
-                    <div class="popup">{p.author}</div>
+                    <div class="popup">
+                      {authors
+                        .filter((author) => author._id === p.author)
+                        .map((author) => (
+                          <div key={author._id}>{author.name}</div>
+                        ))}
+                    </div>
                     <h5 className="card-title">{p.name}</h5>
                     <h5 className="card-title card-price">
                       {p.price.toLocaleString("en-US", {
@@ -259,16 +270,22 @@ const HomePage = () => {
                   </div>
 
                   <div className="card-name-price">
-                    <button
+                    {/* <button
                       className="btn-more btn-info ms-1"
-                      style={{ backgroundColor: "#3778C2", border: "#3778C2" }}
+                      style={{
+                        backgroundColor: "#3778C2",
+                        border: "#3778C2",
+                      }}
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
                       More Details
-                    </button>
+                    </button> */}
                     <button
                       className="btn-more btn-dark ms-1"
-                      style={{ backgroundColor: "#EE7789", border: "#EE7789" }}
+                      style={{
+                        backgroundColor: "#EE7789",
+                        border: "#EE7789",
+                      }}
                       onClick={() => {
                         setCart([...cart, p]);
                         localStorage.setItem(
