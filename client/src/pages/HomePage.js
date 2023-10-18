@@ -15,6 +15,7 @@ const HomePage = () => {
   const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [authors, setAuthors] = useState([]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const [total, setTotal] = useState(0);
@@ -50,7 +51,19 @@ const HomePage = () => {
     }
   };
 
+  const getAllAuthor = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/author/get-author");
+      if (data?.success) {
+        setAuthors(data?.author);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
+    getAllAuthor();
     getAllCategory();
     getTotal();
   }, []);
@@ -81,7 +94,7 @@ const HomePage = () => {
     if (page === 1) return;
     loadMore();
   }, [page]);
-  //load more
+
   const loadMore = async () => {
     try {
       setLoading(true);
@@ -112,7 +125,6 @@ const HomePage = () => {
     if (checked.length || radio.length) filterProduct();
   }, [checked, radio]);
 
-  //get filterd product
   const filterProduct = async () => {
     try {
       const { data } = await axios.post("/api/v1/product/product-filters", {
@@ -176,18 +188,6 @@ const HomePage = () => {
         <div className="col-md-3 filters">
           <h3 style={{ textAlign: "center" }}>All Books({total})</h3>
           <hr />
-          <h4 className="text-center">Filter By Category</h4>
-          <div className="d-flex flex-column">
-            {categories?.map((c) => (
-              <Checkbox
-                key={c._id}
-                onChange={(e) => handleFilter(e.target.checked, c._id)}
-              >
-                {c.name}
-              </Checkbox>
-            ))}
-          </div>
-          {/* price filter */}
           <h4 className="text-center mt-4">Filter By Price</h4>
           <div className="d-flex flex-column">
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
@@ -198,9 +198,34 @@ const HomePage = () => {
               ))}
             </Radio.Group>
           </div>
+
+          <h4 className="text-center mt-4">Filter By Genre</h4>
+          <div className="d-flex flex-column">
+            {categories?.map((c) => (
+              <Checkbox
+                key={c._id}
+                onChange={(e) => handleFilter(e.target.checked, c._id)}
+              >
+                {c.name}
+              </Checkbox>
+            ))}
+          </div>
+          <h4 className="text-center mt-4">Filter By Author</h4>
+          <div className="d-flex flex-column">
+            {authors?.map((c) => (
+              <Checkbox
+                key={c._id}
+                onChange={(e) => handleFilter(e.target.checked, c._id)}
+              >
+                {c.name}
+              </Checkbox>
+            ))}
+          </div>
+          {/* price filter */}
+
           <div className="d-flex flex-column">
             <button
-              className="btn btn-danger"
+              className="filter btn"
               onClick={() => window.location.reload()}
             >
               Reset Filters

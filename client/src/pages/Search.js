@@ -8,11 +8,12 @@ import "../styles/responsive.css";
 const Search = () => {
   const [values, setValues] = useSearch();
   const navigate = useNavigate();
+
   return (
     <Layout title={"Search results"}>
       <div className="container" style={{ fontFamily: "Calisto MT, serif" }}>
         <div className="search text-center">
-          <h4>Search Results</h4>
+          <h4>Search Results for "{values.temp}"</h4>
           <h6>
             {values?.results.length < 1
               ? "No Products Found"
