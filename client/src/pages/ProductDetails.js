@@ -4,12 +4,16 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/homepage.css";
 import "../styles/responsive.css";
+import toast from "react-hot-toast";
+import { useCart } from "../context/cart";
 
 const ProductDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [cart, setCart] = useCart();
+  const [authors, setAuthors] = useState([]);
 
   useEffect(() => {
     if (params?.slug) getProduct();
@@ -26,6 +30,21 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
+
+  const getAllAuthor = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/author/get-author");
+      if (data?.success) {
+        setAuthors(data?.author);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllAuthor();
+  }, []);
   //get similar product
   const getSimilarProduct = async (pid, cid) => {
     try {
@@ -81,8 +100,8 @@ const ProductDetails = () => {
           <button
             class="btn btn-secondary ms-1"
             style={{
-              backgroundColor: "#3778C2",
-              border: "#3778C2",
+              backgroundColor: "#EE7789",
+              border: "#EE7789",
               marginTop: "50px",
             }}
           >
@@ -101,15 +120,26 @@ const ProductDetails = () => {
         )}
         <div className="d-flex flex-wrap">
           {relatedProducts?.map((p) => (
-            <div className="card m-2" style={{ height: "290px" }} key={p._id}>
+            <div
+              className="product card m-2"
+              style={{ height: "290px" }}
+              key={p._id}
+              onClick={() => navigate(`/product/${p.slug}`)}
+            >
               <img
                 src={`/api/v1/product/product-photo/${p._id}`}
                 className="card-img-top"
                 alt={p.name}
-                style={{ width: "120px", marginLeft: "40px" }}
               />
               <div className="card-body">
                 <div className="card-name-price">
+                  <div class="popup">
+                    {authors
+                      .filter((author) => author._id === p.author)
+                      .map((author) => (
+                        <div key={author._id}>{author.name}</div>
+                      ))}
+                  </div>
                   <h5 className="card-title">{p.name}</h5>
                   <h5 className="card-title card-price">
                     {p.price.toLocaleString("en-US", {
@@ -120,24 +150,24 @@ const ProductDetails = () => {
                 </div>
                 <div className="card-name-price">
                   <button
-                    className="btn btn-info ms-1"
-                    onClick={() => navigate(`/product/${p.slug}`)}
+                    className="btn btn-dark ms-1"
+                    style={{
+                      backgroundColor: "#EE7789",
+                      border: "#EE7789",
+                      borderRadius: "20px",
+                      width: "140px",
+                    }}
+                    onClick={() => {
+                      setCart([...cart, p]);
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, p])
+                      );
+                      toast.success("Item Added to cart");
+                    }}
                   >
-                    More Details
+                    Add to cart
                   </button>
-                  {/* <button
-                  className="btn btn-dark ms-1"
-                  onClick={() => {
-                    setCart([...cart, p]);
-                    localStorage.setItem(
-                      "cart",
-                      JSON.stringify([...cart, p])
-                    );
-                    toast.success("Item Added to cart");
-                  }}
-                >
-                  ADD TO CART
-                </button> */}
                 </div>
               </div>
             </div>

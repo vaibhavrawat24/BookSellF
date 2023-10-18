@@ -1,3 +1,17 @@
+.author.card.m-2 .btn.btn-dark.ms-1 {
+  height: 30px;
+  width: 130px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.category.card.m-2 .btn.btn-dark.ms-1 {
+  height: 30px;
+  width: 130px;
+  border-radius: 20px;
+  text-align: center;
+}
+
 .filter.btn {
   border: 1px solid black;
   width: 200px;
@@ -210,6 +224,23 @@
 .card.m-2 img {
   max-width: 100%;
   height: auto;
+}
+
+.product.card.m-2 .popup {
+  top: 0;
+  opacity: 1;
+}
+
+.popup {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px;
+  opacity: 0;
+  transition: top 0.3s ease-in-out, opacity 0.4s ease-in-out;
 }
 
 .card.m-2:hover .popup {
