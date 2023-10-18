@@ -160,6 +160,7 @@ const UpdateProduct = () => {
                 onChange={(value) => {
                   setAuthor(value);
                 }}
+                value={author}
               >
                 {authors
                   ?.slice()
