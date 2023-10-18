@@ -22,6 +22,7 @@ const CreateCategory = () => {
       });
       if (data?.success) {
         toast.success(`${name} is created`);
+        setName("");
         getAllCategory();
       } else {
         toast.error(data.message);
@@ -114,35 +115,38 @@ const CreateCategory = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {categories?.map((c) => (
-                    <>
-                      <tr>
-                        <td key={c._id}>{c.name}</td>
+                  {categories
+                    ?.slice()
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .map((c) => (
+                      <>
+                        <tr>
+                          <td key={c._id}>{c.name}</td>
 
-                        <td>
-                          <button
-                            className="btn btn-primary ms-2"
-                            onClick={() => {
-                              setVisible(true);
-                              setUpdatedName(c.name);
-                              setSelected(c);
-                            }}
-                          >
-                            Edit
-                          </button>{" "}
-                          <br />
-                          <button
-                            className="btn btn-danger ms-2"
-                            onClick={() => {
-                              handleDelete(c._id);
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    </>
-                  ))}
+                          <td>
+                            <button
+                              className="btn btn-primary ms-2"
+                              onClick={() => {
+                                setVisible(true);
+                                setUpdatedName(c.name);
+                                setSelected(c);
+                              }}
+                            >
+                              Edit
+                            </button>{" "}
+                            <br />
+                            <button
+                              className="btn btn-danger ms-2"
+                              onClick={() => {
+                                handleDelete(c._id);
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      </>
+                    ))}
                 </tbody>
               </table>
             </div>

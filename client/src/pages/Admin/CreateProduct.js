@@ -104,11 +104,14 @@ const CreateProduct = () => {
                   setCategory(value);
                 }}
               >
-                {categories?.map((c) => (
-                  <Option key={c._id} value={c._id}>
-                    {c.name}
-                  </Option>
-                ))}
+                {categories
+                  ?.slice()
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((c) => (
+                    <Option key={c._id} value={c._id}>
+                      {c.name}
+                    </Option>
+                  ))}
               </Select>
               <Select
                 bordered={false}
@@ -120,11 +123,14 @@ const CreateProduct = () => {
                   setAuthor(value);
                 }}
               >
-                {authors?.map((c) => (
-                  <Option key={c._id} value={c._id}>
-                    {c.name}
-                  </Option>
-                ))}
+                {authors
+                  ?.slice()
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((c) => (
+                    <Option key={c._id} value={c._id}>
+                      {c.name}
+                    </Option>
+                  ))}
               </Select>
 
               <div className="mb-3">
