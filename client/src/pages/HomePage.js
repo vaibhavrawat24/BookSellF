@@ -238,8 +238,6 @@ const HomePage = () => {
         </div>
 
         <div className="main-container">
-          {/* <h1 className="all-text">All available books</h1>
-          <hr className="all-text" /> */}
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>
@@ -250,6 +248,7 @@ const HomePage = () => {
                 />
                 <div className="card-body">
                   <div className="card-name-price">
+                    <div class="popup">{p.author}</div>
                     <h5 className="card-title">{p.name}</h5>
                     <h5 className="card-title card-price">
                       {p.price.toLocaleString("en-US", {

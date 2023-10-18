@@ -211,6 +211,23 @@
   height: auto;
 }
 
+.card.m-2:hover .popup {
+  top: 0;
+  opacity: 1;
+}
+
+.popup {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px;
+  opacity: 0;
+  transition: top 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
 .card.m-2 .btn-more.btn-dark.ms-1,
 .card.m-2 .btn-more.btn-info.ms-1 {
   border-radius: 20px;
