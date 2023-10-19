@@ -6,6 +6,7 @@ import "../styles/homepage.css";
 import "../styles/responsive.css";
 import toast from "react-hot-toast";
 import { useCart } from "../context/cart";
+import { Link } from "react-router-dom";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -97,10 +98,18 @@ const ProductDetails = () => {
             <span style={{ fontWeight: "bold" }}>Name:</span> {product.name}
           </h6>{" "}
           <br />
-          <h6 className="info-section">
-            <span style={{ fontWeight: "bold" }}>Author:</span>{" "}
-            {product?.author?.name}
-          </h6>
+          <Link
+            to={`/author/${product?.author?.slug}`}
+            className="text"
+            style={{ color: "black", textDecoration: "none" }}
+          >
+            <h6 className="info-section">
+              <span style={{ fontWeight: "bold" }}>Author:</span>{" "}
+              <span style={{ textDecoration: "underline" }}>
+                {product?.author?.name}
+              </span>
+            </h6>
+          </Link>
           <br />
           <h6>
             <span style={{ fontWeight: "bold" }}>Description:</span>{" "}
@@ -115,11 +124,19 @@ const ProductDetails = () => {
             })}
           </h6>{" "}
           <br />
-          <h6>
-            <span style={{ fontWeight: "bold" }}>Genre :</span>{" "}
-            {product?.category?.name}
-          </h6>
-          <div style={{ display: "flex", marginBottom: "15px" }}>
+          <Link
+            to={`/category/${product?.category?.slug}`}
+            className="text"
+            style={{ color: "black", textDecoration: "none" }}
+          >
+            <h6 className="info-section">
+              <span style={{ fontWeight: "bold" }}>Genre:</span>{" "}
+              <span style={{ textDecoration: "underline" }}>
+                {product?.category?.name}
+              </span>
+            </h6>
+          </Link>
+          <div style={{ display: "flex" }}>
             <button
               onMouseDown={(event) => {
                 event.target.style.transform = "scale(0.95)";
