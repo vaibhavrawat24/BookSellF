@@ -15,22 +15,6 @@ const Header = () => {
   const [cart] = useCart();
   const categories = useCategory();
 
-  const showModal = () => {
-    const modal = document.getElementById("myModal");
-    modal.style.display = "block";
-  };
-
-  const closeModal = () => {
-    const modal = document.getElementById("myModal");
-    modal.style.display = "none";
-  };
-
-  const handleOutsideClick = (event) => {
-    const modal = document.getElementById("myModal");
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-  };
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -114,9 +98,9 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#" onClick={showModal}>
+                    <Link className="dropdown-item" to={"/rent"}>
                       Rent It
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -181,14 +165,13 @@ const Header = () => {
                       </Badge>
                     </NavLink>
                   </li>
-
-                  <li className="nav-item">
-                    <NavLink to="/recycle" className="nav-link">
-                      Recycle
-                    </NavLink>
-                  </li>
                 </>
               )}
+              <li className="nav-item">
+                <NavLink to="/recycle" className="nav-link">
+                  Recycle
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>

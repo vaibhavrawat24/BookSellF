@@ -203,8 +203,17 @@ const ProductDetails = () => {
                 transform: "scale(1)",
                 transition: "transform 0.2s, background-color 0.2s",
               }}
+              onClick={(event) => {
+                event.stopPropagation();
+                setCart([...cart, product]);
+                localStorage.setItem(
+                  "cart",
+                  JSON.stringify([...cart, product])
+                );
+                toast.success("Item Added to cart");
+              }}
             >
-              Add to Cart
+              Add to cart
             </button>
           </div>
         </div>
@@ -259,7 +268,8 @@ const ProductDetails = () => {
                       borderRadius: "20px",
                       width: "140px",
                     }}
-                    onClick={() => {
+                    onClick={(event) => {
+                      event.stopPropagation();
                       setCart([...cart, p]);
                       localStorage.setItem(
                         "cart",

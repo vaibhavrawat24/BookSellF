@@ -100,7 +100,8 @@ const CategoryProduct = () => {
                           backgroundColor: "#EE7789",
                           border: "#EE7789",
                         }}
-                        onClick={() => {
+                        onClick={(event) => {
+                          event.stopPropagation();
                           setCart([...cart, p]);
                           localStorage.setItem(
                             "cart",

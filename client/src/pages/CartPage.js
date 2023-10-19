@@ -108,7 +108,7 @@ const CartPage = () => {
             </div>
 
             <div className="col-md-5 cart-summary ">
-              <h2>Cart Summary</h2>
+              <h2 style={{ fontWeight: "bold" }}>Cart Summary</h2>
               <h1 className="cart heading">
                 {!auth?.user
                   ? "Hey guest"

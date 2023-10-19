@@ -489,3 +489,27 @@
 .recycle-img:hover {
   transform: scale(1.05);
 }
+
+.rentit-img {
+  margin-top: 20px;
+  flex: 1;
+  width: 400px;
+  height: 420px;
+  display: block;
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+  mix-blend-mode: luminosity;
+  overflow: hidden;
+  aspect-ratio: 0.9779951100244498 / 1;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  border-radius: 40px;
+  transition: transform 0.3s;
+}
+
+.rentit-img:hover {
+  transform: scale(1.05);
+}
