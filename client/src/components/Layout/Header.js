@@ -14,6 +14,23 @@ const Header = () => {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
   const categories = useCategory();
+
+  const showModal = () => {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  };
+
+  const closeModal = () => {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  };
+
+  const handleOutsideClick = (event) => {
+    const modal = document.getElementById("myModal");
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -97,9 +114,9 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to={"/rent"}>
+                    <a className="dropdown-item" href="#" onClick={showModal}>
                       Rent It
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </li>

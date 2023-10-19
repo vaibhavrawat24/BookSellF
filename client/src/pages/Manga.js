@@ -85,7 +85,7 @@ const Manga = () => {
                       </h5>
                     </div>
 
-                    <div className="details card-name-price">
+                    <div className="card-name-price">
                       <button
                         className="btn btn-dark ms-1"
                         style={{

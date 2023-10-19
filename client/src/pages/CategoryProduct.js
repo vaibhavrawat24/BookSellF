@@ -87,7 +87,7 @@ const CategoryProduct = () => {
                       </h5>
                     </div>
 
-                    <div className="details card-name-price">
+                    <div className="card-name-price">
                       {/* <button
                         className="details btn btn-info ms-1"
                         onClick={() => navigate(`/product/${p.slug}`)}

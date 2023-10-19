@@ -97,46 +97,42 @@ const ProductDetails = () => {
             {" "}
             <span style={{ fontWeight: "bold" }}>Name:</span> {product.name}
           </h6>{" "}
-          <br />
           <Link
             to={`/author/${product?.author?.slug}`}
             className="text"
             style={{ color: "black", textDecoration: "none" }}
           >
-            <h6 className="info-section">
+            <h6 className="info-section" style={{ marginTop: "15px" }}>
               <span style={{ fontWeight: "bold" }}>Author:</span>{" "}
               <span style={{ textDecoration: "underline" }}>
                 {product?.author?.name}
               </span>
             </h6>
           </Link>
-          <br />
-          <h6>
-            <span style={{ fontWeight: "bold" }}>Description:</span>{" "}
-            {product.description}
-          </h6>{" "}
-          <br />
-          <h6>
-            <span style={{ fontWeight: "bold" }}>Price :</span>
-            {product?.price?.toLocaleString("en-US", {
-              style: "currency",
-              currency: "INR",
-            })}
-          </h6>{" "}
-          <br />
           <Link
             to={`/category/${product?.category?.slug}`}
             className="text"
             style={{ color: "black", textDecoration: "none" }}
           >
-            <h6 className="info-section">
+            <h6 className="info-section" style={{ marginTop: "15px" }}>
               <span style={{ fontWeight: "bold" }}>Genre:</span>{" "}
               <span style={{ textDecoration: "underline" }}>
                 {product?.category?.name}
               </span>
             </h6>
           </Link>
-          <div style={{ display: "flex" }}>
+          <h6 style={{ marginTop: "15px" }}>
+            <span style={{ fontWeight: "bold" }}>Description:</span>{" "}
+            {product.description}
+          </h6>{" "}
+          <h6 style={{ marginTop: "18px" }}>
+            <span style={{ fontWeight: "bold" }}>Price :</span>
+            {product?.price?.toLocaleString("en-US", {
+              style: "currency",
+              currency: "INR",
+            })}
+          </h6>{" "}
+          <div style={{ display: "flex", marginBottom: "10px" }}>
             <button
               onMouseDown={(event) => {
                 event.target.style.transform = "scale(0.95)";
@@ -218,14 +214,16 @@ const ProductDetails = () => {
         className="row container similar-products"
         style={{ fontFamily: "Calisto MT, serif" }}
       >
-        <h4>Similar Products</h4>
+        <h4 style={{ marginLeft: "90px", fontWeight: "bold" }}>
+          Similar Products
+        </h4>
         {relatedProducts.length < 1 && (
           <p className="text-center">No Similar Products found</p>
         )}
         <div className="d-flex flex-wrap">
           {relatedProducts?.map((p) => (
             <div
-              className="product card m-2"
+              className="card m-2"
               style={{ height: "290px" }}
               key={p._id}
               onClick={() => navigate(`/product/${p.slug}`)}
