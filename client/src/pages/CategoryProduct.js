@@ -13,10 +13,27 @@ const CategoryProduct = () => {
   const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
+  const [authors, setAuthors] = useState([]);
 
   useEffect(() => {
     if (params?.slug) getPrductsByCat();
   }, [params?.slug]);
+
+  const getAllAuthor = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/author/get-author");
+      if (data?.success) {
+        setAuthors(data?.author);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllAuthor();
+  }, []);
+
   const getPrductsByCat = async () => {
     try {
       const { data } = await axios.get(
@@ -54,6 +71,13 @@ const CategoryProduct = () => {
                   />
                   <div className="card-body">
                     <div className="card-name-price">
+                      <div class="popup">
+                        {authors
+                          .filter((author) => author._id === p.author)
+                          .map((author) => (
+                            <div key={author._id}>{author.name}</div>
+                          ))}
+                      </div>
                       <h5 className="category card-title">{p.name}</h5>
                       <h5 className="card-title card-price">
                         {p.price.toLocaleString("en-US", {

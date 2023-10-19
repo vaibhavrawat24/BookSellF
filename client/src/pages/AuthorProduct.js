@@ -13,6 +13,7 @@ const AuthorProduct = () => {
   const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
   const [author, setAuthor] = useState([]);
+  const [authors, setAuthors] = useState([]);
 
   useEffect(() => {
     if (params?.slug) getPrductsByCat();
@@ -54,6 +55,7 @@ const AuthorProduct = () => {
                   />
                   <div className="card-body">
                     <div className="card-name-price">
+                      <div class="popup">{author.name}</div>
                       <h5 className="card-title">{p.name}</h5>
                       <h5 className="card-title card-price">
                         {p.price.toLocaleString("en-US", {
