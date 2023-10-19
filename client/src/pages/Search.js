@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "./../components/Layout/Layout";
+import axios from "axios";
 import { useSearch } from "../context/search";
 import { useNavigate } from "react-router-dom";
 import "../styles/homepage.css";
@@ -8,6 +9,22 @@ import "../styles/responsive.css";
 const Search = () => {
   const [values, setValues] = useSearch();
   const navigate = useNavigate();
+  const [authors, setAuthors] = useState([]);
+
+  const getAllAuthor = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/author/get-author");
+      if (data?.success) {
+        setAuthors(data?.author);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllAuthor();
+  }, []);
 
   return (
     <Layout title={"Search results"}>
@@ -29,6 +46,13 @@ const Search = () => {
                   alt={p.name}
                 />
                 <div className="card-body">
+                  <div class="popup">
+                    {authors
+                      .filter((author) => author._id === p.author)
+                      .map((author) => (
+                        <div key={author._id}>{author.name}</div>
+                      ))}
+                  </div>
                   <h5 className="card-title">{p.name}</h5>
                   <h5 className="card-title card-price">
                     {p.price.toLocaleString("en-US", {

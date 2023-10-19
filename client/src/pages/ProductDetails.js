@@ -15,6 +15,23 @@ const ProductDetails = () => {
   const [cart, setCart] = useCart();
   const [authors, setAuthors] = useState([]);
 
+  const showModal = () => {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  };
+
+  const closeModal = () => {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  };
+
+  const handleOutsideClick = (event) => {
+    const modal = document.getElementById("myModal");
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+
   useEffect(() => {
     if (params?.slug) getProduct();
   }, [params?.slug]);
@@ -80,6 +97,11 @@ const ProductDetails = () => {
             <span style={{ fontWeight: "bold" }}>Name:</span> {product.name}
           </h6>{" "}
           <br />
+          <h6 className="info-section">
+            <span style={{ fontWeight: "bold" }}>Author:</span>{" "}
+            {product?.author?.name}
+          </h6>
+          <br />
           <h6>
             <span style={{ fontWeight: "bold" }}>Description:</span>{" "}
             {product.description}
@@ -97,16 +119,81 @@ const ProductDetails = () => {
             <span style={{ fontWeight: "bold" }}>Genre :</span>{" "}
             {product?.category?.name}
           </h6>
-          <button
-            class="btn btn-secondary ms-1"
-            style={{
-              backgroundColor: "#EE7789",
-              border: "#EE7789",
-              marginTop: "50px",
-            }}
-          >
-            Add to Cart
-          </button>
+          <div style={{ display: "flex", marginBottom: "15px" }}>
+            <button
+              onMouseDown={(event) => {
+                event.target.style.transform = "scale(0.95)";
+                event.target.style.backgroundColor = "#8D9B6A";
+              }}
+              onMouseUp={(event) => {
+                event.target.style.transform = "scale(1)";
+                event.target.style.backgroundColor = "#8D9B6A";
+                showModal();
+              }}
+              class="btn btn-secondary ms-1"
+              style={{
+                backgroundColor: "#8D9B6A",
+                border: "#8D9B6A",
+                marginTop: "50px",
+                transform: "scale(1)",
+                transition: "transform 0.2s, background-color 0.2s",
+              }}
+            >
+              Rent It
+            </button>
+            <div
+              id="myModal"
+              className="modal"
+              onClick={handleOutsideClick}
+              style={{ fontFamily: "Calisto MT, serif" }}
+            >
+              <div className="modal-content">
+                <span className="close" onClick={closeModal}>
+                  &times;
+                </span>
+                <div>
+                  <h5>Welcome to our Renting Page!</h5>
+                  <h5>
+                    {" "}
+                    We're excited to have you here. At BookSellF, we're
+                    dedicated to bringing you a fantastic selection of books for
+                    rent. While the renting feature is not available at this
+                    moment, please stay tuned and watch this space. We're
+                    working diligently to bring you the best book renting
+                    experience. In the meantime, feel free to explore our
+                    library and create a wishlist of books you'd like to read
+                    once the renting feature goes live.{" "}
+                  </h5>
+
+                  <h5>
+                    We appreciate your patience and look forward to serving you
+                    soon. Thank you for your interest.
+                  </h5>
+                  <h5>Happy reading!</h5>
+                </div>
+              </div>
+            </div>
+            <button
+              onMouseDown={(event) => {
+                event.target.style.transform = "scale(0.95)";
+                event.target.style.backgroundColor = "#EE7789";
+              }}
+              onMouseUp={(event) => {
+                event.target.style.transform = "scale(1)";
+                event.target.style.backgroundColor = "#EE7789";
+              }}
+              class="btn btn-secondary ms-1"
+              style={{
+                backgroundColor: "#EE7789",
+                border: "#EE7789",
+                marginTop: "50px",
+                transform: "scale(1)",
+                transition: "transform 0.2s, background-color 0.2s",
+              }}
+            >
+              Add to Cart
+            </button>
+          </div>
         </div>
       </div>
       <hr />
