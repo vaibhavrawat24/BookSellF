@@ -5,11 +5,14 @@ import { useSearch } from "../context/search";
 import { useNavigate } from "react-router-dom";
 import "../styles/homepage.css";
 import "../styles/responsive.css";
+import toast from "react-hot-toast";
+import { useCart } from "../context/cart";
 
 const Search = () => {
   const [values, setValues] = useSearch();
   const navigate = useNavigate();
   const [authors, setAuthors] = useState([]);
+  const [cart, setCart] = useCart();
 
   const getAllAuthor = async () => {
     try {
@@ -61,10 +64,22 @@ const Search = () => {
                     })}
                   </h5>
                   <button
-                    class="details btn btn-info ms-1"
-                    onClick={() => navigate(`/product/${p.slug}`)}
+                    className="btn btn-dark ms-1"
+                    style={{
+                      backgroundColor: "#EE7789",
+                      border: "#EE7789",
+                    }}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setCart([...cart, p]);
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, p])
+                      );
+                      toast.success("Item Added to cart");
+                    }}
                   >
-                    More Details
+                    Add to cart
                   </button>
                 </div>
               </div>

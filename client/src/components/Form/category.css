@@ -14,7 +14,7 @@
 }
 
 :root {
-  --primary: #007fff;
+  --primary: #6f7e8c;
   --secondary: #6f7e8c;
   --box: #f5f5f5;
   --text: #212121;
@@ -40,9 +40,10 @@
 } */
 
 .hehehe {
+  filter: grayscale(100%);
   position: relative;
-  width: 45px;
-  height: 45px;
+  width: 39px;
+  height: 39px;
   border-radius: 40px;
   padding: 10px;
   cursor: pointer;
@@ -53,17 +54,17 @@
   transition: width 300ms, background-position 300ms;
   overflow: hidden;
   background: url(search-bold.svg) no-repeat transparent;
-  background-size: 40px;
+  background-size: 30px;
   background-position: 45% 50%;
 }
 
-.hehehe:hover {
+/* .hehehe:hover {
   cursor: pointer;
   border: 3px solid var(--primary);
   background: url(search-bold.svg) no-repeat transparent;
   background-size: 40px;
   background-position: 45% 50%;
-}
+} */
 
 .hehehe:focus,
 .hehehe:not(:placeholder-shown) {
@@ -77,6 +78,6 @@
   border: 3px solid var(--primary);
   background-color: transparent;
   background: url(search-bold.svg) no-repeat;
-  background-size: 40px;
+  background-size: 30px;
   background-position: 10px 50%;
 }

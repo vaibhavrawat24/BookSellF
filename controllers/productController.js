@@ -264,6 +264,8 @@ export const searchProductController = async (req, res) => {
         $or: [
           { name: { $regex: keyword, $options: "i" } },
           { description: { $regex: keyword, $options: "i" } },
+          // // { category: { $regex: keyword, $options: "i" } },
+          // { author: { $regex: keyword, $options: "i" } },
         ],
       })
       .select("-photo");
