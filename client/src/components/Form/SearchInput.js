@@ -26,18 +26,21 @@ const SearchInput = () => {
     }
   };
   return (
-    <div className="search">
-      <div class="box">
-        <form onSubmit={handleSubmit}>
-          <input
-            class="hehehe"
-            placeholder=" "
-            spellCheck="false"
-            value={values.keyword}
-            onChange={(e) => setValues({ ...values, keyword: e.target.value })}
-          />
-        </form>
-      </div>
+    <div>
+      <form
+        className="d-flex search-form"
+        role="search"
+        onSubmit={handleSubmit}
+      >
+        <input
+          className="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          value={values.keyword}
+          onChange={(e) => setValues({ ...values, keyword: e.target.value })}
+        />
+      </form>
     </div>
   );
 };

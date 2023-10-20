@@ -91,9 +91,8 @@ const ProductDetails = () => {
           />
         </div>
         <div className="col-md-6 product-details-info">
-          <h1 className="text-center">Details</h1>
           <hr />
-          <h6>
+          <h6 style={{ fontSize: "18px" }}>
             {" "}
             <span style={{ fontWeight: "bold" }}>Name:</span> {product.name}
           </h6>{" "}
@@ -102,7 +101,10 @@ const ProductDetails = () => {
             className="text"
             style={{ color: "black", textDecoration: "none" }}
           >
-            <h6 className="info-section" style={{ marginTop: "15px" }}>
+            <h6
+              className="info-section"
+              style={{ marginTop: "15px", fontSize: "18px" }}
+            >
               <span style={{ fontWeight: "bold" }}>Author:</span>{" "}
               <span style={{ textDecoration: "underline" }}>
                 {product?.author?.name}
@@ -114,18 +116,21 @@ const ProductDetails = () => {
             className="text"
             style={{ color: "black", textDecoration: "none" }}
           >
-            <h6 className="info-section" style={{ marginTop: "15px" }}>
+            <h6
+              className="info-section"
+              style={{ marginTop: "15px", fontSize: "18px" }}
+            >
               <span style={{ fontWeight: "bold" }}>Genre:</span>{" "}
               <span style={{ textDecoration: "underline" }}>
                 {product?.category?.name}
               </span>
             </h6>
           </Link>
-          <h6 style={{ marginTop: "15px" }}>
+          <h6 style={{ marginTop: "15px", fontSize: "18px" }}>
             <span style={{ fontWeight: "bold" }}>Description:</span>{" "}
             {product.description}
           </h6>{" "}
-          <h6 style={{ marginTop: "18px" }}>
+          <h6 style={{ marginTop: "18px", fontSize: "18px" }}>
             <span style={{ fontWeight: "bold" }}>Price :</span>
             {product?.price?.toLocaleString("en-US", {
               style: "currency",

@@ -239,7 +239,7 @@ const HomePage = () => {
         </div>
 
         <div className="main-container">
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap justify-content">
             {products?.map((p) => (
               <div
                 className="card m-2"

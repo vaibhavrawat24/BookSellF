@@ -34,12 +34,14 @@ import Manga from "./pages/Manga";
 import CreateAuthor from "./pages/Admin/CreateAuthor";
 import AuthorProduct from "./pages/AuthorProduct";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
         <Route path="/rent" element={<Rent />} />
         <Route path="/categories" element={<Categories />} />
