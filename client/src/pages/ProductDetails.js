@@ -13,6 +13,7 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [AuthorRelatedProducts, setAuthorRelatedProducts] = useState([]);
   const [cart, setCart] = useCart();
   const [authors, setAuthors] = useState([]);
 
@@ -44,6 +45,7 @@ const ProductDetails = () => {
       );
       setProduct(data?.product);
       getSimilarProduct(data?.product._id, data?.product.category._id);
+      getAuthorSimilarProduct(data?.product._id, data?.product.author._id);
     } catch (error) {
       console.log(error);
     }
@@ -74,11 +76,22 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
+
+  const getAuthorSimilarProduct = async (pid, cid) => {
+    try {
+      const { data } = await axios.get(
+        `/api/v1/product/author-related-product/${pid}/${cid}`
+      );
+      setAuthorRelatedProducts(data?.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Layout>
       <div
         className="row container product-details"
-        style={{ fontFamily: "Calisto MT, serif", marginTop: "80px" }}
+        style={{ fontFamily: "Calisto MT, serif" }}
       >
         <div className="col-md-6 custom-width">
           <img
@@ -87,7 +100,7 @@ const ProductDetails = () => {
             alt={product.name}
             // width={"300spx"}
             // height={"300px"}
-            style={{ width: "280px", height: "380px", marginRight: "200px" }}
+            // style={{ width: "280px", height: "380px", marginRight: "200px" }}
           />
         </div>
         <div className="col-md-6 product-details-info">
@@ -236,6 +249,73 @@ const ProductDetails = () => {
         )}
         <div className="d-flex flex-wrap">
           {relatedProducts?.map((p) => (
+            <div
+              className="card m-2"
+              style={{ height: "290px" }}
+              key={p._id}
+              onClick={() => navigate(`/product/${p.slug}`)}
+            >
+              <img
+                src={`/api/v1/product/product-photo/${p._id}`}
+                className="card-img-top"
+                alt={p.name}
+              />
+              <div className="card-body">
+                <div className="card-name-price">
+                  <div class="popup">
+                    {authors
+                      .filter((author) => author._id === p.author)
+                      .map((author) => (
+                        <div key={author._id}>{author.name}</div>
+                      ))}
+                  </div>
+                  <h5 className="card-title">{p.name}</h5>
+                  <h5 className="card-title card-price">
+                    {p.price.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "INR",
+                    })}
+                  </h5>
+                </div>
+                <div className="card-name-price">
+                  <button
+                    className="btn btn-dark ms-1"
+                    style={{
+                      backgroundColor: "#EE7789",
+                      border: "#EE7789",
+                      borderRadius: "20px",
+                      width: "140px",
+                    }}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setCart([...cart, p]);
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, p])
+                      );
+                      toast.success("Item Added to cart");
+                    }}
+                  >
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div
+        className="row container similar-products"
+        style={{ fontFamily: "Calisto MT, serif" }}
+      >
+        <h4 style={{ marginLeft: "90px", fontWeight: "bold" }}>
+          By the same author
+        </h4>
+        {AuthorRelatedProducts.length < 1 && (
+          <p className="text-center">No Similar Products found</p>
+        )}
+        <div className="d-flex flex-wrap">
+          {AuthorRelatedProducts?.map((p) => (
             <div
               className="card m-2"
               style={{ height: "290px" }}

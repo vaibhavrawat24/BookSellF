@@ -96,8 +96,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
-
-    z-index: 100;
+    z-index: 1;
   }
 
   .navbar.filter button {
@@ -134,5 +133,135 @@
   .total-text {
     color: #232323;
     font-weight: lighter;
+  }
+
+  /* .col-md-6.custom-width {
+    width: 10px;
+  } */
+
+  /* .row.container.similar-products {
+    margin-left: 0px;
+  }
+
+  .row.container.similar-products.h4 {
+    margin-left: 0px;
+  }  */
+  /* 
+  .col-md-6.custom-width.row.container.product-details {
+    position: absolute;
+    left: 0;
+    top: 0;
+  } */
+  .row.container.product-details {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    margin: 0;
+    justify-content: space-between;
+  }
+
+  .row.container.similar-products {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    margin: 0;
+    justify-content: space-between;
+  }
+
+  .col-md-6.custom-width {
+    margin-top: 70px;
+    width: 48%;
+    box-sizing: border-box;
+  }
+
+  .col-md-6.product-details-info {
+    max-height: 90%;
+  }
+
+  /* .card {
+    width: 100%;
+    height: auto;
+    margin: 10px;
+  } */
+
+  .img-fluid {
+    margin-top: 10px;
+    width: 200px;
+    max-height: 85%;
+    height: 500px;
+  }
+
+  .recycle-main-div {
+    /* flex: content; */
+    margin-top: 60px;
+    padding: 20px;
+    background-color: #f8ffe5;
+  }
+
+  .header.recycle {
+    margin-top: 200px;
+    text-align: center;
+    margin: 10px;
+  }
+
+  .header.recycle h1 {
+    font-size: 24px;
+  }
+
+  .right.recycle {
+    flex: content;
+
+    margin-top: 290px;
+    display: flex;
+    /* flex-wrap: wrap; */
+    overflow: hidden;
+    flex-direction: column;
+  }
+
+  .recycle-img {
+    height: 210px;
+    width: 210px;
+  }
+
+  .rentit-img {
+    height: 240px;
+    width: 240px;
+  }
+
+  .left.recycle {
+    flex: content;
+
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+
+  /* .container.recycle {
+    margin-top: 200px;
+    text-align: center;
+    margin: 10px;
+  }
+
+  .left.recycle .recycle-img {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+
+  .right.recycle {
+    margin-top: 600px;
+    text-align: center;
+    margin: 10px;
+  }
+  .right.recycle.h1 {
+    margin-top: 600px;
+  }
+
+  .recycle-img:hover {
+    transform: scale(1);
+  } */
+
+  .col-md-3.filters-new {
+    position: relative;
   }
 }

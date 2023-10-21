@@ -137,7 +137,7 @@ const HomePage = () => {
     }
   };
   return (
-    <Layout title={"All Products - Best offers "}>
+    <Layout title={"All Books "}>
       <div
         className="navbar filter"
         style={{ fontFamily: "Calisto MT, serif" }}
@@ -161,19 +161,27 @@ const HomePage = () => {
             &times;
           </span>
           <div className="filter-options">
-            <label htmlFor="category">Filter by Category:</label>
-            <select id="category">
-              <option value="all">All</option>
-              <option value="category1">Category 1</option>
-              <option value="category2">Category 2</option>
-              <option value="category3">Category 3</option>
-            </select>
             <label htmlFor="price">Filter by Price:</label>
             <select id="price">
               <option value="all">All</option>
               <option value="price1">Price 1</option>
               <option value="price2">Price 2</option>
               <option value="price3">Price 3</option>
+            </select>
+            <label htmlFor="category">Filter by Genre:</label>
+            <select id="category">
+              <option value="all">All</option>
+              <option value="category1">Genre 1</option>
+              <option value="category2">Genre 2</option>
+              <option value="category3">Genre 3</option>
+            </select>
+
+            <label htmlFor="price">Filter by Author:</label>
+            <select id="price">
+              <option value="all">All</option>
+              <option value="price1">Author 1</option>
+              <option value="price2">Author 2</option>
+              <option value="price3">Author 3</option>
             </select>
             <div className="apply-button">
               <button className="button">Apply</button>
