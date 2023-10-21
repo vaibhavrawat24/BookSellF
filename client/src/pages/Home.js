@@ -3,7 +3,10 @@ import "../styles/Home.css";
 
 const Home = () => {
   return (
-    <div className="home-header" style={{ fontFamily: "Calisto MT, serif" }}>
+    <div
+      className="row container home-header"
+      style={{ fontFamily: "Calisto MT, serif" }}
+    >
       <div className="col-md-6 custom-width">
         <h1>Unleash Your Inner Bookworm</h1>
       </div>

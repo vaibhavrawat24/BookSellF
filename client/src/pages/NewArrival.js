@@ -260,7 +260,16 @@ const HomePage = () => {
                           <div key={author._id}>{author.name}</div>
                         ))}
                     </div>
-                    <h5 className="card-title">{p.name}</h5>
+                    <h5
+                      className="card-title"
+                      style={{
+                        maxHeight: "2.3em",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {p.name}
+                    </h5>
                     <h5 className="card-title card-price">
                       {p.price.toLocaleString("en-US", {
                         style: "currency",

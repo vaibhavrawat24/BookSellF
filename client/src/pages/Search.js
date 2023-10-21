@@ -31,56 +31,70 @@ const Search = () => {
 
   return (
     <Layout title={"Search results"}>
-      <div className="container" style={{ fontFamily: "Calisto MT, serif" }}>
-        <div className="search text-center">
-          <h4>Search Results for "{values.temp}"</h4>
-          <h6>
-            {values?.results.length < 1
-              ? "No Products Found"
-              : `(${values?.results.length} result found)`}
-          </h6>
-          <hr />
-          <div className="d-flex flex-wrap">
+      <div
+        className="container mt-3 category"
+        style={{ fontFamily: "Calisto MT, serif" }}
+      >
+        <h4 className="category text-center">
+          Search Results for "{values.temp}"
+        </h4>
+        <h6 className="text-center">
+          {values?.results.length < 1
+            ? "No Products Found"
+            : `(${values?.results.length} result found)`}
+        </h6>
+        <hr />
+        <div className="category col-12">
+          <div className="d-flex flex-wrap justify-content">
             {values?.results.map((p) => (
-              <div className="category card m-2" style={{ width: "18rem" }}>
+              <div
+                className="category card m-2"
+                key={p._id}
+                onClick={() => navigate(`/product/${p.slug}`)}
+                style={{ width: "18rem" }}
+              >
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
                 />
                 <div className="card-body">
-                  <div class="popup">
-                    {authors
-                      .filter((author) => author._id === p.author)
-                      .map((author) => (
-                        <div key={author._id}>{author.name}</div>
-                      ))}
+                  <div className="card-name-price">
+                    <div class="popup">
+                      {authors
+                        .filter((author) => author._id === p.author)
+                        .map((author) => (
+                          <div key={author._id}>{author.name}</div>
+                        ))}
+                    </div>
+                    <h5 className="card-title">{p.name}</h5>
+                    <h5 className="card-title card-price">
+                      {p.price.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "INR",
+                      })}
+                    </h5>
                   </div>
-                  <h5 className="card-title">{p.name}</h5>
-                  <h5 className="card-title card-price">
-                    {p.price.toLocaleString("en-US", {
-                      style: "currency",
-                      currency: "INR",
-                    })}
-                  </h5>
-                  <button
-                    className="btn btn-dark ms-1"
-                    style={{
-                      backgroundColor: "#EE7789",
-                      border: "#EE7789",
-                    }}
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      setCart([...cart, p]);
-                      localStorage.setItem(
-                        "cart",
-                        JSON.stringify([...cart, p])
-                      );
-                      toast.success("Item Added to cart");
-                    }}
-                  >
-                    Add to cart
-                  </button>
+                  <div className="card-name-price">
+                    <button
+                      className="btn btn-dark ms-1"
+                      style={{
+                        backgroundColor: "#EE7789",
+                        border: "#EE7789",
+                      }}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
+                        toast.success("Item Added to cart");
+                      }}
+                    >
+                      Add to cart
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
