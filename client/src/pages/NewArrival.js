@@ -11,7 +11,7 @@ import "../styles/homepage.css";
 import "../styles/responsive.css";
 import { Link } from "react-router-dom";
 
-const HomePage = () => {
+const NewArrival = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
@@ -68,7 +68,7 @@ const HomePage = () => {
     getAllCategory();
     getTotal();
   }, []);
-  //get products
+
   const getAllProducts = async () => {
     try {
       setLoading(true);
@@ -139,107 +139,42 @@ const HomePage = () => {
   return (
     <Layout title={"All Products - Best offers "}>
       <div
-        className="navbar filter"
-        style={{ fontFamily: "Calisto MT, serif" }}
-      >
-        <p>
-          All books: <span className="total-text">{total}</span>
-        </p>
-
-        <button onclick="toggleOptions('sort')">Sort</button>
-        <button onClick={showModal}>Filter</button>
-      </div>
-
-      <div
-        id="myModal"
-        className="modal"
-        onClick={handleOutsideClick}
-        style={{ fontFamily: "Calisto MT, serif" }}
-      >
-        <div className="modal-content">
-          <span className="close" onClick={closeModal}>
-            &times;
-          </span>
-          <div className="filter-options">
-            <label htmlFor="category">Filter by Category:</label>
-            <select id="category">
-              <option value="all">All</option>
-              <option value="category1">Category 1</option>
-              <option value="category2">Category 2</option>
-              <option value="category3">Category 3</option>
-            </select>
-            <label htmlFor="price">Filter by Price:</label>
-            <select id="price">
-              <option value="all">All</option>
-              <option value="price1">Price 1</option>
-              <option value="price2">Price 2</option>
-              <option value="price3">Price 3</option>
-            </select>
-            <div className="apply-button">
-              <button className="button">Apply</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
         className="filter-container"
         style={{ fontFamily: "Calisto MT, serif" }}
       >
-        <div className="col-md-3 filters">
-          <h3 style={{ textAlign: "center" }}>New Arrivals</h3>
-          <hr />
-          <h4 className="text-center mt-4">Filter By Price</h4>
-          <div className="d-flex flex-column">
-            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-              {Prices?.map((p) => (
-                <div key={p._id}>
-                  <Radio value={p.array}>{p.name}</Radio>
-                </div>
-              ))}
-            </Radio.Group>
-          </div>
+        <div
+          className="col-md-3 filters-new"
+          style={{
+            border: "1px solid lightgrey",
+            borderRadius: "10px",
+            marginTop: "80px",
+            marginLeft: "20px",
+            transition: "transform 0.2s, box-shadow 0.2s",
+          }}
+        >
+          <h2 style={{ marginTop: "20px", textAlign: "center" }}>
+            New Arrivals
+          </h2>
+          <img
+            src="https://i.pinimg.com/736x/cd/a5/eb/cda5eb21955ce1d12da2ab6ba787888e.jpg"
+            alt="bookimg"
+            className="newimg"
+          />
 
-          <h4 className="text-center mt-4">Filter By Genre</h4>
-          <div className="d-flex flex-column">
-            {categories
-              .slice()
-              .sort((a, b) => a.name.localeCompare(b.name))
-              .map((c) => (
-                <Checkbox
-                  key={c._id}
-                  onChange={(e) => handleFilter(e.target.checked, c._id)}
-                >
-                  {c.name}
-                </Checkbox>
-              ))}
-          </div>
-          <h4 className="text-center mt-4">Filter By Author</h4>
-          <div className="d-flex flex-column">
-            {authors
-              .slice()
-              .sort((a, b) => a.name.localeCompare(b.name))
-              .map((c) => (
-                <Checkbox
-                  key={c._id}
-                  onChange={(e) => handleFilter(e.target.checked, c._id)}
-                >
-                  {c.name}
-                </Checkbox>
-              ))}
-          </div>
-
-          <div className="d-flex flex-column">
-            <button
-              className="filter btn"
-              onClick={() => window.location.reload()}
-            >
-              Reset Filters
-            </button>
-          </div>
+          <h3
+            className="treasure"
+            style={{ marginTop: "8px", marginLeft: "18px" }}
+          >
+            A Treasure Trove of New Arrivals
+          </h3>
+          <h5 style={{ marginLeft: "18px" }}>
+            Curated with care, our collection features riveting stories,
+            magnificent prose, and heart-pounding adventures.
+          </h5>
         </div>
 
         <div className="main-container">
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap justify-content">
             {products?.map((p) => (
               <div
                 className="card m-2"
@@ -260,6 +195,7 @@ const HomePage = () => {
                           <div key={author._id}>{author.name}</div>
                         ))}
                     </div>
+
                     <h5
                       className="card-title"
                       style={{
@@ -270,6 +206,7 @@ const HomePage = () => {
                     >
                       {p.name}
                     </h5>
+
                     <h5 className="card-title card-price">
                       {p.price.toLocaleString("en-US", {
                         style: "currency",
@@ -295,7 +232,8 @@ const HomePage = () => {
                         backgroundColor: "#EE7789",
                         border: "#EE7789",
                       }}
-                      onClick={() => {
+                      onClick={(event) => {
+                        event.stopPropagation();
                         setCart([...cart, p]);
                         localStorage.setItem(
                           "cart",
@@ -337,4 +275,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default NewArrival;

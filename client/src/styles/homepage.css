@@ -513,3 +513,59 @@
 .rentit-img:hover {
   transform: scale(1.05);
 }
+
+/* .treasure {
+  width: 100%;
+  height: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow: visible;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Glass Antiqua", sans-serif;
+  color: #000000;
+  font-size: 32px;
+  letter-spacing: 0em;
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+} */
+
+.newimg {
+  margin-left: 30px;
+
+  height: 250px;
+  width: 250px;
+  /* display: block;
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1); */
+  /* mix-blend-mode: luminosity; */
+  overflow: hidden;
+  /* aspect-ratio: 0.9779951100244498 / 1; */
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  border-radius: 40px;
+  transition: transform 0.3s;
+}
+
+.newimg:hover {
+  transform: scale(1.05);
+}
+
+.col-md-3.filters-new {
+  position: fixed;
+  top: 0;
+  max-width: 100%;
+  max-height: 86%;
+  overflow-y: scroll;
+  overflow: auto;
+}
+
+.col-md-3.filters-new:hover {
+  transform: scale(1.01); /* Scale the element on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a box shadow on hover */
+}
