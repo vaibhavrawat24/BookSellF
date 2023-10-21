@@ -152,7 +152,13 @@ const NewArrival = () => {
             transition: "transform 0.2s, box-shadow 0.2s",
           }}
         >
-          <h2 style={{ marginTop: "20px", textAlign: "center" }}>
+          <h2
+            style={{
+              marginTop: "20px",
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
             New Arrivals
           </h2>
           <img
