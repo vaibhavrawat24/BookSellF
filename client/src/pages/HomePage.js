@@ -68,7 +68,7 @@ const HomePage = () => {
     getAllCategory();
     getTotal();
   }, []);
-  //get products
+
   const getAllProducts = async () => {
     try {
       setLoading(true);
