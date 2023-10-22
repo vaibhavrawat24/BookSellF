@@ -34,6 +34,23 @@ const ProductDetails = () => {
     }
   };
 
+  const showReviewModal = () => {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  };
+
+  const closeReviewModal = () => {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  };
+
+  const handleOutsideClickReview = (event) => {
+    const modal = document.getElementById("myModal");
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+
   useEffect(() => {
     if (params?.slug) getProduct();
   }, [params?.slug]);
@@ -150,7 +167,31 @@ const ProductDetails = () => {
               currency: "INR",
             })}
           </h6>{" "}
-          <div style={{ display: "flex", marginBottom: "10px" }}>
+          <h6
+            onClick={showReviewModal}
+            style={{ textAlign: "center", textDecoration: "underline" }}
+          >
+            Read/Post Reviews
+          </h6>
+          <div
+            id="myModal"
+            className="modal"
+            onClick={handleOutsideClickReview}
+            style={{ fontFamily: "Calisto MT, serif" }}
+          >
+            <div className="modal-content">
+              <span className="close" onClick={closeReviewModal}>
+                &times;
+              </span>
+              <div>
+                <h1>read reviews</h1>
+              </div>
+            </div>
+          </div>
+          <div
+            className="hehediv"
+            style={{ display: "flex", marginBottom: "10px" }}
+          >
             <button
               onMouseDown={(event) => {
                 event.target.style.transform = "scale(0.95)";
@@ -165,7 +206,8 @@ const ProductDetails = () => {
               style={{
                 backgroundColor: "#8D9B6A",
                 border: "#8D9B6A",
-                marginTop: "50px",
+                height: "35px",
+                marginTop: "25px",
                 transform: "scale(1)",
                 transition: "transform 0.2s, background-color 0.2s",
               }}
@@ -217,7 +259,8 @@ const ProductDetails = () => {
               style={{
                 backgroundColor: "#EE7789",
                 border: "#EE7789",
-                marginTop: "50px",
+                marginTop: "25px",
+                height: "35px",
                 transform: "scale(1)",
                 transition: "transform 0.2s, background-color 0.2s",
               }}

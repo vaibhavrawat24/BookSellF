@@ -146,13 +146,17 @@
   .row.container.similar-products.h4 {
     margin-left: 0px;
   }  */
+
   /* 
+
+  
   .col-md-6.custom-width.row.container.product-details {
     position: absolute;
     left: 0;
     top: 0;
   } */
   .row.container.product-details {
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
@@ -174,9 +178,9 @@
     box-sizing: border-box;
   }
 
-  .col-md-6.product-details-info {
+  /* .col-md-6.product-details-info {
     max-height: 90%;
-  }
+  } */
 
   /* .card {
     width: 100%;
