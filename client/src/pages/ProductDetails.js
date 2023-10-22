@@ -188,10 +188,7 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-          <div
-            className="hehediv"
-            style={{ display: "flex", marginBottom: "10px" }}
-          >
+          <div style={{ display: "flex", marginBottom: "10px" }}>
             <button
               onMouseDown={(event) => {
                 event.target.style.transform = "scale(0.95)";
