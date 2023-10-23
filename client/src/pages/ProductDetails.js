@@ -4,9 +4,11 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/homepage.css";
 import "../styles/responsive.css";
+
 import toast from "react-hot-toast";
 import { useCart } from "../context/cart";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/auth";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -16,6 +18,52 @@ const ProductDetails = () => {
   const [AuthorRelatedProducts, setAuthorRelatedProducts] = useState([]);
   const [cart, setCart] = useCart();
   const [authors, setAuthors] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [rating, setRating] = useState(0);
+  const [description, setDescription] = useState("");
+
+  const addReviewHandler = async (e, pid) => {
+    e.preventDefault();
+
+    let review = {
+      pid: product,
+      rating: rating,
+      description: description,
+    };
+    try {
+      const reviewData = new FormData();
+
+      reviewData.append("product_id", product);
+      reviewData.append("rating", rating);
+      reviewData.append("description", description);
+      const { data } = axios.post(`/api/v1/product/addReview/${pid}`, review);
+
+      if (data?.success) {
+        toast.error(data?.message);
+      } else {
+        toast.success("review Created Successfully");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong!");
+    }
+  };
+
+  const getSingleProductData = async (pid) => {
+    try {
+      const { data } = await axios.get(
+        `/api/v1/product/getProductReviews/${pid}`
+      );
+
+      setReviews(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getSingleProductData();
+  }, []);
 
   const showModal = () => {
     const modal = document.getElementById("myModal");
@@ -184,7 +232,45 @@ const ProductDetails = () => {
                 &times;
               </span>
               <div>
-                <h1>read reviews</h1>
+                <form onSubmit={addReviewHandler}>
+                  <div className="mb-3" controlId="rating">
+                    <label>Rating</label>
+                    <input
+                      value={rating}
+                      onChange={(e) => setRating(e.target.value)}
+                      type="number"
+                    />
+                  </div>
+
+                  <div className="mb-3" controlId="description">
+                    <label>Description</label>
+                    <input
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      as="textarea"
+                    />
+                  </div>
+
+                  <button variant="primary" type="submit">
+                    Add Review
+                  </button>
+                </form>
+                <h2>Product Reviews</h2>
+                <h5>Product Reviews</h5>
+                <hr />
+
+                {reviews.length > 0 ? (
+                  reviews.map((review) => {
+                    return (
+                      <div key={review._id}>
+                        <p>Rating: {review.rating}</p>
+                        <p>Description: {review.description}</p>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <p>No reviews available.</p>
+                )}
               </div>
             </div>
           </div>

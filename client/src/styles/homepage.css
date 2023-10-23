@@ -581,3 +581,8 @@
   height: 380px;
   margin-right: 200px;
 }
+
+.modal.hehehe {
+  margin-top: 10px;
+  overflow-y: scroll;
+}

@@ -7,6 +7,7 @@ import {
   createProductController,
   deleteProductController,
   getProductController,
+  getProductReviewsController,
   getSingleProductController,
   productAuthorController,
   productCategoryController,
@@ -19,6 +20,10 @@ import {
   updateProductController,
 } from "../controllers/productController.js";
 import formidable from "express-formidable";
+import {
+  addReviewController,
+  getAllReviewsController,
+} from "../controllers/reviewController.js";
 
 const router = express.Router();
 
@@ -61,6 +66,11 @@ router.get("/author-related-product/:pid/:cid", authorProductController);
 router.get("/product-category/:slug", productCategoryController);
 
 router.get("/product-author/:slug", productAuthorController);
+
+router.get("/allReviews", getAllReviewsController);
+router.post("/addReview/:pid", addReviewController);
+
+router.get("/getProductReviews/:pid", getProductReviewsController);
 
 router.get("/braintree/token", braintreeTokenController);
 

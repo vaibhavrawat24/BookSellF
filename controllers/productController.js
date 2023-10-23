@@ -1,6 +1,7 @@
 import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
 import authorModel from "../models/authorModel.js";
+import reviewModel from "../models/reviewModel.js";
 import fs from "fs";
 import slugify from "slugify";
 import braintree from "braintree";
@@ -364,6 +365,27 @@ export const productAuthorController = async (req, res) => {
       success: false,
       error,
       message: "Error while getting the book!",
+    });
+  }
+};
+
+export const getProductReviewsController = async (req, res) => {
+  try {
+    const { pid } = req.params;
+
+    const data = await productModel.findById(pid).populate("reviews");
+
+    if (!data) {
+      return res.status(404).send({ error: "Review not found" });
+    }
+
+    res.status(200).send(data.reviews);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in getting product reviews",
+      error: error.message,
     });
   }
 };
