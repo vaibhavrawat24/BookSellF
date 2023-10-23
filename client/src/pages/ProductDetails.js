@@ -49,7 +49,9 @@ const ProductDetails = () => {
     }
   };
 
-  const getSingleProductData = async (pid) => {
+  const { pid } = useParams();
+
+  const getSingleReviewData = async () => {
     try {
       const { data } = await axios.get(
         `/api/v1/product/getProductReviews/${pid}`
@@ -62,8 +64,8 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
-    getSingleProductData();
-  }, []);
+    getSingleReviewData();
+  }, [pid]);
 
   const showModal = () => {
     const modal = document.getElementById("myModal");

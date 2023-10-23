@@ -68,6 +68,7 @@ router.get("/product-category/:slug", productCategoryController);
 router.get("/product-author/:slug", productAuthorController);
 
 router.get("/allReviews", getAllReviewsController);
+
 router.post("/addReview/:pid", addReviewController);
 
 router.get("/getProductReviews/:pid", getProductReviewsController);
