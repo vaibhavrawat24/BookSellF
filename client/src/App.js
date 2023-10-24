@@ -35,6 +35,8 @@ import CreateAuthor from "./pages/Admin/CreateAuthor";
 import AuthorProduct from "./pages/AuthorProduct";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home";
+import Sell from "./pages/user/Sell";
+import Listed from "./pages/user/Listed";
 
 function App() {
   return (
@@ -57,6 +59,8 @@ function App() {
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
           <Route path="user/orders" element={<Orders />} />
+          <Route path="user/sell" element={<Sell />} />
+          <Route path="user/listed" element={<Listed />} />
           <Route path="user/profile" element={<Profile />} />
         </Route>
         <Route path="/dashboard" element={<AdminRoute />}>

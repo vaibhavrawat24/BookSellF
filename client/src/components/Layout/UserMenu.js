@@ -17,6 +17,18 @@ const UserMenu = () => {
             Edit Profile
           </NavLink>
           <NavLink
+            to="/dashboard/user/sell"
+            className="list-group-item list-group-item-action"
+          >
+            Sell/Rent
+          </NavLink>
+          <NavLink
+            to="/dashboard/user/listed"
+            className="list-group-item list-group-item-action"
+          >
+            Listed Products
+          </NavLink>
+          <NavLink
             to="/dashboard/user/orders"
             className="list-group-item list-group-item-action"
           >
