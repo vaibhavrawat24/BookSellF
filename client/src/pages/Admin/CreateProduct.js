@@ -97,7 +97,7 @@ const CreateProduct = () => {
               <Select
                 bordered={false}
                 placeholder="Select a genre"
-                size="large"
+                size="medium"
                 showSearch
                 className="form-select mb-3"
                 onChange={(value) => {
@@ -116,7 +116,7 @@ const CreateProduct = () => {
               <Select
                 bordered={false}
                 placeholder="Select the author"
-                size="large"
+                size="medium"
                 showSearch
                 className="form-select mb-3"
                 onChange={(value) => {
@@ -198,7 +198,7 @@ const CreateProduct = () => {
                 <Select
                   bordered={false}
                   placeholder="Select Shipping "
-                  size="large"
+                  size="medium"
                   showSearch
                   className="form-select mb-3"
                   onChange={(value) => {
