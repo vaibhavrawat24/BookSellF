@@ -2,8 +2,6 @@
 
 BookSellF is a MERN stack web application for buying, selling, and renting books. Users can list books, search for books, and interact with other book enthusiasts in a seamless online environment.
 
-![Screenshot](screenshot.png)
-
 ## Table of Contents
 
 - [Features](#features)
@@ -47,12 +45,12 @@ BookSellF is a MERN stack web application for buying, selling, and renting books
 2. Install dependencies for both the client and server:
 
 # Install client dependencies
-cd client
-npm install
+   cd client
+   npm install
 
 # Install server dependencies
-cd ../server
-npm install
+   cd ../server
+   npm install
 
 3, Set up environment variables. Create a .env file in the server directory with the following content:
   MONGODB_URI=your_mongodb_uri
@@ -61,24 +59,24 @@ npm install
 4. Start the client and server:
 
 # Start the server
-cd server
-npm start
+   cd server
+   npm start
 
 # Start the client
-cd ../client
-npm start
+   cd ../client
+   npm start
 
-Open your browser and visit http://localhost:3000 to use the application.
+   Open your browser and visit http://localhost:3000 to use the application.
 
 # Usage
-Register or log in to your account.
-List books you want to sell or rent.
-Search and browse books listed by other users.
-Contact sellers or renters through private messaging.
-Admins will verify your product listing before it's displayed.
+   1. Register or log in to your account.
+   2. List books you want to sell or rent.
+   3. Search and browse books listed by other users.
+   4. Contact sellers or renters through private messaging.
+   5. Admins will verify your product listing before it's displayed.
 
 # Contributing
-We welcome contributions from the community. If you'd like to contribute to the project, please follow our Contribution Guidelines.
+   We welcome contributions from the community. If you'd like to contribute to the project, please follow our Contribution Guidelines.
 
 # License
-This project is licensed under the MIT License - see the LICENSE file for details.
+   This project is licensed under the MIT License - see the LICENSE file for details.
