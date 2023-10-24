@@ -25,23 +25,23 @@ const ProductDetails = () => {
   const addReviewHandler = async (e, pid) => {
     e.preventDefault();
 
-    let review = {
-      pid: product,
-      rating: rating,
-      description: description,
-    };
-    try {
-      const reviewData = new FormData();
+    const reviewData = new FormData();
+    reviewData.append("product_id", pid);
+    reviewData.append("rating", rating);
+    reviewData.append("description", description);
 
-      reviewData.append("product_id", product);
-      reviewData.append("rating", rating);
-      reviewData.append("description", description);
-      const { data } = axios.post(`/api/v1/product/addReview/${pid}`, review);
+    try {
+      const { data } = await axios.post(
+        `/api/v1/product/addReview/${pid}`,
+        reviewData
+      );
 
       if (data?.success) {
         toast.error(data?.message);
       } else {
-        toast.success("review Created Successfully");
+        toast.success("Review Created Successfully");
+        // Add code to refresh the reviews after a new review is added
+        getSingleReviewData(pid);
       }
     } catch (error) {
       console.log(error);
@@ -51,7 +51,7 @@ const ProductDetails = () => {
 
   const { pid } = useParams();
 
-  const getSingleReviewData = async () => {
+  const getSingleReviewData = async (pid) => {
     try {
       const { data } = await axios.get(
         `/api/v1/product/getProductReviews/${pid}`
@@ -64,7 +64,7 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
-    getSingleReviewData();
+    getSingleReviewData(pid);
   }, [pid]);
 
   const showModal = () => {

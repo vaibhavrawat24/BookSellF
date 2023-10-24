@@ -6,10 +6,10 @@ import slugify from "slugify";
 
 export const addReviewController = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { pid } = req.params;
 
     const data = {
-      product: id,
+      product: pid,
       rating: req.body.rating,
       description: req.body.description,
     };
