@@ -246,7 +246,7 @@ border-radius: 9999px;
 } */
 
 .bigimg {
-  margin-left: 650px;
+  margin-left: 780px;
   width: 320px;
   height: 320px;
   display: block;
@@ -271,17 +271,8 @@ border-radius: 9999px;
 
 .container.v {
   display: flex;
-  width: 100%;
-  height: min-content;
+}
+
+.container.next {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  overflow: hidden;
-  padding: 0px 0px 0px 0px;
-  align-content: flex-start;
-  flex-wrap: nowrap;
-  gap: 40;
-  position: absolute;
-  border-radius: 0px 0px 0px 0px;
 }

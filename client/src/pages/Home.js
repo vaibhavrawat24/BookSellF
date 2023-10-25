@@ -9,12 +9,24 @@ const Home = () => {
       <div id="div1" className="div-container">
         <div className="container hey">
           <div className="container which">
-            <h1 style={{ color: "#780000", fontWeight: "bold" }}>BookSellF</h1>
+            <h1 style={{ color: "#780000", fontWeight: "bold" }}>
+              Welcome to BookSellF!
+            </h1>
             <h2 style={{ color: "#780000" }}>Unleash your Inner Bookworms</h2>
-            <h2 style={{ color: "#003049" }}>
-              Join the paper recycling movement and protect forests around the
-              globe. Here’s your chance to make a difference!
+            <h5 style={{ color: "#003049" }}>
+              {" "}
+              Our vast collection of books covers every genre to satisfy your
+              reading cravings.{" "}
+            </h5>
+            <hr />
+            <h2 style={{ color: "#780000" }}>
+              Tired of buying expensive books you’ll barely read?
             </h2>
+            <h5 style={{ color: "#003049" }}>
+              {" "}
+              Rent the books you love without breaking the bank.
+            </h5>
+            <hr />
             <div className="container us">
               <button
                 style={{
@@ -23,6 +35,7 @@ const Home = () => {
                   borderRadius: "9999px",
                   border: "none",
                   margin: 0,
+                  marginRight: "10px",
                 }}
                 onClick={() => navigate(`/home`)}
               >
@@ -37,12 +50,13 @@ const Home = () => {
                   border: "none",
                   margin: 0,
                 }}
-                onClick={() => navigate(`/recycle`)}
+                onClick={() => navigate(`/rent`)}
               >
-                Recycle
+                Rent Now
               </button>
             </div>
           </div>
+
           <div className="bigimg"></div>
         </div>
       </div>
@@ -72,7 +86,7 @@ const Home = () => {
         </div>
       </div>
       <div id="div3" className="div-container">
-        <div className="container">
+        <div className="container last">
           <h1>Why Recycle Paper Waste?</h1>
           <div className="container v">
             <p>
@@ -83,6 +97,38 @@ const Home = () => {
               Reducing paper waste makes for cleaner air, water, and soil. It’s
               a win-win situation for everyone, so let’s get to it!
             </p>
+          </div>
+          <div className="container get">
+            <br />
+            <h1>Get Started Now!</h1>
+            <h5>
+              Jump on the paper recycling bandwagon and start making a positive
+              impact today. You know you want to!
+            </h5>
+            <br />
+            <button
+              style={{
+                height: "10px",
+                backgroundColor: "#000000",
+                padding: "15px 15px 15px 15px",
+                borderRadius: "8px",
+                border: "none",
+                margin: 0,
+                lineHeight: "5px",
+              }}
+              onClick={() => navigate(`/recycle`)}
+            >
+              Recycle
+            </button>
+          </div>
+          <div className="container next">
+            <h5 style={{ color: "black" }}>Help</h5>
+            <br />
+            <p>About</p>
+            <br />
+            <p>Contact</p>
+            <br />
+            <p>Policy</p>
           </div>
         </div>
       </div>
