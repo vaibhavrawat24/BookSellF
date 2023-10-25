@@ -121,14 +121,27 @@ const Home = () => {
               Recycle
             </button>
           </div>
+          <br />
+          <br />
+          <br />
           <div className="container next">
-            <h5 style={{ color: "black" }}>Help</h5>
-            <br />
-            <p>About</p>
-            <br />
-            <p>Contact</p>
-            <br />
-            <p>Policy</p>
+            <h5 style={{ color: "black", marginRight: "20px" }}>Help</h5>
+
+            <p
+              style={{ marginRight: "10px" }}
+              onClick={() => navigate(`/about`)}
+            >
+              About
+            </p>
+
+            <p
+              style={{ marginRight: "10px" }}
+              onClick={() => navigate(`/contact`)}
+            >
+              Contact
+            </p>
+
+            <p onClick={() => navigate(`/policy`)}> Privacy policy</p>
           </div>
         </div>
       </div>
