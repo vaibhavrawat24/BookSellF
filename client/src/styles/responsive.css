@@ -268,4 +268,28 @@
   .col-md-3.filters-new {
     position: relative;
   }
+
+  .small-div1 h5 {
+    font-size: 15px;
+  }
+
+  .small-div1 p {
+    font-size: 12px;
+  }
+
+  .small-div2 p {
+    font-size: 12px;
+  }
+
+  .small-div2 p {
+    font-size: 12px;
+  }
+
+  .small-div2 h5 {
+    font-size: 15px;
+  }
+
+  .small-div3 h5 {
+    font-size: 15px;
+  }
 }
