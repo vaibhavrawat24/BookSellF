@@ -29,6 +29,14 @@ const Home = () => {
             <hr />
             <div className="container us">
               <button
+                onMouseDown={(event) => {
+                  event.target.style.transform = "scale(0.95)";
+                  event.target.style.backgroundColor = "#003049";
+                }}
+                onMouseUp={(event) => {
+                  event.target.style.transform = "scale(1)";
+                  event.target.style.backgroundColor = "#003049";
+                }}
                 style={{
                   backgroundColor: "#003049",
                   padding: "10px 20px 10px 20px",
@@ -42,6 +50,14 @@ const Home = () => {
                 Explore
               </button>
               <button
+                onMouseDown={(event) => {
+                  event.target.style.transform = "scale(0.95)";
+                  event.target.style.backgroundColor = "#780000";
+                }}
+                onMouseUp={(event) => {
+                  event.target.style.transform = "scale(1)";
+                  event.target.style.backgroundColor = "#780000";
+                }}
                 style={{
                   marginLeft: "20px",
                   backgroundColor: "#780000",
@@ -107,6 +123,14 @@ const Home = () => {
             </h5>
             <br />
             <button
+              onMouseDown={(event) => {
+                event.target.style.transform = "scale(0.95)";
+                event.target.style.backgroundColor = "#000000";
+              }}
+              onMouseUp={(event) => {
+                event.target.style.transform = "scale(1)";
+                event.target.style.backgroundColor = "#000000";
+              }}
               style={{
                 height: "10px",
                 backgroundColor: "#000000",
@@ -114,7 +138,7 @@ const Home = () => {
                 borderRadius: "8px",
                 border: "none",
                 margin: 0,
-                lineHeight: "5px",
+                lineHeight: "0px",
               }}
               onClick={() => navigate(`/recycle`)}
             >
@@ -123,19 +147,19 @@ const Home = () => {
           </div>
           <br />
           <br />
-          <br />
+
           <div className="container next">
-            <h5 style={{ color: "black", marginRight: "20px" }}>Help</h5>
+            <h5 style={{ color: "black", marginRight: "30px" }}>Help</h5>
 
             <p
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "20px" }}
               onClick={() => navigate(`/about`)}
             >
               About
             </p>
 
             <p
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "20px" }}
               onClick={() => navigate(`/contact`)}
             >
               Contact

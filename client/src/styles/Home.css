@@ -84,7 +84,7 @@ body {
 }
 
 .small-div1:hover {
-  transform: scale(1.1);
+  transform: scale(1.04);
 }
 
 .small-div2 {
@@ -116,7 +116,7 @@ body {
 }
 
 .small-div2:hover {
-  transform: scale(1.1);
+  transform: scale(1.04);
 }
 
 .small-div3 {
@@ -149,7 +149,7 @@ body {
 }
 
 .small-div3:hover {
-  transform: scale(1.1);
+  transform: scale(1.04);
 }
 
 .smallimg1 {
@@ -275,4 +275,8 @@ border-radius: 9999px;
 
 .container.next {
   display: flex;
+}
+
+.container.next p:hover {
+  color: rgb(78, 76, 76);
 }
