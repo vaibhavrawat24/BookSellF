@@ -11,9 +11,11 @@
   font-size: 17px;
   line-height: 26px;
   text-transform: uppercase;
-  box-shadow: 0 8px 6px -6px gray;
+  color: #ffffff;
+  background-color: #ffffff;
+  /* box-shadow: 0 8px 6px -6px gray;
   --webkit-box-shadow: 0 8px 6px -6px gray;
-  border-bottom: 0px solid gray !important;
+  border-bottom: 0px solid gray !important; */
 }
 
 .nav-link {

@@ -66,9 +66,9 @@ const Home = () => {
                   border: "none",
                   margin: 0,
                 }}
-                onClick={() => navigate(`/rent`)}
+                onClick={() => navigate(`/login`)}
               >
-                Rent Now
+                Login
               </button>
             </div>
           </div>

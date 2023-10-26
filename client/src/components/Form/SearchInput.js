@@ -3,6 +3,9 @@ import { useSearch } from "../../context/search";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../Styles/search.css";
+import { SearchOutlined } from "@ant-design/icons";
+// import { Button, Tooltip, Space } from "antd";
+import { Input } from "antd";
 
 const SearchInput = () => {
   const [values, setValues] = useSearch();
@@ -32,11 +35,24 @@ const SearchInput = () => {
         role="search"
         onSubmit={handleSubmit}
       >
-        <input
+        {/* <input
           className="form-control me-2"
           type="search"
           placeholder="Search"
           aria-label="Search"
+          value={values.keyword}
+          onChange={(e) => setValues({ ...values, keyword: e.target.value })}
+        /> */}
+        {/* <Button
+          icon={<SearchOutlined />}
+          value={values.keyword}
+          onChange={(e) => setValues({ ...values, keyword: e.target.value })}
+        >
+          Search
+        </Button> */}
+        <Input
+          style={{ height: "30px", marginTop: "6px", marginRight: "15px" }}
+          prefix={<SearchOutlined />} // Use the icon as a prefix
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />

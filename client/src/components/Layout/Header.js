@@ -7,7 +7,14 @@ import Dashboard from "./../../pages/user/Dashboard";
 import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
-import { Badge } from "antd";
+import {
+  ShoppingCartOutlined,
+  UserOutlined,
+  HomeOutlined,
+  PaperClipOutlined,
+  ProfileOutlined,
+} from "@ant-design/icons";
+
 import "../Styles/search.css";
 
 const Header = () => {
@@ -53,8 +60,8 @@ const Header = () => {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <SearchInput />
               <li className="nav-item">
-                <NavLink to="/" className="nav-link">
-                  Home
+                <NavLink to="/home" className="nav-link">
+                  <HomeOutlined />
                 </NavLink>
               </li>
 
@@ -64,7 +71,7 @@ const Header = () => {
                   to={"/categories"}
                   data-bs-toggle="dropdown"
                 >
-                  Pick Yours
+                  <ProfileOutlined />
                 </Link>
                 <ul className="dropdown-menu">
                   <li>
@@ -108,13 +115,8 @@ const Header = () => {
               {!auth.user ? (
                 <>
                   <li className="nav-item">
-                    <NavLink to="/register" className="nav-link">
-                      Register
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
                     <NavLink to="/login" className="nav-link">
-                      Login
+                      <UserOutlined />
                     </NavLink>
                   </li>
                 </>
@@ -128,7 +130,7 @@ const Header = () => {
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      {auth?.user?.name}
+                      <UserOutlined />
                     </NavLink>
                     <ul className="dropdown-menu">
                       <li>
@@ -154,22 +156,14 @@ const Header = () => {
                   </li>
                   <li className="nav-item">
                     <NavLink to="/cart" className="nav-link">
-                      <Badge count={cart?.length} showZero offset={[10, -5]}>
-                        <span
-                          style={{
-                            fontFamily: "Calisto MT, serif",
-                          }}
-                        >
-                          Cart
-                        </span>
-                      </Badge>
+                      <ShoppingCartOutlined /> {/* Place the icon here */}
                     </NavLink>
                   </li>
                 </>
               )}
               <li className="nav-item">
                 <NavLink to="/recycle" className="nav-link">
-                  Recycle
+                  <PaperClipOutlined />
                 </NavLink>
               </li>
             </ul>
