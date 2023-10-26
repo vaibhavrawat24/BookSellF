@@ -61,7 +61,7 @@ const Header = () => {
               <SearchInput />
               <li className="nav-item">
                 <NavLink to="/home" className="nav-link">
-                  <HomeOutlined />
+                  <HomeOutlined title="home" />
                 </NavLink>
               </li>
 
@@ -71,7 +71,7 @@ const Header = () => {
                   to={"/categories"}
                   data-bs-toggle="dropdown"
                 >
-                  <ProfileOutlined />
+                  <ProfileOutlined title="explore" />
                 </Link>
                 <ul className="dropdown-menu">
                   <li>
@@ -116,7 +116,7 @@ const Header = () => {
                 <>
                   <li className="nav-item">
                     <NavLink to="/login" className="nav-link">
-                      <UserOutlined />
+                      <UserOutlined title="login" />
                     </NavLink>
                   </li>
                 </>
@@ -130,7 +130,7 @@ const Header = () => {
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      <UserOutlined />
+                      <UserOutlined title="profile" />
                     </NavLink>
                     <ul className="dropdown-menu">
                       <li>
@@ -156,14 +156,15 @@ const Header = () => {
                   </li>
                   <li className="nav-item">
                     <NavLink to="/cart" className="nav-link">
-                      <ShoppingCartOutlined /> {/* Place the icon here */}
+                      <ShoppingCartOutlined title="cart" />{" "}
+                      {/* Place the icon here */}
                     </NavLink>
                   </li>
                 </>
               )}
               <li className="nav-item">
                 <NavLink to="/recycle" className="nav-link">
-                  <PaperClipOutlined />
+                  <PaperClipOutlined title="recycle" />
                 </NavLink>
               </li>
             </ul>

@@ -81,6 +81,7 @@ const Search = () => {
                       style={{
                         backgroundColor: "#EE7789",
                         border: "#EE7789",
+                        lineHeight: "1px",
                       }}
                       onClick={(event) => {
                         event.stopPropagation();
