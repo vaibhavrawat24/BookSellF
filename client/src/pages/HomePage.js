@@ -142,7 +142,7 @@ const HomePage = () => {
         className="navbar filter"
         style={{ fontFamily: "Calisto MT, serif" }}
       >
-        <p>
+        <p style={{ color: "black" }}>
           All books: <span className="total-text">{total}</span>
         </p>
 
