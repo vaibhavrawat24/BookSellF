@@ -8,7 +8,6 @@ import "../styles/responsive.css";
 import toast from "react-hot-toast";
 import { useCart } from "../context/cart";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/auth";
 
 const ProductDetails = () => {
   const params = useParams();

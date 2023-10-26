@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "./../components/Layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
 import { AiFillWarning } from "react-icons/ai";
 import axios from "axios";
@@ -11,12 +11,71 @@ import "../styles/homepage.css";
 import "../styles/responsive.css";
 
 const CartPage = () => {
+  const params = useParams();
   const [auth, setAuth] = useAuth();
   const [cart, setCart] = useCart();
   const [clientToken, setClientToken] = useState("");
   const [instance, setInstance] = useState("");
   const [loading, setLoading] = useState(false);
+  const [product, setProduct] = useState({});
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [AuthorRelatedProducts, setAuthorRelatedProducts] = useState([]);
+  const [authors, setAuthors] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (params?.slug) getProduct();
+  }, [params?.slug]);
+
+  const getProduct = async () => {
+    try {
+      const { data } = await axios.get(
+        `/api/v1/product/get-product/${params.slug}`
+      );
+      setProduct(data?.product);
+      getSimilarProduct(data?.product._id, data?.product.category._id);
+      getAuthorSimilarProduct(data?.product._id, data?.product.author._id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getAllAuthor = async () => {
+    try {
+      const { data } = await axios.get("/api/v1/author/get-author");
+      if (data?.success) {
+        setAuthors(data?.author);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllAuthor();
+  }, []);
+  //get similar product
+  const getSimilarProduct = async (pid, cid) => {
+    try {
+      const { data } = await axios.get(
+        `/api/v1/product/related-product/${pid}/${cid}`
+      );
+      setRelatedProducts(data?.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getAuthorSimilarProduct = async (pid, cid) => {
+    try {
+      const { data } = await axios.get(
+        `/api/v1/product/author-related-product/${pid}/${cid}`
+      );
+      setAuthorRelatedProducts(data?.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //total price
   const totalPrice = () => {
@@ -82,6 +141,22 @@ const CartPage = () => {
     <Layout>
       <div className="cart-page" style={{ fontFamily: "Calisto MT, serif" }}>
         <div className="container ">
+          <h2 style={{ fontWeight: "bold", textAlign: "center" }}>
+            Cart Summary
+          </h2>
+          <h1 className="cart heading" style={{ textAlign: "center" }}>
+            {!auth?.user
+              ? "Hey guest, "
+              : `Hey  ${auth?.token && auth?.user?.name}, `}
+            {/* <p className="heading"> */}
+            {cart?.length
+              ? `you have ${cart.length} items in your cart! ${
+                  auth?.token ? "" : "Please login to checkout !"
+                }`
+              : " your cart is empty !"}
+            {/* </p> */}
+          </h1>
+          <hr />
           <div className="row ">
             <div className="col-md-7 p-0 m-0">
               <div className="d-flex flex-wrap">
@@ -94,7 +169,12 @@ const CartPage = () => {
                     />
 
                     <h2>{p.name}</h2>
-                    <h3>Price: {p.price}</h3>
+                    <h3>
+                      {p.price.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "INR",
+                      })}
+                    </h3>
 
                     <button
                       className="cart btn btn-danger"
@@ -108,21 +188,7 @@ const CartPage = () => {
             </div>
 
             <div className="col-md-5 cart-summary ">
-              <h2 style={{ fontWeight: "bold" }}>Cart Summary</h2>
-              <h1 className="cart heading">
-                {!auth?.user
-                  ? "Hey guest"
-                  : `Hey  ${auth?.token && auth?.user?.name}, `}
-                {/* <p className="heading"> */}
-                {cart?.length
-                  ? `you have ${cart.length} items in your cart !${
-                      auth?.token ? "" : "please login to checkout !"
-                    }`
-                  : " your cart is empty !"}
-                {/* </p> */}
-              </h1>
-              <hr />
-
+              <br />
               <h4>Total : {totalPrice()} </h4>
               {auth?.user?.address ? (
                 <>
@@ -160,7 +226,7 @@ const CartPage = () => {
                         })
                       }
                     >
-                      Plase Login to checkout
+                      Please login to checkout
                     </button>
                   )}
                 </div>
@@ -191,6 +257,74 @@ const CartPage = () => {
                 )}
               </div>
             </div>
+          </div>
+        </div>
+        <hr />
+        <div
+          className="row container similar-products"
+          style={{ fontFamily: "Calisto MT, serif" }}
+        >
+          <h4 style={{ marginLeft: "150px", fontWeight: "bold" }}>
+            Selected for you
+          </h4>
+          {relatedProducts.length < 1 && (
+            <p className="text-center">No product found</p>
+          )}
+          <div className="d-flex flex-wrap">
+            {relatedProducts?.map((p) => (
+              <div
+                className="card m-2"
+                style={{ height: "290px" }}
+                key={p._id}
+                onClick={() => navigate(`/product/${p.slug}`)}
+              >
+                <img
+                  src={`/api/v1/product/product-photo/${p._id}`}
+                  className="card-img-top"
+                  alt={p.name}
+                />
+                <div className="card-body">
+                  <div className="card-name-price">
+                    <div class="popup">
+                      {authors
+                        .filter((author) => author._id === p.author)
+                        .map((author) => (
+                          <div key={author._id}>{author.name}</div>
+                        ))}
+                    </div>
+                    <h5 className="card-title">{p.name}</h5>
+                    <h5 className="card-title card-price">
+                      {p.price.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "INR",
+                      })}
+                    </h5>
+                  </div>
+                  <div className="card-name-price">
+                    <button
+                      className="btn btn-dark ms-1"
+                      style={{
+                        backgroundColor: "#EE7789",
+                        border: "#EE7789",
+                        borderRadius: "20px",
+                        width: "140px",
+                      }}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
+                        toast.success("Item Added to cart");
+                      }}
+                    >
+                      Add to cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

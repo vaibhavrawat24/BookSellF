@@ -154,14 +154,13 @@ const Header = () => {
                       </li>
                     </ul>
                   </li>
-                  <li className="nav-item">
-                    <NavLink to="/cart" className="nav-link">
-                      <ShoppingCartOutlined title="cart" />{" "}
-                      {/* Place the icon here */}
-                    </NavLink>
-                  </li>
                 </>
               )}
+              <li className="nav-item">
+                <NavLink to="/cart" className="nav-link">
+                  <ShoppingCartOutlined title="cart" />
+                </NavLink>
+              </li>
               <li className="nav-item">
                 <NavLink to="/recycle" className="nav-link">
                   <PaperClipOutlined title="recycle" />
