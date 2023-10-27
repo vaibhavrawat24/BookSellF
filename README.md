@@ -2,6 +2,8 @@
 
 BookSellF is a MERN stack web application for buying, selling, and renting books. Users can list books, search for books, and interact with other book enthusiasts in a seamless online environment.
 
+[[Working Demo]](https://youtu.be/JXT2zsgFuMw?si=8cCKr0uSOau0lz9Y) (Haven't deployed because still working on a separate author page, will deploy by the end of this month.)
+
 ## Table of Contents
 
 - [Features](#features)
@@ -27,11 +29,7 @@ BookSellF is a MERN stack web application for buying, selling, and renting books
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 - **Authentication:** JSON Web Tokens (JWT)
-- **Real-time Messaging:** Socket.IO
 - **Styling:** CSS, Bootstrap
-- **File Upload:** Multer
-- **Maps Integration:** Mapbox
-- **Deployment:** Heroku, Netlify
 - **Version Control:** Git, GitHub
 
 ## Installation
@@ -76,7 +74,4 @@ BookSellF is a MERN stack web application for buying, selling, and renting books
    5. Admins will verify your product listing before it's displayed.
 
 # Contributing
-   We welcome contributions from the community. If you'd like to contribute to the project, please follow our Contribution Guidelines.
-
-# License
-   This project is licensed under the MIT License - see the LICENSE file for details.
+   I welcome contributions from the community. If you'd like to contribute to the project, please follow Contribution Guidelines.
