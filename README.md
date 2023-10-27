@@ -27,11 +27,7 @@ BookSellF is a MERN stack web application for buying, selling, and renting books
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 - **Authentication:** JSON Web Tokens (JWT)
-- **Real-time Messaging:** Socket.IO
 - **Styling:** CSS, Bootstrap
-- **File Upload:** Multer
-- **Maps Integration:** Mapbox
-- **Deployment:** Heroku, Netlify
 - **Version Control:** Git, GitHub
 
 ## Installation
