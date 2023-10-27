@@ -84,17 +84,17 @@ const ProductDetails = () => {
   };
 
   const showReviewModal = () => {
-    const modal = document.getElementById("myModal");
+    const modal = document.getElementById("myReviewModal");
     modal.style.display = "block";
   };
 
   const closeReviewModal = () => {
-    const modal = document.getElementById("myModal");
+    const modal = document.getElementById("myReviewModal");
     modal.style.display = "none";
   };
 
   const handleOutsideClickReview = (event) => {
-    const modal = document.getElementById("myModal");
+    const modal = document.getElementById("myReviewModal");
     if (event.target === modal) {
       modal.style.display = "none";
     }
@@ -223,7 +223,7 @@ const ProductDetails = () => {
             Read/Post Reviews
           </h6>
           <div
-            id="myModal"
+            id="myReviewModal"
             className="modal"
             onClick={handleOutsideClickReview}
             style={{ fontFamily: "Calisto MT, serif" }}

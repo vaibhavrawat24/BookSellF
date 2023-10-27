@@ -34,7 +34,7 @@ const Home = () => {
                   event.target.style.backgroundColor = "#003049";
                 }}
                 onMouseUp={(event) => {
-                  event.target.style.transform = "scale(1)";
+                  event.target.style.transform = "scale(0.95)";
                   event.target.style.backgroundColor = "#003049";
                 }}
                 style={{
@@ -102,10 +102,15 @@ const Home = () => {
         </div>
       </div>
       <div id="div3" className="div-container">
-        <div className="container last">
-          <h1>Why Recycle Paper Waste?</h1>
+        <div
+          className="container last"
+          style={{
+            width: "700px",
+          }}
+        >
+          <h1 style={{ textAlign: "center" }}>Why Recycle Paper Waste?</h1>
           <div className="container v">
-            <p>
+            <p style={{ marginRight: "10px" }}>
               Decrease your carbon footprint and put a stop to deforestation.
               Take a stand for the environment and future generations.
             </p>
@@ -114,9 +119,17 @@ const Home = () => {
               a win-win situation for everyone, so let’s get to it!
             </p>
           </div>
-          <div className="container get">
+          <div
+            className="container get"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <br />
-            <h1>Get Started Now!</h1>
+            <h1 style={{ textAlign: "center" }}>Get Started Now!</h1>
             <h5>
               Jump on the paper recycling bandwagon and start making a positive
               impact today. You know you want to!
@@ -148,24 +161,36 @@ const Home = () => {
           <br />
           <br />
 
-          <div className="container next">
-            <h5 style={{ color: "black", marginRight: "30px" }}>Help</h5>
+          <div
+            className="container next"
+            style={{
+              display: "flex",
 
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <p
-              style={{ marginRight: "20px" }}
+              style={{ cursor: "pointer", marginRight: "20px" }}
               onClick={() => navigate(`/about`)}
             >
               About
             </p>
 
             <p
-              style={{ marginRight: "20px" }}
+              style={{ cursor: "pointer", marginRight: "20px" }}
               onClick={() => navigate(`/contact`)}
             >
               Contact
             </p>
 
-            <p onClick={() => navigate(`/policy`)}> Privacy policy</p>
+            <p
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate(`/policy`)}
+            >
+              {" "}
+              Privacy policy
+            </p>
           </div>
         </div>
       </div>

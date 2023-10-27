@@ -8,11 +8,14 @@ import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import {
+  CopyOutlined,
+  EnvironmentOutlined,
   ShoppingCartOutlined,
   UserOutlined,
   HomeOutlined,
   PaperClipOutlined,
   ProfileOutlined,
+  ClearOutlined,
 } from "@ant-design/icons";
 
 import "../Styles/search.css";
@@ -35,7 +38,12 @@ const Header = () => {
     <>
       <nav
         className="navbar navbar-expand-lg bg-body-tertiary"
-        style={{ position: "fixed", top: 0, width: "100%", zIndex: 100 }}
+        style={{
+          position: "fixed",
+          top: 0,
+          width: "100%",
+          zIndex: 100,
+        }}
       >
         <div
           className="container-fluid"
@@ -54,7 +62,7 @@ const Header = () => {
           </button>
           <Link to="/" className="navbar-brand">
             {" "}
-            <GiBookCover /> BookSellf
+            <GiBookCover /> BookSellF
           </Link>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -163,7 +171,7 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <NavLink to="/recycle" className="nav-link">
-                  <PaperClipOutlined title="recycle" />
+                  <ClearOutlined title="recycle" />
                 </NavLink>
               </li>
             </ul>

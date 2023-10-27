@@ -6,7 +6,19 @@ import "../styles/homepage.css";
 const Policy = () => {
   return (
     <Layout title={"Privacy Policy"}>
-      <div className="row privacy" style={{ fontFamily: "Calisto MT, serif" }}>
+      <div
+        className="text-center row privacy"
+        style={{
+          fontFamily: "Calisto MT, serif",
+        }}
+        // style={{
+        //   fontFamily: "Calisto MT, serif",
+        //   display: "flex",
+        //   flexDirection: "column",
+        //   alignItems: "center",
+        //   justifyContent: "center",
+        // }}
+      >
         <div>
           <h1 className="text-center">BookSellF Privacy Policy</h1>
           <br />
