@@ -4,7 +4,7 @@ BookSellF is a MERN stack web application for buying, selling, and renting books
 
 <p align="center">
 [[Working Demo]](https://youtu.be/JXT2zsgFuMw?si=8cCKr0uSOau0lz9Y) (Haven't deployed because still working on a separate author page, will deploy by the end of this month.)
-<img src="![book1](https://github.com/vaibhavrawat24/BookSellF/assets/100408695/f44d9373-2d42-4cea-9076-fb7a73cea088)" width="200" />
+<img src="https://github.com/vaibhavrawat24/BookSellF/assets/100408695/f44d9373-2d42-4cea-9076-fb7a73cea088" width="200" />
 ![book2](https://github.com/vaibhavrawat24/BookSellF/assets/100408695/303062aa-8217-42fc-b6c8-21bb3ecb8ff3)
 ![book3](https://github.com/vaibhavrawat24/BookSellF/assets/100408695/8a8e540f-cea9-417c-8c80-f8cf2d59484d)
 ![book4](https://github.com/vaibhavrawat24/BookSellF/assets/100408695/02c570a4-5434-4b0f-90af-1763cddd9112)
