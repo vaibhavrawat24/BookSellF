@@ -22,6 +22,9 @@ const HomePage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedPrice, setSelectedPrice] = useState("all");
+  const [selectedAuthor, setSelectedAuthor] = useState("all");
 
   const showModal = () => {
     const modal = document.getElementById("myModal");
@@ -136,6 +139,58 @@ const HomePage = () => {
       console.log(error);
     }
   };
+
+  // const handledFilter = (value, type) => {
+  //   // Implement your filtering logic here
+  //   switch (type) {
+  //     case "price":
+  //       setSelectedPrice(value);
+  //       break;
+  //     case "category":
+  //       setSelectedCategory(value);
+  //       break;
+  //     case "author":
+  //       setSelectedAuthor(value);
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
+
+  // const applyFilters = () => {
+  //   // Call the filterProduct function to apply filters
+  //   filteredProduct();
+  //   closeModal();
+  // };
+
+  const applyFilters = () => {
+    if (
+      selectedPrice !== "all" ||
+      selectedCategory !== "all" ||
+      selectedAuthor !== "all"
+    ) {
+      filteredProduct();
+    }
+    closeModal();
+  };
+
+  useEffect(() => {
+    filteredProduct();
+  }, [selectedPrice, selectedCategory, selectedAuthor]);
+
+  const filteredProduct = async () => {
+    try {
+      const { data } = await axios.post("/api/v1/product/product-filters", {
+        price: selectedPrice,
+        category: selectedCategory,
+        author: selectedAuthor,
+      });
+      setProducts(data?.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Layout title={"All Books "}>
       <div
@@ -161,19 +216,12 @@ const HomePage = () => {
             &times;
           </span>
           <div className="filter-options">
-            {/* <Radio.Group
-              onChange={(e) => setRadio(e.target.value)}
-              value={radio}
-            >
-              {Prices?.map((p) => (
-                <div key={p._id}>
-                  <Radio value={p.array}>{p.name}</Radio>
-                </div>
-              ))}
-            </Radio.Group> */}
-
             <label htmlFor="price">Filter by Price:</label>
-            <select id="price">
+            <select
+              id="price"
+              value={selectedPrice}
+              onChange={(e) => setSelectedPrice(e.target.value)}
+            >
               <option value="all">All</option>
               {Prices?.map((p) => (
                 <option key={p._id} value={p.array}>
@@ -181,9 +229,12 @@ const HomePage = () => {
                 </option>
               ))}
             </select>
-
             <label htmlFor="category">Filter by Genre:</label>
-            <select id="category">
+            <select
+              id="category"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
               <option value="all">All</option>
               {categories
                 .slice()
@@ -196,7 +247,11 @@ const HomePage = () => {
             </select>
 
             <label htmlFor="author">Filter by Author:</label>
-            <select id="author">
+            <select
+              id="author"
+              value={selectedAuthor}
+              onChange={(e) => setSelectedAuthor(e.target.value)}
+            >
               <option value="all">All</option>
               {authors
                 .slice()
@@ -207,9 +262,9 @@ const HomePage = () => {
                   </option>
                 ))}
             </select>
-            <div className="apply-button">
-              <button className="button">Apply</button>
-            </div>
+            <button className="button" onClick={applyFilters}>
+              Apply
+            </button>
           </div>
         </div>
       </div>
