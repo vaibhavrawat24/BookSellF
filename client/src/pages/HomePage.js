@@ -197,12 +197,13 @@ const HomePage = () => {
         className="navbar filter"
         style={{ fontFamily: "Calisto MT, serif" }}
       >
-        <p style={{ color: "black" }}>
+        <div style={{ color: "black", marginRight: "auto", marginLeft: "5px" }}>
           All books: <span className="total-text">{total}</span>
-        </p>
-
-        <button onclick="toggleOptions('sort')">Sort</button>
-        <button onClick={showModal}>Filter</button>
+        </div>
+        <div id="options" style={{ display: "flex" }}>
+          <button onclick="toggleOptions('sort')">Sort</button>
+          <button onClick={showModal}>Filter</button>
+        </div>
       </div>
 
       <div
