@@ -109,14 +109,14 @@
     cursor: pointer;
   }
 
-  /* .navbar.filter button:not(:last-child) {
-    border-right: 1px solid rgb(0, 0, 0);
+  .navbar.filter button:not(:last-child) {
+    border-right: 1px solid rgb(190, 190, 190);
   }
   .navbar.filter p,
   .navbar.filter button {
     margin: 0;
     padding: 10px;
-    border-right: 1px solid rgb(0, 0, 0);
+    border-right: 1px solid rgb(180, 180, 180);
   }
   .navbar.filter p:last-child,
   .navbar.filter button:last-child {
@@ -125,7 +125,7 @@
 
   .navbar.filter p {
     font-weight: bold;
-  } */
+  }
   .navbar.filter button:hover {
     background-color: rgb(163, 156, 156);
   }
