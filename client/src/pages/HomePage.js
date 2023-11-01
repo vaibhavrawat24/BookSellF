@@ -245,7 +245,6 @@ const HomePage = () => {
                   </option>
                 ))}
             </select>
-
             <label htmlFor="author">Filter by Author:</label>
             <select
               id="author"
