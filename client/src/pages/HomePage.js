@@ -161,27 +161,51 @@ const HomePage = () => {
             &times;
           </span>
           <div className="filter-options">
+            {/* <Radio.Group
+              onChange={(e) => setRadio(e.target.value)}
+              value={radio}
+            >
+              {Prices?.map((p) => (
+                <div key={p._id}>
+                  <Radio value={p.array}>{p.name}</Radio>
+                </div>
+              ))}
+            </Radio.Group> */}
+
             <label htmlFor="price">Filter by Price:</label>
             <select id="price">
               <option value="all">All</option>
-              <option value="price1">Price 1</option>
-              <option value="price2">Price 2</option>
-              <option value="price3">Price 3</option>
+              {Prices?.map((p) => (
+                <option key={p._id} value={p.array}>
+                  {p.name}
+                </option>
+              ))}
             </select>
+
             <label htmlFor="category">Filter by Genre:</label>
             <select id="category">
               <option value="all">All</option>
-              <option value="category1">Genre 1</option>
-              <option value="category2">Genre 2</option>
-              <option value="category3">Genre 3</option>
+              {categories
+                .slice()
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((c) => (
+                  <option key={c._id} value={c.array}>
+                    {c.name}
+                  </option>
+                ))}
             </select>
 
-            <label htmlFor="price">Filter by Author:</label>
-            <select id="price">
+            <label htmlFor="author">Filter by Author:</label>
+            <select id="author">
               <option value="all">All</option>
-              <option value="price1">Author 1</option>
-              <option value="price2">Author 2</option>
-              <option value="price3">Author 3</option>
+              {authors
+                .slice()
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((c) => (
+                  <option key={c._id} value={c.array}>
+                    {c.name}
+                  </option>
+                ))}
             </select>
             <div className="apply-button">
               <button className="button">Apply</button>
