@@ -30,3 +30,45 @@
   width: 280px;
   margin-top: 50px;
 }
+
+.navu {
+  display: none;
+}
+
+.nav-item.recyclekyu {
+  display: none;
+}
+
+.nav-item.dropdown.ushome {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .navu {
+    display: flex;
+  }
+
+  .nav-link.home {
+    display: none;
+  }
+
+  .nav-item.home {
+    display: none;
+  }
+
+  .nav-item.dropdown.hehehome {
+    display: none;
+  }
+
+  .nav-item.recycleme {
+    display: none;
+  }
+
+  .nav-item.recyclekyu {
+    display: block;
+  }
+
+  .nav-item.dropdown.ushome {
+    display: block;
+  }
+}
