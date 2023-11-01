@@ -262,7 +262,12 @@ const HomePage = () => {
                   </option>
                 ))}
             </select>
-            <button className="button" onClick={applyFilters}>
+            <br />
+            <button
+              className="btn rounded-pill"
+              style={{ backgroundColor: "#EE7879" }}
+              onClick={applyFilters}
+            >
               Apply
             </button>
           </div>
