@@ -8,12 +8,10 @@ import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import {
-  CopyOutlined,
-  EnvironmentOutlined,
   ShoppingCartOutlined,
   UserOutlined,
   HomeOutlined,
-  PaperClipOutlined,
+  MoreOutlined,
   ProfileOutlined,
   ClearOutlined,
 } from "@ant-design/icons";
@@ -123,7 +121,7 @@ const Header = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon" />
+            <MoreOutlined />
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">

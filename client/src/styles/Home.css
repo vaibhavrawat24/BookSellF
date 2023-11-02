@@ -280,3 +280,9 @@ border-radius: 9999px;
 .container.next p:hover {
   color: rgb(78, 76, 76);
 }
+
+@media only screen and (max-width: 768px) {
+  .bigimg {
+    display: none;
+  }
+}

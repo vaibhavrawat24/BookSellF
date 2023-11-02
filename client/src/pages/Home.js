@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/Home.css";
+import "../styles/responsive.css";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
