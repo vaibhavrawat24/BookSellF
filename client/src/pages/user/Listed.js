@@ -11,7 +11,7 @@ const Listed = () => {
         style={{ fontFamily: "Calisto MT, serif" }}
       >
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-3 dashview">
             <UserMenu />
           </div>
           <div className="order col-md-9">

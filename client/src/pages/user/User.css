@@ -1,40 +1,55 @@
-.container-fluid.m-3.p-3{
-    font-family: 'Calisto MT, serif';
+.container-fluid.m-3.p-3 {
+  font-family: "Calisto MT, serif";
 }
 
 .dash.card.p-3 {
-    max-width: 400px;
-    height: 180px;
+  max-width: 400px;
+  height: 180px;
 }
 
-.dash.card h3{
- font-size: 16px;
+.dash.card h3 {
+  font-size: 16px;
 }
 
-.dash.bold-text{
-    font-weight: bold;
+.dash.bold-text {
+  font-weight: bold;
 }
 
-.col-md-3{
-    margin-top: 50px;
+.col-md-3 {
+  margin-top: 50px;
 }
 
-.col-md-9{
-    margin-top: 80px;
+.col-md-9 {
+  margin-top: 80px;
 }
 
-.profile.col-md-8{
-    margin-top: 80px;
+.profile.col-md-8 {
+  margin-top: 80px;
 }
 
-.order.col-md-9{
-    margin-top:60px;
+.order.col-md-9 {
+  margin-top: 60px;
 }
 
-.profile.col-md-9{
-    margin-top: 60px;
+.profile.col-md-9 {
+  margin-top: 60px;
 }
 
-.order-text{
-    text-align: center;
+.order-text {
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .dash.card.p-3 {
+    width: 90%;
+    height: 100px;
+  }
+
+  .title.edit-profile {
+    margin-top: 500px;
+  }
+
+  .col-md-3.dashview {
+    display: none;
+  }
 }

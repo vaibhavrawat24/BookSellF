@@ -72,3 +72,9 @@
     display: block;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .user.text-center {
+    margin-top: 220px;
+  }
+}

@@ -53,15 +53,23 @@ const Profile = () => {
   };
   return (
     <Layout title={"Your Profile"}>
-      <div className="container-fluid m-3 p-3 dashboard" style={{ fontFamily: 'Calisto MT, serif'}}>
+      <div
+        className="container-fluid m-3 p-3 dashboard"
+        style={{ fontFamily: "Calisto MT, serif" }}
+      >
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-3 dashview">
             <UserMenu />
           </div>
           <div className="profile col-md-8">
             <div className="form-container" style={{ marginTop: "-40px" }}>
               <form onSubmit={handleSubmit}>
-                <h4 className="title" style={{marginTop: '20px'}}>Edit Profile</h4>
+                <h4
+                  className="title edit-profile"
+                  style={{ marginTop: "20px" }}
+                >
+                  Edit Profile
+                </h4>
                 <div className="mb-3">
                   <input
                     type="text"

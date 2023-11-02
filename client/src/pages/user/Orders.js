@@ -22,9 +22,12 @@ const Orders = () => {
   }, [auth?.token]);
   return (
     <Layout title={"Your Orders"}>
-      <div className="container-flui p-3 m-3 dashboard" style={{ fontFamily: 'Calisto MT, serif'}}>
+      <div
+        className="container-flui p-3 m-3 dashboard"
+        style={{ fontFamily: "Calisto MT, serif" }}
+      >
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-3 dashview">
             <UserMenu />
           </div>
           <div className="order col-md-9">
