@@ -6,22 +6,12 @@ import "../styles/homepage.css";
 const Policy = () => {
   return (
     <Layout title={"Privacy Policy"}>
-      <div
-        className="text-center row privacy"
-        style={{
-          fontFamily: "Calisto MT, serif",
-        }}
-        // style={{
-        //   fontFamily: "Calisto MT, serif",
-        //   display: "flex",
-        //   flexDirection: "column",
-        //   alignItems: "center",
-        //   justifyContent: "center",
-        // }}
-      >
-        <div>
-          <h1 className="text-center">BookSellF Privacy Policy</h1>
-          <br />
+      <div className="container" style={{ fontFamily: "Calisto MT, serif" }}>
+        <div className="rectangular-box">
+          <h1 className="text-centre" style={{ marginTop: "5px" }}>
+            BookSellF's Privacy Policy
+          </h1>
+
           <p>
             This privacy policy describes the personal data collected or
             generated (processed) when you interact with BookSellf through our
@@ -47,8 +37,7 @@ const Policy = () => {
             you have questions or concerns or wish to exercise your rights
             related to your personal data, please contact us via: (i) the
             “Contact Us” section of our website; or (ii) an email to
-            www.help@booksellf.com; or (iii) our Privacy Office at: Booksellf
-            Privacy Office, Dehradun. If you contact us with a privacy complaint
+            rawatsuraj9867@gmail.com. If you contact us with a privacy complaint
             it will be assessed with the aim of resolving the issue in a timely
             and effective manner.
           </p>
