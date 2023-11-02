@@ -15,7 +15,10 @@ const Contact = () => {
             anytime.
           </p>
           <p className="mt-3">
-            <BiMailSend /> : rawatsuraj9867@gmail.com
+            <BiMailSend /> :{" "}
+            <a href="mailto:rawatsuraj9867@gmail.com">
+              rawatsuraj9867@gmail.com
+            </a>
           </p>
           <p className="mt-3">
             <BiPhoneCall /> :{" "}
