@@ -264,7 +264,7 @@ const CartPage = () => {
           className="row container similar-products"
           style={{ fontFamily: "Calisto MT, serif" }}
         >
-          <h4 style={{ marginLeft: "150px", fontWeight: "bold" }}>
+          <h4 className="selu" style={{ fontWeight: "bold" }}>
             Selected for you
           </h4>
           {relatedProducts.length < 1 && (

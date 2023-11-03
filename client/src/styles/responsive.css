@@ -296,4 +296,8 @@
   .bigimg {
     display: none;
   }
+
+  .selu {
+    margin-left: 100px;
+  }
 }

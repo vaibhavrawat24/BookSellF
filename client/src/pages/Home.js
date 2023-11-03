@@ -2,6 +2,8 @@ import React from "react";
 import "../styles/Home.css";
 import "../styles/responsive.css";
 import { useNavigate } from "react-router-dom";
+import { InfoCircleOutlined } from "@ant-design/icons";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();

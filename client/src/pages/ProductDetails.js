@@ -218,7 +218,11 @@ const ProductDetails = () => {
           </h6>{" "}
           <h6
             onClick={showReviewModal}
-            style={{ textAlign: "center", textDecoration: "underline" }}
+            style={{
+              textAlign: "center",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
           >
             Read/Post Reviews
           </h6>
@@ -232,7 +236,7 @@ const ProductDetails = () => {
               <span className="close" onClick={closeReviewModal}>
                 &times;
               </span>
-              <div>
+              {/* <div>
                 <form onSubmit={addReviewHandler}>
                   <div className="mb-3" controlId="rating">
                     <label>Rating</label>
@@ -272,7 +276,8 @@ const ProductDetails = () => {
                 ) : (
                   <p>No reviews available.</p>
                 )}
-              </div>
+              </div> */}
+              <p style={{ textAlign: "center" }}>No reviews available.</p>
             </div>
           </div>
           <div style={{ display: "flex", marginBottom: "10px" }}>
