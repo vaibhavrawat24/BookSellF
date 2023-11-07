@@ -31,7 +31,7 @@ app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/author", authorRoutes);
 
 app.use("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 const PORT = process.env.PORT || 3000;
