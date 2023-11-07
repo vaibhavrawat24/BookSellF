@@ -417,10 +417,18 @@ const HomePage = () => {
               </div>
             ))}
           </div>
-          <div className="m-2 p-3">
+          <div
+            className="m-2 p-3"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
             {products && products.length < total && (
               <button
                 className="btn loadmore"
+                style={{
+                  border: "1px solid black",
+                  backgroundColor: "#ebeaea",
+                  borderRadius: "15px",
+                }}
                 onClick={(e) => {
                   e.preventDefault();
                   setPage(page + 1);
@@ -429,10 +437,7 @@ const HomePage = () => {
                 {loading ? (
                   "Loading ..."
                 ) : (
-                  <>
-                    {" "}
-                    Loadmore <AiOutlineReload />
-                  </>
+                  <span style={{ fontWeight: "bold" }}>... Load More</span>
                 )}
               </button>
             )}

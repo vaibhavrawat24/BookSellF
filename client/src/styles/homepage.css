@@ -337,11 +337,11 @@
 }
 
 .loadmore {
-  width: 100%;
+  width: 120px;
 
   color: #fff;
   padding: 10px;
-  border: none;
+
   cursor: pointer;
 }
 
