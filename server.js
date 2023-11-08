@@ -23,15 +23,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(express.static(path.join(__dirname, "./client/build")));
+app.use(express.static(path.join(__dirname, "build", "index.html")));
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/author", authorRoutes);
 
+// app.use("*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "build", "./client/build/index.html"));
+// });
+
 app.use("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 const PORT = process.env.PORT || 3000;
