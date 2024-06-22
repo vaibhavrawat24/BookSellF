@@ -2,7 +2,7 @@
 
 BookSellF is a MERN stack web application for buying, selling, and renting books. Users can list books, search for books, and interact with other book enthusiasts in a seamless online environment.
 
-You can visit the website here:- https://book-whft.onrender.com/
+You can visit the website here:- https://book-whft.onrender.com/ (takes a little while to load)
 
 [[Working Demo]](https://youtu.be/JXT2zsgFuMw?si=8cCKr0uSOau0lz9Y)
 <p>
