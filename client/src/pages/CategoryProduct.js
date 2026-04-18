@@ -2,44 +2,33 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/homepage.css";
-import "../styles/responsive.css";
 import toast from "react-hot-toast";
 import { useCart } from "../context/cart";
+import "../styles/homepage.css";
+import "../styles/collectionPage.css";
 
 const CategoryProduct = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState([]);
+  const [category, setCategory] = useState({});
   const [authors, setAuthors] = useState([]);
 
   useEffect(() => {
     if (params?.slug) getPrductsByCat();
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [params?.slug]);
 
-  const getAllAuthor = async () => {
-    try {
-      const { data } = await axios.get("/api/v1/author/get-author");
-      if (data?.success) {
-        setAuthors(data?.author);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    getAllAuthor();
+    axios.get("/api/v1/author/get-author").then(({ data }) => {
+      if (data?.success) setAuthors(data.author);
+    });
   }, []);
 
   const getPrductsByCat = async () => {
     try {
-      const { data } = await axios.get(
-        `/api/v1/product/product-category/${params.slug}`
-      );
+      const { data } = await axios.get(`/api/v1/product/product-category/${params.slug}`);
       setProducts(data?.products);
       setCategory(data?.category);
     } catch (error) {
@@ -48,89 +37,51 @@ const CategoryProduct = () => {
   };
 
   return (
-    <Layout>
-      <div
-        className="container mt-3 category"
-        style={{ fontFamily: "Calisto MT, serif" }}
-      >
-        <h4 className="category text-center">{category?.name} books</h4>
-        <h6 className="text-center">({products?.length} result found )</h6>
-        <hr />
+    <Layout title={category?.name}>
+      <div className="collection-page">
+        <div className="collection-banner" style={{ background: "#1a1a2e" }}>
+          <div className="collection-banner-text">
+            <span className="collection-banner-tag">📚 Genre</span>
+            <h1>{category?.name}</h1>
+            <p>{products.length} books in this genre</p>
+          </div>
+        </div>
 
-        <div className="category col-12">
-          <div className="d-flex flex-wrap justify-content">
-            {products?.map((p) => (
-              <div
-                className="category card m-2"
-                key={p._id}
-                onClick={() => navigate(`/product/${p.slug}`)}
-              >
-                <img
-                  src={`${process.env.REACT_APP_API || "http://localhost:3002"}/api/v1/product/product-photo/${p._id}`}
-                  className="category card-img-top"
-                  alt={p.name}
-                />
-                <div className="card-body">
-                  <div className="card-name-price">
-                    <div class="popup">
-                      {authors
-                        .filter((author) => author._id === p.author)
-                        .map((author) => (
-                          <div key={author._id}>{author.name}</div>
-                        ))}
+        <div className="collection-content">
+          <p className="collection-meta">{products.length} titles found</p>
+          {products.length === 0 ? (
+            <p style={{ color: "#aaa", textAlign: "center", padding: "60px 0" }}>No books found in this genre.</p>
+          ) : (
+            <div className="collection-grid">
+              {products.map((p) => (
+                <div className="card m-2" key={p._id} onClick={() => navigate(`/product/${p.slug}`)}>
+                  <img
+                    src={`${process.env.REACT_APP_API || "http://localhost:3002"}/api/v1/product/product-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                    loading="lazy"
+                  />
+                  <div className="card-body">
+                    <div className="popup">
+                      {authors.filter((a) => a._id === p.author).map((a) => (
+                        <span key={a._id}>{a.name}</span>
+                      ))}
                     </div>
-                    <h5 className="category card-title">{p.name}</h5>
-                    <h5 className="card-title card-price">
-                      {p.price.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "INR",
-                      })}
-                    </h5>
-                  </div>
-
-                  <div className="card-name-price">
-                    {/* <button
-                        className="details btn btn-info ms-1"
-                        onClick={() => navigate(`/product/${p.slug}`)}
-                      >
-                        More Details
-                      </button> */}
-                    <button
-                      className="btn btn-dark ms-1"
-                      style={{
-                        backgroundColor: "#EE7789",
-                        border: "#EE7789",
-                      }}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        setCart([...cart, p]);
-                        localStorage.setItem(
-                          "cart",
-                          JSON.stringify([...cart, p])
-                        );
-                        toast.success("Item Added to cart");
-                      }}
-                    >
+                    <h5 className="card-title">{p.name}</h5>
+                    <p className="card-price">{p.price.toLocaleString("en-US", { style: "currency", currency: "INR" })}</p>
+                    <button className="btn-more" onClick={(e) => {
+                      e.stopPropagation();
+                      setCart([...cart, p]);
+                      localStorage.setItem("cart", JSON.stringify([...cart, p]));
+                      toast.success("Item Added to cart!");
+                    }}>
                       Add to cart
                     </button>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          {/* <div className="m-2 p-3">
-            {products && products.length < total && (
-              <button
-                className="btn btn-warning"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPage(page + 1);
-                }}
-              >
-                {loading ? "Loading ..." : "Loadmore"}
-              </button>
-            )}
-          </div> */}
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </Layout>
