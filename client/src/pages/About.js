@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/Home.css";
 import "../styles/responsive.css";
 import "../styles/homepage.css";
 import Layout from "./../components/Layout/Layout";
 
 const About = () => {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <Layout>
       <div style={{ fontFamily: "Calisto MT, serif" }}>

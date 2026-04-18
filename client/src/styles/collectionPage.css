@@ -284,6 +284,105 @@
   line-height: 1.5;
 }
 
+/* ── Static pages (Contact, Policy) ── */
+.static-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  font-family: "Calisto MT", serif;
+}
+
+.static-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.static-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 10px 0 8px;
+}
+
+.static-header p {
+  font-size: 15px;
+  color: #999;
+  margin: 0;
+}
+
+.static-content {
+  background: #fff;
+  border: 1px solid #ece8e1;
+  border-radius: 14px;
+  padding: 36px;
+}
+
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 28px 20px;
+  border: 1px solid #ece8e1;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #333;
+  transition: border-color 0.2s, box-shadow 0.2s, color 0.2s;
+}
+
+.contact-card:hover {
+  border-color: #ee7879;
+  box-shadow: 0 4px 16px rgba(238,120,121,0.1);
+  color: #ee7879;
+  text-decoration: none;
+}
+
+.contact-card-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.contact-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.contact-card p {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+  word-break: break-all;
+}
+
+.policy-body p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.policy-body a {
+  color: #ee7879;
+  text-decoration: none;
+}
+
+.policy-body a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .static-page { padding: 24px 16px; }
+  .static-content { padding: 24px 16px; }
+  .contact-cards { grid-template-columns: 1fr; }
+}
+
 /* ── Genres page ── */
 .genres-page {
   max-width: 1100px;

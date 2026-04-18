@@ -1,30 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "./../components/Layout/Layout";
-import { BiMailSend, BiPhoneCall } from "react-icons/bi";
-import "../styles/responsive.css";
+import "../styles/collectionPage.css";
 
 const Contact = () => {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   return (
-    <Layout title={"Contact us"}>
-      <div className="container" style={{ fontFamily: "Calisto MT, serif" }}>
-        <div className="zeeta-box">
-          <h1 className="bg-dark p-2 text-white text-center">CONTACT US</h1>
-          <p className="text-justify mt-2">
-            If you have any query or need info about product feel free to reach
-            anytime.
-          </p>
-          <p className="mt-3">
-            <BiMailSend /> :{" "}
-            <a href="mailto:rawatsuraj9867@gmail.com">
-              rawatsuraj9867@gmail.com
+    <Layout title="Contact Us">
+      <div className="static-page">
+        <div className="static-header">
+          <span className="collection-banner-tag">💬 Get in Touch</span>
+          <h1>Contact Us</h1>
+          <p>Have a question or feedback? We'd love to hear from you.</p>
+        </div>
+
+        <div className="static-content">
+          <div className="contact-cards">
+            <a href="mailto:rawatvaibhav42@gmail.com" className="contact-card">
+              <div className="contact-card-icon">✉️</div>
+              <h4>Email</h4>
+              <p>rawatvaibhav42@gmail.com</p>
             </a>
-          </p>
-          <p className="mt-3">
-            <BiPhoneCall /> :{" "}
-            <a href="https://www.linkedin.com/in/vaibhav-singh-rawat-933094234/">
-              Linkedin
+            <a href="https://www.linkedin.com/in/vaibhav-singh-rawat-933094234/" target="_blank" rel="noreferrer" className="contact-card">
+              <div className="contact-card-icon">💼</div>
+              <h4>LinkedIn</h4>
+              <p>vaibhav-singh-rawat</p>
             </a>
-          </p>
+            <a href="https://vaibhavdev.qzz.io" target="_blank" rel="noreferrer" className="contact-card">
+              <div className="contact-card-icon">🌐</div>
+              <h4>Portfolio</h4>
+              <p>vaibhavdev.qzz.io</p>
+            </a>
+          </div>
         </div>
       </div>
     </Layout>
