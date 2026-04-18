@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import { useCart } from "../context/cart";
 
 const Search = () => {
-  const [values, setValues] = useSearch();
+  const [values] = useSearch();
   const navigate = useNavigate();
   const [authors, setAuthors] = useState([]);
   const [cart, setCart] = useCart();

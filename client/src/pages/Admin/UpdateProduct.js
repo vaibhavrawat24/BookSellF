@@ -43,6 +43,7 @@ const UpdateProduct = () => {
   };
   useEffect(() => {
     getSingleProduct();
+  // eslint-disable-next-line
   }, []);
 
   const getAllCategory = async () => {
@@ -108,7 +109,7 @@ const UpdateProduct = () => {
     try {
       let answer = window.prompt("Are you sure you want to delete this book?");
       if (!answer) return;
-      const { data } = await axios.delete(
+      await axios.delete(
         `/api/v1/product/delete-product/${id}`
       );
       toast.success("Book deleted Succfully");

@@ -2,86 +2,26 @@ import React, { useState, useEffect } from "react";
 import Layout from "./../components/Layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
-import { AiFillWarning } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "../styles/homepage.css";
 import "../styles/cartPage.css";
 
 const CartPage = () => {
-  const params = useParams();
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
   const [cart, setCart] = useCart();
   const [clientToken, setClientToken] = useState("");
   const [instance, setInstance] = useState("");
   const [loading, setLoading] = useState(false);
-  const [product, setProduct] = useState({});
-  const [relatedProducts, setRelatedProducts] = useState([]);
-  const [AuthorRelatedProducts, setAuthorRelatedProducts] = useState([]);
-  const [authors, setAuthors] = useState([]);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (params?.slug) getProduct();
-  }, [params?.slug]);
-
-  const getProduct = async () => {
-    try {
-      const { data } = await axios.get(
-        `/api/v1/product/get-product/${params.slug}`
-      );
-      setProduct(data?.product);
-      getSimilarProduct(data?.product._id, data?.product.category._id);
-      getAuthorSimilarProduct(data?.product._id, data?.product.author._id);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getAllAuthor = async () => {
-    try {
-      const { data } = await axios.get("/api/v1/author/get-author");
-      if (data?.success) {
-        setAuthors(data?.author);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getAllAuthor();
-  }, []);
-  //get similar product
-  const getSimilarProduct = async (pid, cid) => {
-    try {
-      const { data } = await axios.get(
-        `/api/v1/product/related-product/${pid}/${cid}`
-      );
-      setRelatedProducts(data?.products);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getAuthorSimilarProduct = async (pid, cid) => {
-    try {
-      const { data } = await axios.get(
-        `/api/v1/product/author-related-product/${pid}/${cid}`
-      );
-      setAuthorRelatedProducts(data?.products);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   //total price
   const totalPrice = () => {
     try {
       let total = 0;
-      cart?.map((item) => {
+      cart?.forEach((item) => {
         total = total + item.price;
       });
       return total.toLocaleString("en-US", {
@@ -123,7 +63,7 @@ const CartPage = () => {
     try {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
-      const { data } = await axios.post("/api/v1/product/braintree/payment", {
+      await axios.post("/api/v1/product/braintree/payment", {
         nonce,
         cart,
       });
@@ -224,46 +164,6 @@ const CartPage = () => {
           <div className="cart-empty">Your cart is empty. Start adding some books!</div>
         )}
 
-        {/* ── Recommendations ── */}
-        {relatedProducts.length > 0 && (
-          <div className="cart-recommendations">
-            <h4>Selected for You</h4>
-            <div className="related-grid">
-              {relatedProducts.map((p) => (
-                <div className="card m-2" key={p._id} onClick={() => navigate(`/product/${p.slug}`)}>
-                  <img
-                    src={`/api/v1/product/product-photo/${p._id}`}
-                    className="card-img-top"
-                    alt={p.name}
-                    loading="lazy"
-                  />
-                  <div className="card-body">
-                    <div className="popup">
-                      {authors.filter((a) => a._id === p.author).map((a) => (
-                        <span key={a._id}>{a.name}</span>
-                      ))}
-                    </div>
-                    <h5 className="card-title">{p.name}</h5>
-                    <p className="card-price">
-                      {p.price.toLocaleString("en-US", { style: "currency", currency: "INR" })}
-                    </p>
-                    <button
-                      className="btn-more"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setCart([...cart, p]);
-                        localStorage.setItem("cart", JSON.stringify([...cart, p]));
-                        toast.success("Item Added to cart");
-                      }}
-                    >
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
       </div>
     </Layout>

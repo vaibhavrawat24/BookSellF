@@ -17,54 +17,7 @@ const ProductDetails = () => {
   const [AuthorRelatedProducts, setAuthorRelatedProducts] = useState([]);
   const [cart, setCart] = useCart();
   const [authors, setAuthors] = useState([]);
-  const [reviews, setReviews] = useState([]);
-  const [rating, setRating] = useState(0);
-  const [description, setDescription] = useState("");
 
-  const addReviewHandler = async (e, pid) => {
-    e.preventDefault();
-
-    const reviewData = new FormData();
-    reviewData.append("product_id", pid);
-    reviewData.append("rating", rating);
-    reviewData.append("description", description);
-
-    try {
-      const { data } = await axios.post(
-        `/api/v1/product/addReview/${pid}`,
-        reviewData
-      );
-
-      if (data?.success) {
-        toast.error(data?.message);
-      } else {
-        toast.success("Review Created Successfully");
-        // Add code to refresh the reviews after a new review is added
-        getSingleReviewData(pid);
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong!");
-    }
-  };
-
-  const { pid } = useParams();
-
-  const getSingleReviewData = async (pid) => {
-    try {
-      const { data } = await axios.get(
-        `/api/v1/product/getProductReviews/${pid}`
-      );
-
-      setReviews(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getSingleReviewData(pid);
-  }, [pid]);
 
   const showModal = () => {
     const modal = document.getElementById("myModal");
@@ -102,6 +55,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     if (params?.slug) getProduct();
+  // eslint-disable-next-line
   }, [params?.slug]);
 
   const getProduct = async () => {

@@ -6,10 +6,8 @@ import { useCart } from "../context/cart";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
-import { AiOutlineReload } from "react-icons/ai";
 import "../styles/homepage.css";
 import "../styles/responsive.css";
-import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -97,6 +95,7 @@ const HomePage = () => {
   useEffect(() => {
     if (page === 1) return;
     loadMore();
+  // eslint-disable-next-line
   }, [page]);
 
   const loadMore = async () => {
@@ -122,10 +121,12 @@ const HomePage = () => {
   };
   useEffect(() => {
     if (!checked.length || !radio.length) getAllProducts();
+  // eslint-disable-next-line
   }, [checked.length, radio.length]);
 
   useEffect(() => {
     if (checked.length || radio.length) filterProduct();
+  // eslint-disable-next-line
   }, [checked, radio]);
 
   const filterProduct = async () => {
@@ -176,6 +177,7 @@ const HomePage = () => {
 
   useEffect(() => {
     filteredProduct();
+  // eslint-disable-next-line
   }, [selectedPrice, selectedCategory, selectedAuthor]);
 
   const filteredProduct = async () => {

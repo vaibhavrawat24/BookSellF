@@ -2,11 +2,9 @@ import React from "react";
 import "../styles/Home.css";
 import "../styles/responsive.css";
 import "../styles/homepage.css";
-import { useNavigate } from "react-router-dom";
 import Layout from "./../components/Layout/Layout";
 
 const About = () => {
-  const navigate = useNavigate();
   return (
     <Layout>
       <div style={{ fontFamily: "Calisto MT, serif" }}>

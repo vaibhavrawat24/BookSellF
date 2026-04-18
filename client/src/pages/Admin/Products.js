@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
-import toast from "react-hot-toast";
 import { AiOutlineReload } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "../Admin/admin.css";
@@ -28,6 +27,7 @@ const Products = () => {
   useEffect(() => {
     getAllProducts();
     getTotal();
+  // eslint-disable-next-line
   }, []);
 
   const loadMore = async () => {
@@ -52,6 +52,7 @@ const Products = () => {
   useEffect(() => {
     if (page === 1) return;
     loadMore();
+  // eslint-disable-next-line
   }, [page]);
 
   return (
