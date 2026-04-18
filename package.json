@@ -23,7 +23,7 @@
   "homepage": "https://github.com/vaibhavrawat24/BookSellF#readme",
   "dependencies": {
     "axios": "^1.5.0",
-    "bcrypt": "^5.1.1",
+    "bcrypt": "^6.0.0",
     "bootstrap": "^5.3.2",
     "braintree": "^3.17.0",
     "colors": "^1.4.0",

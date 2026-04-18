@@ -1,6 +1,7 @@
 import Layout from "../components/Layout/Layout";
 import React from "react";
-import "../styles/responsive.css";
+import "../styles/recycle.css";
+import "../styles/homepage.css";
 
 const Recycle = () => {
   const showModal = () => {
@@ -22,105 +23,107 @@ const Recycle = () => {
 
   return (
     <Layout>
-      <div className="recycle-main-div">
-        <div class="header recycle">
-          <h1 style={{ fontWeight: "bold" }}>Effortless Paper Recycling</h1>
-        </div>
-        <div class="container recycle">
-          <div class="left recycle">
+      <div className="recycle-page">
+
+        {/* ── Hero ── */}
+        <div className="recycle-hero">
+          <div className="recycle-hero-image">
             <img
-              className="recycle-img"
               src="https://i.pinimg.com/originals/d9/2f/b7/d92fb73f34db5c033392416950c98369.jpg"
-              alt="img"
+              alt="Paper recycling"
+              loading="lazy"
             />
           </div>
-          <div class="right recycle">
-            <h1
-              style={{
-                fontFamily: "Gloock,Gloock Placeholder, serif",
-                fontWeight: "bold",
-              }}
-            >
-              Turn Your Old Paper into New Possibilities
-            </h1>
-            <h5 style={{ fontFamily: "Gloock,Gloock Placeholder, serif" }}>
-              Welcome to our amazing doorstep paper recycling service! Your old
-              papers will be transformed into something new, and you won't even
-              have to leave your home.
-            </h5>
-            <br />
-            <h5 style={{ fontFamily: "Gloock,Gloock Placeholder, serif" }}>
-              We take care of all the heavy lifting, literally! Just place your
-              paper waste at the doorstep and our team will transport it to a
-              recycling facility.
-            </h5>
-            <br />
-            <h5 style={{ fontFamily: "Gloock,Gloock Placeholder, serif" }}>
-              Give your paper waste a new life by recycling it into amazing
-              products like fresh newspaper, cartons, tissue, and more.
-            </h5>
-            <br />
-            <h5 style={{ fontFamily: "Gloock,Gloock Placeholder, serif" }}>
-              Join us and make a difference by recycling your paper and saving
-              trees. It's super easy and beneficial for our planet!
-            </h5>
-            <br />
-            <button
-              onMouseDown={(event) => {
-                event.target.style.transform = "scale(0.95)";
-                event.target.style.backgroundColor = "#8D9B6A";
-              }}
-              onMouseUp={(event) => {
-                event.target.style.transform = "scale(1)";
-                event.target.style.backgroundColor = "#8D9B6A";
-                showModal();
-              }}
-              class="btn btn-secondary ms-1"
-              style={{
-                borderRadius: "20px",
-                width: "400px",
-                backgroundColor: "#8D9B6A",
-                border: "#8D9B6A",
 
-                transform: "scale(1)",
-                transition: "transform 0.2s, background-color 0.2s",
-              }}
-            >
+          <div className="recycle-hero-content">
+            <span className="recycle-tag">♻ Eco Initiative</span>
+            <h1>Turn Your Old Paper into New Possibilities</h1>
+
+            <div className="recycle-points">
+              <div className="recycle-point">
+                <div className="recycle-point-icon">🏠</div>
+                <p>Doorstep pickup - just leave your paper waste outside and we'll collect it.</p>
+              </div>
+              <div className="recycle-point">
+                <div className="recycle-point-icon">🔄</div>
+                <p>We transport everything to a certified recycling facility near you.</p>
+              </div>
+              <div className="recycle-point">
+                <div className="recycle-point-icon">🌱</div>
+                <p>Your paper gets a new life as newspaper, cartons, tissue, and more.</p>
+              </div>
+              <div className="recycle-point">
+                <div className="recycle-point-icon">🌍</div>
+                <p>Join thousands saving trees and making a real impact for our planet.</p>
+              </div>
+            </div>
+
+            <button className="btn-recycle" onClick={showModal}>
               Recycle Now
             </button>
-            <div
-              id="myModal"
-              className="modal"
-              onClick={handleOutsideClick}
-              style={{ fontFamily: "Calisto MT, serif" }}
-            >
-              <div className="modal-content">
-                <span className="close" onClick={closeModal}>
-                  &times;
-                </span>
-                <div>
-                  <h5>Welcome to our Recycle Page!</h5>
-                  <h5>
-                    {" "}
-                    We're excited to have you here. At BookSellF, we pick up and
-                    recycle paper from your doorstep. While the recycling
-                    feature is not available at this moment, please stay tuned
-                    and watch this space. We're working diligently to bring you
-                    the best recycling experience. In the meantime, feel free to
-                    explore our library and have a look at other books while
-                    recycling feature goes live.{" "}
-                  </h5>
+          </div>
+        </div>
 
-                  <h5>
-                    We appreciate your patience and look forward to serving you
-                    soon. Thank you for your interest.
-                  </h5>
-                  <h5>Happy reading!</h5>
-                </div>
-              </div>
+        {/* ── Stats ── */}
+        <div className="recycle-stats">
+          <div className="recycle-stats-inner">
+            <div className="recycle-stat">
+              <h3>♻️</h3>
+              <p>Kg of paper recycled</p>
+            </div>
+            <div className="recycle-stat">
+              <h3>😊</h3>
+              <p>Happy customers</p>
+            </div>
+            <div className="recycle-stat">
+              <h3>🌳</h3>
+              <p>Trees saved</p>
+            </div>
+            <div className="recycle-stat">
+              <h3>🏠</h3>
+              <p>Doorstep pickup</p>
             </div>
           </div>
         </div>
+
+        {/* ── How it works ── */}
+        <div className="recycle-steps">
+          <h2>How It Works</h2>
+          <div className="recycle-steps-grid">
+            <div className="recycle-step-card">
+              <div className="recycle-step-number">1</div>
+              <h4>Schedule a Pickup</h4>
+              <p>Request a pickup through our app or website at your preferred time.</p>
+            </div>
+            <div className="recycle-step-card">
+              <div className="recycle-step-number">2</div>
+              <h4>Leave it at the Door</h4>
+              <p>Place your paper waste at your doorstep - our team handles the rest.</p>
+            </div>
+            <div className="recycle-step-card">
+              <div className="recycle-step-number">3</div>
+              <h4>We Recycle It</h4>
+              <p>Your paper is transported to a facility and turned into new products.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Modal ── */}
+        <div id="myModal" className="modal" onClick={handleOutsideClick}>
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>&times;</span>
+            <h5>Coming Soon!</h5>
+            <p style={{ marginTop: 12, lineHeight: 1.7, color: "#555" }}>
+              We're excited to bring doorstep paper recycling to you. This feature
+              is currently under development - stay tuned! In the meantime, explore
+              our library and add books to your wishlist.
+            </p>
+            <p style={{ marginTop: 8, color: "#8d9b6a", fontWeight: 600 }}>
+              Thank you for caring about the planet 🌱
+            </p>
+          </div>
+        </div>
+
       </div>
     </Layout>
   );

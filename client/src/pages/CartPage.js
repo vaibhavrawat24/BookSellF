@@ -8,7 +8,7 @@ import { AiFillWarning } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "../styles/homepage.css";
-import "../styles/responsive.css";
+import "../styles/cartPage.css";
 
 const CartPage = () => {
   const params = useParams();
@@ -139,183 +139,120 @@ const CartPage = () => {
   };
   return (
     <Layout>
-      <div className="cart-page" style={{ fontFamily: "Calisto MT, serif" }}>
-        <div className="container ">
-          <h2 style={{ fontWeight: "bold", textAlign: "center" }}>
-            Cart Summary
-          </h2>
-          <h1 className="cart heading" style={{ textAlign: "center" }}>
-            {!auth?.user
-              ? "Hey guest, "
-              : `Hey  ${auth?.token && auth?.user?.name}, `}
-            {/* <p className="heading"> */}
-            {cart?.length
-              ? `you have ${cart.length} items in your cart. ${
-                  auth?.token ? "" : "Please login to checkout !"
-                }`
-              : " your cart is empty !"}
-            {/* </p> */}
-          </h1>
-          <hr />
-          <div className="row ">
-            <div className="col-md-7 p-0 m-0">
-              <div className="d-flex flex-wrap">
-                {cart?.map((p) => (
-                  <div className="cart card flex-grow-1 m-2" key={p._id}>
-                    <img
-                      src={`/api/v1/product/product-photo/${p._id}`}
-                      className="cart card-img-top"
-                      alt={p.name}
-                    />
+      <div className="cart-page-wrapper">
 
-                    <h2>{p.name}</h2>
-                    <h3>
-                      {p.price.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "INR",
-                      })}
-                    </h3>
+        <h2 className="cart-title">Your Cart</h2>
+        <p className="cart-subtitle">
+          {!auth?.user ? "Hey guest — " : `Hey ${auth?.user?.name}, `}
+          {cart?.length
+            ? `you have ${cart.length} item${cart.length > 1 ? "s" : ""} in your cart.`
+            : "your cart is empty."}
+        </p>
+        <hr className="cart-divider" />
 
-                    <button
-                      className="cart btn btn-danger"
-                      onClick={() => removeCartItem(p._id)}
-                    >
-                      Remove
-                    </button>
+        {cart?.length ? (
+          <div className="cart-layout">
+
+            {/* ── Items ── */}
+            <div className="cart-items">
+              {cart.map((p) => (
+                <div className="cart-item" key={p._id}>
+                  <img
+                    src={`/api/v1/product/product-photo/${p._id}`}
+                    className="cart-item-img"
+                    alt={p.name}
+                    loading="lazy"
+                  />
+                  <div className="cart-item-info">
+                    <h4>{p.name}</h4>
+                    <p>{p.price.toLocaleString("en-US", { style: "currency", currency: "INR" })}</p>
                   </div>
-                ))}
-              </div>
+                  <button className="cart-item-remove" onClick={() => removeCartItem(p._id)}>
+                    Remove
+                  </button>
+                </div>
+              ))}
             </div>
 
-            <div className="col-md-5 cart-summary ">
-              <br />
-              <h4>Total : {totalPrice()} </h4>
+            {/* ── Summary ── */}
+            <div className="cart-summary-panel">
+              <h3>Order Summary</h3>
+              <div className="cart-total-row">
+                <span>Total</span>
+                <span>{totalPrice()}</span>
+              </div>
+
               {auth?.user?.address ? (
                 <>
-                  <div className="mb-3">
-                    <h4>
-                      Current Address:{" "}
-                      <span style={{ color: "#6c6b6b" }}>
-                        {auth?.user?.address}
-                      </span>
-                    </h4>
-
-                    <button
-                      className="btn btn-outline-warning"
-                      onClick={() => navigate("/dashboard/user/profile")}
-                    >
-                      Update Address
-                    </button>
+                  <div className="cart-address-box">
+                    <strong>Deliver to</strong>
+                    {auth.user.address}
                   </div>
+                  <button className="btn-update-address" onClick={() => navigate("/dashboard/user/profile")}>
+                    Change Address
+                  </button>
                 </>
+              ) : auth?.token ? (
+                <button className="btn-update-address" onClick={() => navigate("/dashboard/user/profile")}>
+                  Add Delivery Address
+                </button>
               ) : (
-                <div className="mb-3">
-                  {auth?.token ? (
-                    <button
-                      className="btn btn-outline-warning"
-                      onClick={() => navigate("/dashboard/user/profile")}
-                    >
-                      Update Address
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn-outline-warning"
-                      onClick={() =>
-                        navigate("/login", {
-                          state: "/cart",
-                        })
-                      }
-                    >
-                      Please login to checkout
-                    </button>
-                  )}
-                </div>
+                <button className="btn-login-checkout" onClick={() => navigate("/login", { state: "/cart" })}>
+                  Login to Checkout
+                </button>
               )}
-              <div className="mt-2">
-                {!clientToken || !auth?.token || !cart?.length ? (
-                  ""
-                ) : (
-                  <>
-                    <DropIn
-                      options={{
-                        authorization: clientToken,
-                        paypal: {
-                          flow: "vault",
-                        },
-                      }}
-                      onInstance={(instance) => setInstance(instance)}
-                    />
 
-                    <button
-                      className="btn btn-primary"
-                      onClick={handlePayment}
-                      disabled={loading || !instance || !auth?.user?.address}
-                    >
-                      {loading ? "Processing ...." : "Make Payment"}
-                    </button>
-                  </>
-                )}
-              </div>
+              {clientToken && auth?.token && cart?.length ? (
+                <>
+                  <DropIn
+                    options={{ authorization: clientToken, paypal: { flow: "vault" } }}
+                    onInstance={(instance) => setInstance(instance)}
+                  />
+                  <button
+                    className="btn-pay"
+                    onClick={handlePayment}
+                    disabled={loading || !instance || !auth?.user?.address}
+                  >
+                    {loading ? "Processing..." : "Make Payment"}
+                  </button>
+                </>
+              ) : null}
             </div>
+
           </div>
-        </div>
-        <hr />
-        <div
-          className="row container similar-products"
-          style={{ fontFamily: "Calisto MT, serif" }}
-        >
-          <h4 className="selu" style={{ fontWeight: "bold" }}>
-            Selected for you
-          </h4>
-          {relatedProducts.length < 1 && (
-            <p className="text-center">No product found</p>
-          )}
-          <div className="d-flex flex-wrap">
-            {relatedProducts?.map((p) => (
-              <div
-                className="card m-2"
-                style={{ height: "290px" }}
-                key={p._id}
-                onClick={() => navigate(`/product/${p.slug}`)}
-              >
-                <img
-                  src={`/api/v1/product/product-photo/${p._id}`}
-                  className="card-img-top"
-                  alt={p.name}
-                />
-                <div className="card-body">
-                  <div className="card-name-price">
-                    <div class="popup">
-                      {authors
-                        .filter((author) => author._id === p.author)
-                        .map((author) => (
-                          <div key={author._id}>{author.name}</div>
-                        ))}
+        ) : (
+          <div className="cart-empty">Your cart is empty. Start adding some books!</div>
+        )}
+
+        {/* ── Recommendations ── */}
+        {relatedProducts.length > 0 && (
+          <div className="cart-recommendations">
+            <h4>Selected for You</h4>
+            <div className="related-grid">
+              {relatedProducts.map((p) => (
+                <div className="card m-2" key={p._id} onClick={() => navigate(`/product/${p.slug}`)}>
+                  <img
+                    src={`/api/v1/product/product-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                    loading="lazy"
+                  />
+                  <div className="card-body">
+                    <div className="popup">
+                      {authors.filter((a) => a._id === p.author).map((a) => (
+                        <span key={a._id}>{a.name}</span>
+                      ))}
                     </div>
                     <h5 className="card-title">{p.name}</h5>
-                    <h5 className="card-title card-price">
-                      {p.price.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "INR",
-                      })}
-                    </h5>
-                  </div>
-                  <div className="card-name-price">
+                    <p className="card-price">
+                      {p.price.toLocaleString("en-US", { style: "currency", currency: "INR" })}
+                    </p>
                     <button
-                      className="btn btn-dark ms-1"
-                      style={{
-                        backgroundColor: "#EE7789",
-                        border: "#EE7789",
-                        borderRadius: "20px",
-                        width: "140px",
-                      }}
-                      onClick={(event) => {
-                        event.stopPropagation();
+                      className="btn-more"
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setCart([...cart, p]);
-                        localStorage.setItem(
-                          "cart",
-                          JSON.stringify([...cart, p])
-                        );
+                        localStorage.setItem("cart", JSON.stringify([...cart, p]));
                         toast.success("Item Added to cart");
                       }}
                     >
@@ -323,10 +260,11 @@ const CartPage = () => {
                     </button>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
       </div>
     </Layout>
   );

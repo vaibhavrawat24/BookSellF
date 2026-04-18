@@ -34,33 +34,39 @@ const Register = () => {
 
   return (
     <Layout title='Register - BookSellF'>
-        <div className="register" style={{ fontFamily: 'Calisto MT, serif' }}>
-            <h1>Register Page</h1>
-            <form onSubmit={handleSubmit}>
-            <div className="mb-3" >
-                
-                <input type="text" value={name} onChange={(e)=>setName(e.target.value)} className="form-control" id="exampleInputName" placeholder='Enter your name' required/>
-                </div>
-            <div className="mb-3">
-            <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} className="form-control" id="exampleInputEmail1" placeholder='Enter your email' required />
-            </div>
-            <div className="mb-3">
-                <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} className="form-control" id="exampleInputPassword1" placeholder='Enter your password' required/>
-            </div>
-            <div className="mb-3">
-                <input type="text" value={phone} onChange={(e)=>setPhone(e.target.value)} className="form-control" id="exampleInputphone" placeholder='Enter your phone' required/>
-                </div>
-                <div className="mb-3">
-                <input type="text" value={address} onChange={(e)=>setAddress(e.target.value)} className="form-control" id="exampleInputaddress" placeholder='Enter your address' required/>
-                </div>
-                <div className="mb-3">
-                <input type="text" value={answer} onChange={(e)=>setAnswer(e.target.value)} className="form-control" id="exampleInputanswer" placeholder='What is your best friend name ?' required/>
-                </div>
-           
-            <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+      <div className="auth-page">
+        <div className="auth-card">
+          <h1>Create account</h1>
+          <p className="auth-subtitle">Join BookSellF today</p>
 
+          <form onSubmit={handleSubmit}>
+            <div className="auth-field">
+              <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full name" required />
+            </div>
+            <div className="auth-field">
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email address" required />
+            </div>
+            <div className="auth-field">
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
+            </div>
+            <div className="auth-field">
+              <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone number" required />
+            </div>
+            <div className="auth-field">
+              <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Delivery address" required />
+            </div>
+            <div className="auth-field">
+              <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder="Security question: best friend's name?" required />
+            </div>
+            <button type="submit" className="btn-auth-primary">Create Account</button>
+          </form>
+
+          <p className="auth-footer">
+            Already have an account?{" "}
+            <span onClick={() => navigate("/login")}>Sign in</span>
+          </p>
         </div>
+      </div>
     </Layout>
   );
 };

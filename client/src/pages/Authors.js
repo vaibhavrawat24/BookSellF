@@ -1,33 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import useAuthor from "../hooks/useAuthor";
 import Layout from "../components/Layout/Layout";
-import "../styles/homepage.css";
-import "../styles/responsive.css";
+import "../styles/collectionPage.css";
 
 const Authors = () => {
   const authors = useAuthor();
+  const sorted = [...authors].sort((a, b) => a.name.localeCompare(b.name));
+
   return (
-    <Layout title={"All authors"}>
-      <div
-        className="container"
-        style={{ fontFamily: "Calisto MT, serif", marginTop: "100px" }}
-      >
-        <h3 className="category centered-text">All Authors</h3>
-        <hr />
-        <div className="category row container">
-          {authors
-            .slice()
-            .sort((a, b) => a.name.localeCompare(b.name))
-            .map((c) => (
-              <div className="col-md-4 mt-5 mb-3 gx-3 gy-3" key={c._id}>
-                <div className="card-category">
-                  <Link to={`/author/${c.slug}`} className="btn cat-btn">
-                    {c.name}
-                  </Link>
-                </div>
-              </div>
-            ))}
+    <Layout title="All Authors">
+      <div className="authors-page">
+        <h1>All Authors</h1>
+        <p className="authors-subtitle">{sorted.length} authors in our collection</p>
+        <div className="authors-grid">
+          {sorted.map((a) => (
+            <Link key={a._id} to={`/author/${a.slug}`} className="author-card">
+              {a.name}
+            </Link>
+          ))}
         </div>
       </div>
     </Layout>

@@ -78,7 +78,6 @@ const HomePage = () => {
       const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
       setLoading(false);
       setProducts(data.products);
-      setPage(2);
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -355,90 +354,48 @@ const HomePage = () => {
                   alt={p.name}
                 />
                 <div className="card-body">
-                  <div className="card-name-price">
-                    <div class="popup">
-                      {authors
-                        .filter((author) => author._id === p.author)
-                        .map((author) => (
-                          <div key={author._id}>{author.name}</div>
-                        ))}
-                    </div>
-
-                    <h5
-                      className="card-title"
-                      style={{
-                        maxHeight: "2.3em",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      {p.name}
-                    </h5>
-
-                    <h5 className="card-title card-price">
-                      {p.price.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "INR",
-                      })}
-                    </h5>
+                  <div className="popup">
+                    {authors
+                      .filter((author) => author._id === p.author)
+                      .map((author) => (
+                        <span key={author._id}>{author.name}</span>
+                      ))}
                   </div>
-
-                  <div className="card-name-price">
-                    {/* <button
-                      className="btn-more btn-info ms-1"
-                      style={{
-                        backgroundColor: "#3778C2",
-                        border: "#3778C2",
-                      }}
-                      onClick={() => navigate(`/product/${p.slug}`)}
-                    >
-                      More Details
-                    </button> */}
-                    <button
-                      className="btn-more btn-dark ms-1"
-                      style={{
-                        backgroundColor: "#EE7789",
-                        border: "#EE7789",
-                      }}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        setCart([...cart, p]);
-                        localStorage.setItem(
-                          "cart",
-                          JSON.stringify([...cart, p])
-                        );
-                        toast.success("Item Added to cart!");
-                      }}
-                    >
-                      Add to cart
-                    </button>
-                  </div>
+                  <h5 className="card-title">{p.name}</h5>
+                  <p className="card-price">
+                    {p.price.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: "INR",
+                    })}
+                  </p>
+                  <button
+                    className="btn-more"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setCart([...cart, p]);
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, p])
+                      );
+                      toast.success("Item Added to cart!");
+                    }}
+                  >
+                    Add to cart
+                  </button>
                 </div>
               </div>
             ))}
           </div>
-          <div
-            className="m-2 p-3"
-            style={{ display: "flex", justifyContent: "center" }}
-          >
+          <div className="loadmore-wrapper">
             {products && products.length < total && (
               <button
-                className="btn loadmore"
-                style={{
-                  border: "1px solid black",
-                  backgroundColor: "#ebeaea",
-                  borderRadius: "15px",
-                }}
+                className="loadmore"
                 onClick={(e) => {
                   e.preventDefault();
                   setPage(page + 1);
                 }}
               >
-                {loading ? (
-                  "Loading ..."
-                ) : (
-                  <span style={{ fontWeight: "bold" }}>... Load More</span>
-                )}
+                {loading ? "Loading..." : "Load More"}
               </button>
             )}
           </div>

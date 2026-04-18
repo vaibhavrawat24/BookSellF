@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import axios from "axios";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -9,6 +10,8 @@ import { SearchProvider } from "./context/search";
 import { CartProvider } from "./context/cart";
 import "antd/dist/reset.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3002";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

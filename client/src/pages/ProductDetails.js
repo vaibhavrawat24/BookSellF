@@ -3,7 +3,7 @@ import Layout from "./../components/Layout/Layout";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/homepage.css";
-import "../styles/responsive.css";
+import "../styles/productDetails.css";
 
 import toast from "react-hot-toast";
 import { useCart } from "../context/cart";
@@ -153,355 +153,154 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
+  const RelatedCard = ({ p }) => (
+    <div
+      className="card m-2"
+      key={p._id}
+      onClick={() => navigate(`/product/${p.slug}`)}
+    >
+      <img
+        src={`/api/v1/product/product-photo/${p._id}`}
+        className="card-img-top"
+        alt={p.name}
+        loading="lazy"
+      />
+      <div className="card-body">
+        <div className="popup">
+          {authors.filter((a) => a._id === p.author).map((a) => (
+            <span key={a._id}>{a.name}</span>
+          ))}
+        </div>
+        <h5 className="card-title">{p.name}</h5>
+        <p className="card-price">
+          {p.price.toLocaleString("en-US", { style: "currency", currency: "INR" })}
+        </p>
+        <button
+          className="btn-more"
+          onClick={(e) => {
+            e.stopPropagation();
+            setCart([...cart, p]);
+            localStorage.setItem("cart", JSON.stringify([...cart, p]));
+            toast.success("Item Added to cart");
+          }}
+        >
+          Add to cart
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <Layout>
-      <div
-        className="row container product-details"
-        style={{ fontFamily: "Calisto MT, serif" }}
-      >
-        <div className="col-md-6 custom-width">
-          <img
-            src={`/api/v1/product/product-photo/${product._id}`}
-            className="img-fluid"
-            alt={product.name}
-            // width={"300spx"}
-            // height={"300px"}
-            // style={{ width: "280px", height: "380px", marginRight: "200px" }}
-          />
-        </div>
-        <div className="col-md-6 product-details-info">
-          <hr />
-          <h6 style={{ fontSize: "18px" }}>
-            {" "}
-            <span style={{ fontWeight: "bold" }}>Name:</span> {product.name}
-          </h6>{" "}
-          <Link
-            to={`/author/${product?.author?.slug}`}
-            className="text"
-            style={{ color: "black", textDecoration: "none" }}
-          >
-            <h6
-              className="info-section"
-              style={{ marginTop: "15px", fontSize: "18px" }}
-            >
-              <span style={{ fontWeight: "bold" }}>Author:</span>{" "}
-              <span style={{ textDecoration: "underline" }}>
-                {product?.author?.name}
-              </span>
-            </h6>
-          </Link>
-          <Link
-            to={`/category/${product?.category?.slug}`}
-            className="text"
-            style={{ color: "black", textDecoration: "none" }}
-          >
-            <h6
-              className="info-section"
-              style={{ marginTop: "15px", fontSize: "18px" }}
-            >
-              <span style={{ fontWeight: "bold" }}>Genre:</span>{" "}
-              <span style={{ textDecoration: "underline" }}>
-                {product?.category?.name}
-              </span>
-            </h6>
-          </Link>
-          <h6 style={{ marginTop: "15px", fontSize: "18px" }}>
-            <span style={{ fontWeight: "bold" }}>Description:</span>{" "}
-            {product.description}
-          </h6>{" "}
-          <h6 style={{ marginTop: "18px", fontSize: "18px" }}>
-            <span style={{ fontWeight: "bold" }}>Price :</span>
-            {product?.price?.toLocaleString("en-US", {
-              style: "currency",
-              currency: "INR",
-            })}
-          </h6>{" "}
-          <h6
-            onClick={showReviewModal}
-            style={{
-              textAlign: "center",
-              textDecoration: "underline",
-              cursor: "pointer",
-            }}
-          >
-            Read/Post Reviews
-          </h6>
-          <div
-            id="myReviewModal"
-            className="modal"
-            onClick={handleOutsideClickReview}
-            style={{ fontFamily: "Calisto MT, serif" }}
-          >
-            <div className="modal-content">
-              <span className="close" onClick={closeReviewModal}>
-                &times;
-              </span>
-              {/* <div>
-                <form onSubmit={addReviewHandler}>
-                  <div className="mb-3" controlId="rating">
-                    <label>Rating</label>
-                    <input
-                      value={rating}
-                      onChange={(e) => setRating(e.target.value)}
-                      type="number"
-                    />
-                  </div>
+      <div className="product-details-page">
 
-                  <div className="mb-3" controlId="description">
-                    <label>Description</label>
-                    <input
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                      as="textarea"
-                    />
-                  </div>
-
-                  <button variant="primary" type="submit">
-                    Add Review
-                  </button>
-                </form>
-                <h2>Product Reviews</h2>
-                <h5>Product Reviews</h5>
-                <hr />
-
-                {reviews.length > 0 ? (
-                  reviews.map((review) => {
-                    return (
-                      <div key={review._id}>
-                        <p>Rating: {review.rating}</p>
-                        <p>Description: {review.description}</p>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <p>No reviews available.</p>
-                )}
-              </div> */}
-              <p style={{ textAlign: "center" }}>No reviews available.</p>
-            </div>
+        {/* ── Main product section ── */}
+        <div className="product-details-main">
+          <div className="product-details-image">
+            <img
+              src={`/api/v1/product/product-photo/${product._id}`}
+              alt={product.name}
+              loading="lazy"
+            />
           </div>
-          <div style={{ display: "flex", marginBottom: "10px" }}>
-            <button
-              onMouseDown={(event) => {
-                event.target.style.transform = "scale(0.95)";
-                event.target.style.backgroundColor = "#8D9B6A";
-              }}
-              onMouseUp={(event) => {
-                event.target.style.transform = "scale(1)";
-                event.target.style.backgroundColor = "#8D9B6A";
-                showModal();
-              }}
-              class="btn btn-secondary ms-1"
-              style={{
-                backgroundColor: "#8D9B6A",
-                border: "#8D9B6A",
-                height: "35px",
-                marginTop: "25px",
-                transform: "scale(1)",
-                transition: "transform 0.2s, background-color 0.2s",
-              }}
-            >
-              Rent It
-            </button>
-            <div
-              id="myModal"
-              className="modal"
-              onClick={handleOutsideClick}
-              style={{ fontFamily: "Calisto MT, serif" }}
-            >
-              <div className="modal-content">
-                <span className="close" onClick={closeModal}>
-                  &times;
-                </span>
-                <div>
-                  <h5>Welcome to our Renting Page!</h5>
-                  <h5>
-                    {" "}
-                    We're excited to have you here. At BookSellF, we're
-                    dedicated to bringing you a fantastic selection of books for
-                    rent. While the renting feature is not available at this
-                    moment, please stay tuned and watch this space. We're
-                    working diligently to bring you the best book renting
-                    experience. In the meantime, feel free to explore our
-                    library and create a wishlist of books you'd like to read
-                    once the renting feature goes live.{" "}
-                  </h5>
 
-                  <h5>
-                    We appreciate your patience and look forward to serving you
-                    soon. Thank you for your interest.
-                  </h5>
-                  <h5>Happy reading!</h5>
-                </div>
+          <div className="product-details-info">
+            <h1>{product.name}</h1>
+
+            <div className="product-meta">
+              <div className="product-meta-row">
+                <span className="label">Author: </span>
+                <Link to={`/author/${product?.author?.slug}`}>
+                  {product?.author?.name}
+                </Link>
+              </div>
+              <div className="product-meta-row">
+                <span className="label">Genre: </span>
+                <Link to={`/category/${product?.category?.slug}`}>
+                  {product?.category?.name}
+                </Link>
               </div>
             </div>
-            <button
-              onMouseDown={(event) => {
-                event.target.style.transform = "scale(0.95)";
-                event.target.style.backgroundColor = "#EE7789";
-              }}
-              onMouseUp={(event) => {
-                event.target.style.transform = "scale(1)";
-                event.target.style.backgroundColor = "#EE7789";
-              }}
-              class="btn btn-secondary ms-1"
-              style={{
-                backgroundColor: "#EE7789",
-                border: "#EE7789",
-                marginTop: "25px",
-                height: "35px",
-                transform: "scale(1)",
-                transition: "transform 0.2s, background-color 0.2s",
-              }}
-              onClick={(event) => {
-                event.stopPropagation();
-                setCart([...cart, product]);
-                localStorage.setItem(
-                  "cart",
-                  JSON.stringify([...cart, product])
-                );
-                toast.success("Item Added to cart");
-              }}
-            >
-              Add to cart
+
+            <p className="product-description">{product.description}</p>
+
+            <div className="product-price">
+              {product?.price?.toLocaleString("en-US", {
+                style: "currency",
+                currency: "INR",
+              })}
+            </div>
+
+            <div className="product-actions">
+              <button className="btn-add-cart"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCart([...cart, product]);
+                  localStorage.setItem("cart", JSON.stringify([...cart, product]));
+                  toast.success("Item Added to cart");
+                }}
+              >
+                Add to Cart
+              </button>
+              <button className="btn-rent" onClick={showModal}>
+                Rent It
+              </button>
+            </div>
+
+            <button className="review-link" onClick={showReviewModal}>
+              Read / Post Reviews
             </button>
           </div>
         </div>
-      </div>
-      <hr />
-      <div
-        className="row container similar-products"
-        style={{ fontFamily: "Calisto MT, serif" }}
-      >
-        <h4 style={{ marginLeft: "90px", fontWeight: "bold" }}>
-          Similar Products
-        </h4>
-        {relatedProducts.length < 1 && (
-          <p className="text-center">No Similar Products found</p>
-        )}
-        <div className="d-flex flex-wrap">
-          {relatedProducts?.map((p) => (
-            <div
-              className="card m-2"
-              style={{ height: "290px" }}
-              key={p._id}
-              onClick={() => navigate(`/product/${p.slug}`)}
-            >
-              <img
-                src={`/api/v1/product/product-photo/${p._id}`}
-                className="card-img-top"
-                alt={p.name}
-              />
-              <div className="card-body">
-                <div className="card-name-price">
-                  <div class="popup">
-                    {authors
-                      .filter((author) => author._id === p.author)
-                      .map((author) => (
-                        <div key={author._id}>{author.name}</div>
-                      ))}
-                  </div>
-                  <h5 className="card-title">{p.name}</h5>
-                  <h5 className="card-title card-price">
-                    {p.price.toLocaleString("en-US", {
-                      style: "currency",
-                      currency: "INR",
-                    })}
-                  </h5>
-                </div>
-                <div className="card-name-price">
-                  <button
-                    className="btn btn-dark ms-1"
-                    style={{
-                      backgroundColor: "#EE7789",
-                      border: "#EE7789",
-                      borderRadius: "20px",
-                      width: "140px",
-                    }}
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      setCart([...cart, p]);
-                      localStorage.setItem(
-                        "cart",
-                        JSON.stringify([...cart, p])
-                      );
-                      toast.success("Item Added to cart");
-                    }}
-                  >
-                    Add to cart
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+
+        {/* ── Rent modal ── */}
+        <div id="myModal" className="modal" onClick={handleOutsideClick}>
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>&times;</span>
+            <h5>Welcome to our Renting Page!</h5>
+            <p style={{ marginTop: 12, lineHeight: 1.7, color: "#555" }}>
+              We're excited to have you here. The renting feature is coming soon —
+              stay tuned! In the meantime, feel free to explore our library and
+              build a wishlist.
+            </p>
+            <p style={{ marginTop: 8, color: "#555" }}>Happy reading!</p>
+          </div>
         </div>
-      </div>
-      <div
-        className="row container similar-products"
-        style={{ fontFamily: "Calisto MT, serif" }}
-      >
-        <h4 style={{ marginLeft: "90px", fontWeight: "bold" }}>
-          By the same author
-        </h4>
-        {AuthorRelatedProducts.length < 1 && (
-          <p className="text-center">No Similar Products found</p>
-        )}
-        <div className="d-flex flex-wrap">
-          {AuthorRelatedProducts?.map((p) => (
-            <div
-              className="card m-2"
-              style={{ height: "290px" }}
-              key={p._id}
-              onClick={() => navigate(`/product/${p.slug}`)}
-            >
-              <img
-                src={`/api/v1/product/product-photo/${p._id}`}
-                className="card-img-top"
-                alt={p.name}
-              />
-              <div className="card-body">
-                <div className="card-name-price">
-                  <div class="popup">
-                    {authors
-                      .filter((author) => author._id === p.author)
-                      .map((author) => (
-                        <div key={author._id}>{author.name}</div>
-                      ))}
-                  </div>
-                  <h5 className="card-title">{p.name}</h5>
-                  <h5 className="card-title card-price">
-                    {p.price.toLocaleString("en-US", {
-                      style: "currency",
-                      currency: "INR",
-                    })}
-                  </h5>
-                </div>
-                <div className="card-name-price">
-                  <button
-                    className="btn btn-dark ms-1"
-                    style={{
-                      backgroundColor: "#EE7789",
-                      border: "#EE7789",
-                      borderRadius: "20px",
-                      width: "140px",
-                    }}
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      setCart([...cart, p]);
-                      localStorage.setItem(
-                        "cart",
-                        JSON.stringify([...cart, p])
-                      );
-                      toast.success("Item Added to cart");
-                    }}
-                  >
-                    Add to cart
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+
+        {/* ── Review modal ── */}
+        <div id="myReviewModal" className="modal" onClick={handleOutsideClickReview}>
+          <div className="modal-content">
+            <span className="close" onClick={closeReviewModal}>&times;</span>
+            <p style={{ textAlign: "center", color: "#888", marginTop: 12 }}>
+              No reviews available yet.
+            </p>
+          </div>
         </div>
+
+        <hr className="product-details-divider" />
+
+        {/* ── Similar by genre ── */}
+        <div className="related-section">
+          <h4>Similar Books</h4>
+          {relatedProducts.length < 1
+            ? <p style={{ color: "#aaa", fontSize: 14 }}>No similar books found.</p>
+            : <div className="related-grid">
+                {relatedProducts.map((p) => <RelatedCard key={p._id} p={p} />)}
+              </div>
+          }
+        </div>
+
+        {/* ── By same author ── */}
+        <div className="related-section">
+          <h4>More by {product?.author?.name}</h4>
+          {AuthorRelatedProducts.length < 1
+            ? <p style={{ color: "#aaa", fontSize: 14 }}>No other books by this author.</p>
+            : <div className="related-grid">
+                {AuthorRelatedProducts.map((p) => <RelatedCard key={p._id} p={p} />)}
+              </div>
+          }
+        </div>
+
       </div>
     </Layout>
   );

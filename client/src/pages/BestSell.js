@@ -1,277 +1,76 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Checkbox, Radio } from "antd";
-import { Prices } from "../components/Prices";
 import { useCart } from "../context/cart";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
-import { AiOutlineReload } from "react-icons/ai";
 import "../styles/homepage.css";
-import "../styles/responsive.css";
-import { Link } from "react-router-dom";
+import "../styles/collectionPage.css";
 
 const BestSelling = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [authors, setAuthors] = useState([]);
-  const [checked, setChecked] = useState([]);
-  const [radio, setRadio] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  const showModal = () => {
-    const modal = document.getElementById("myModal");
-    modal.style.display = "block";
-  };
-
-  const closeModal = () => {
-    const modal = document.getElementById("myModal");
-    modal.style.display = "none";
-  };
-
-  const handleOutsideClick = (event) => {
-    const modal = document.getElementById("myModal");
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-  };
-
-  //get all cat
-  const getAllCategory = async () => {
-    try {
-      const { data } = await axios.get("/api/v1/category/get-category");
-      if (data?.success) {
-        setCategories(data?.category);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getAllAuthor = async () => {
-    try {
-      const { data } = await axios.get("/api/v1/author/get-author");
-      if (data?.success) {
-        setAuthors(data?.author);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    getAllAuthor();
-    getAllCategory();
-    getTotal();
+    axios.get("/api/v1/author/get-author").then(({ data }) => {
+      if (data?.success) setAuthors(data.author);
+    });
+    axios.get("/api/v1/product/product-count").then(({ data }) => setTotal(data?.total));
   }, []);
 
-  const getAllProducts = async () => {
-    try {
-      setLoading(true);
-      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
-      setLoading(false);
-      setProducts(data.products);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  };
-
-  //getTOtal COunt
-  const getTotal = async () => {
-    try {
-      const { data } = await axios.get("/api/v1/product/product-count");
-      setTotal(data?.total);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    if (page === 1) return;
-    loadMore();
+    setLoading(true);
+    axios.get(`/api/v1/product/product-list/${page}`).then(({ data }) => {
+      setProducts((prev) => page === 1 ? data.products : [...prev, ...data.products]);
+      setLoading(false);
+    }).catch(() => setLoading(false));
   }, [page]);
 
-  const loadMore = async () => {
-    try {
-      setLoading(true);
-      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
-      setLoading(false);
-      setProducts([...products, ...data?.products]);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
-
-  const handleFilter = (value, id) => {
-    let all = [...checked];
-    if (value) {
-      all.push(id);
-    } else {
-      all = all.filter((c) => c !== id);
-    }
-    setChecked(all);
-  };
-  useEffect(() => {
-    if (!checked.length || !radio.length) getAllProducts();
-  }, [checked.length, radio.length]);
-
-  useEffect(() => {
-    if (checked.length || radio.length) filterProduct();
-  }, [checked, radio]);
-
-  const filterProduct = async () => {
-    try {
-      const { data } = await axios.post("/api/v1/product/product-filters", {
-        checked,
-        radio,
-      });
-      setProducts(data?.products);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
-    <Layout title={"All Products - Best offers "}>
-      <div
-        className="filter-container"
-        style={{ fontFamily: "Calisto MT, serif" }}
-      >
-        <div
-          className="col-md-3 filters-new"
-          style={{
-            border: "1px solid lightgrey",
-            borderRadius: "10px",
-            marginTop: "80px",
-            marginLeft: "20px",
-            transition: "transform 0.2s, box-shadow 0.2s",
-          }}
-        >
-          <h2
-            style={{
-              marginTop: "20px",
-              textAlign: "center",
-              fontWeight: "bold",
-            }}
-          >
-            Best Selling
-          </h2>
+    <Layout title="Best Selling Books">
+      <div className="collection-page">
+        <div className="collection-banner">
           <img
+            className="collection-banner-img"
             src="https://i.pinimg.com/originals/ce/60/9a/ce609a226cacd418c17797250812f234.jpg"
-            alt="bookimg"
-            className="newimg"
+            alt="Best Selling"
+            loading="lazy"
           />
-
-          <h3
-            className="treasure"
-            style={{ marginTop: "8px", marginLeft: "18px" }}
-          >
-            Tales That Have Taken the World by Storm
-          </h3>
-          <h5 style={{ marginLeft: "18px" }}>
-            Explore our handpicked collection of chart-topping books, crafted by
-            the finest wordsmiths of the century.
-          </h5>
+          <div className="collection-banner-text">
+            <span className="collection-banner-tag">⭐ Best Selling</span>
+            <h1>Tales That Took the World by Storm</h1>
+            <p>Handpicked chart-toppers crafted by the finest wordsmiths of the century.</p>
+          </div>
         </div>
 
-        <div className="main-container">
-          <div className="d-flex flex-wrap justify-content">
+        <div className="collection-content">
+          <p className="collection-meta">{total} books available</p>
+          <div className="collection-grid">
             {products?.map((p) => (
-              <div
-                className="card m-2"
-                key={p._id}
-                onClick={() => navigate(`/product/${p.slug}`)}
-              >
-                <img
-                  src={`/api/v1/product/product-photo/${p._id}`}
-                  className="card-img-top"
-                  alt={p.name}
-                />
+              <div className="card m-2" key={p._id} onClick={() => navigate(`/product/${p.slug}`)}>
+                <img src={`/api/v1/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} loading="lazy" />
                 <div className="card-body">
-                  <div className="card-name-price">
-                    <div class="popup">
-                      {authors
-                        .filter((author) => author._id === p.author)
-                        .map((author) => (
-                          <div key={author._id}>{author.name}</div>
-                        ))}
-                    </div>
-
-                    <h5
-                      className="card-title"
-                      style={{
-                        maxHeight: "2.3em",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      {p.name}
-                    </h5>
-
-                    <h5 className="card-title card-price">
-                      {p.price.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "INR",
-                      })}
-                    </h5>
+                  <div className="popup">
+                    {authors.filter((a) => a._id === p.author).map((a) => <span key={a._id}>{a.name}</span>)}
                   </div>
-
-                  <div className="card-name-price">
-                    {/* <button
-                      className="btn-more btn-info ms-1"
-                      style={{
-                        backgroundColor: "#3778C2",
-                        border: "#3778C2",
-                      }}
-                      onClick={() => navigate(`/product/${p.slug}`)}
-                    >
-                      More Details
-                    </button> */}
-                    <button
-                      className="btn-more btn-dark ms-1"
-                      style={{
-                        backgroundColor: "#EE7789",
-                        border: "#EE7789",
-                      }}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        setCart([...cart, p]);
-                        localStorage.setItem(
-                          "cart",
-                          JSON.stringify([...cart, p])
-                        );
-                        toast.success("Item Added to cart!");
-                      }}
-                    >
-                      Add to cart
-                    </button>
-                  </div>
+                  <h5 className="card-title">{p.name}</h5>
+                  <p className="card-price">{p.price.toLocaleString("en-US", { style: "currency", currency: "INR" })}</p>
+                  <button className="btn-more" onClick={(e) => { e.stopPropagation(); setCart([...cart, p]); localStorage.setItem("cart", JSON.stringify([...cart, p])); toast.success("Item Added to cart!"); }}>
+                    Add to cart
+                  </button>
                 </div>
               </div>
             ))}
           </div>
-          <div className="m-2 p-3">
-            {products && products.length < total && (
-              <button
-                className="btn loadmore"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPage(page + 1);
-                }}
-              >
-                {loading ? (
-                  "Loading ..."
-                ) : (
-                  <>
-                    {" "}
-                    Loadmore <AiOutlineReload />
-                  </>
-                )}
+          <div className="loadmore-wrapper">
+            {products.length < total && (
+              <button className="loadmore" onClick={() => setPage(page + 1)}>
+                {loading ? "Loading..." : "Load More"}
               </button>
             )}
           </div>

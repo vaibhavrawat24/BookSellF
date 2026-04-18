@@ -1,127 +1,96 @@
+import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
-import React from "react";
-import "../styles/responsive.css";
+import "../styles/homepage.css";
+import "../styles/collectionPage.css";
 
-const Recycle = () => {
-  const showModal = () => {
-    const modal = document.getElementById("myModal");
-    modal.style.display = "block";
-  };
-
-  const closeModal = () => {
-    const modal = document.getElementById("myModal");
-    modal.style.display = "none";
-  };
-
-  const handleOutsideClick = (event) => {
-    const modal = document.getElementById("myModal");
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-  };
+const Rent = () => {
+  const [showModal, setShowModal] = useState(false);
 
   return (
-    <Layout>
-      <div className="recycle-main-div">
-        <div class="header recycle">
-          <h1 style={{ fontWeight: "bold" }}>Renting Made Simple</h1>
-        </div>
-        <div class="container recycle">
-          <div class="left recycle">
+    <Layout title="Rent a Book">
+      <div className="rent-page">
+
+        {/* ── Hero ── */}
+        <div className="rent-hero">
+          <div className="rent-hero-image">
             <img
-              className="rentit-img"
               src="https://i.pinimg.com/736x/ef/72/01/ef7201b98f371928cf294dc2e5c560ce.jpg"
-              alt="img"
+              alt="Rent books"
+              loading="lazy"
             />
           </div>
-          <div class="right recycle">
-            <h1
-              style={{
-                fontFamily: "Gloock,Gloock Placeholder, serif",
-                fontWeight: "bold",
-              }}
-            >
-              Why Rent Books?
-            </h1>
-            <h5 style={{ fontFamily: "Gloock,Gloock Placeholder, serif" }}>
-              Tired of buying expensive books you’ll barely read? BookRent is
-              the answer you’ve been seeking! Our vast collection of books
-              covers every genre to satisfy your reading cravings. Rent the
-              books you love without breaking the bank.
-            </h5>
-            <br />
-            <h5 style={{ fontFamily: "Gloock,Gloock Placeholder, serif" }}>
-              Explore an endless library of captivating tales without breaking
-              the bank. Renting books allows you to discover new authors and
-              genres your heart desires.
-            </h5>
-            <br />
-            <h5 style={{ fontFamily: "Gloock,Gloock Placeholder, serif" }}>
-              Ditch the clutter and avoid the dust by renting instead of buying.
-              At BookSellF, we help the environment by promoting a more
-              sustainable future for book lovers.
-            </h5>
-            <br />
-            <button
-              onMouseDown={(event) => {
-                event.target.style.transform = "scale(0.95)";
-                event.target.style.backgroundColor = "#ff7096";
-              }}
-              onMouseUp={(event) => {
-                event.target.style.transform = "scale(1)";
-                event.target.style.backgroundColor = "#ff7096";
-                showModal();
-              }}
-              class="btn btn-secondary ms-1"
-              style={{
-                borderRadius: "20px",
-                width: "400px",
-                backgroundColor: "#ff7096",
-                border: "#ff7096",
 
-                transform: "scale(1)",
-                transition: "transform 0.2s, background-color 0.2s",
-              }}
-            >
+          <div className="rent-hero-content">
+            <span className="rent-tag">📚 Rent It</span>
+            <h1>Why Buy When You Can Rent?</h1>
+
+            <div className="rent-points">
+              <div className="rent-point">
+                <div className="rent-point-icon">💸</div>
+                <p>Save money - rent the books you love without breaking the bank.</p>
+              </div>
+              <div className="rent-point">
+                <div className="rent-point-icon">📖</div>
+                <p>Explore an endless library across every genre your heart desires.</p>
+              </div>
+              <div className="rent-point">
+                <div className="rent-point-icon">🏠</div>
+                <p>Doorstep delivery and pickup - no hassle, no clutter.</p>
+              </div>
+              <div className="rent-point">
+                <div className="rent-point-icon">🌍</div>
+                <p>Rent instead of buy and help us build a sustainable future.</p>
+              </div>
+            </div>
+
+            <button className="btn-rent-now" onClick={() => setShowModal(true)}>
               Rent Now
             </button>
-            <div
-              id="myModal"
-              className="modal"
-              onClick={handleOutsideClick}
-              style={{ fontFamily: "Calisto MT, serif" }}
-            >
-              <div className="modal-content">
-                <span className="close" onClick={closeModal}>
-                  &times;
-                </span>
-                <div>
-                  <h5>Welcome to our Renting Page!</h5>
-                  <h5>
-                    {" "}
-                    We're excited to have you here. At BookSellF, we're
-                    dedicated to bringing you a fantastic selection of books for
-                    rent. While the renting feature is not available at this
-                    moment, please stay tuned and watch this space. We're
-                    working diligently to bring you the best book renting
-                    experience. In the meantime, feel free to explore our
-                    library and create a wishlist of books you'd like to read
-                    once the renting feature goes live.{" "}
-                  </h5>
+          </div>
+        </div>
 
-                  <h5>
-                    We appreciate your patience and look forward to serving you
-                    soon. Thank you for your interest.
-                  </h5>
-                  <h5>Happy reading!</h5>
-                </div>
-              </div>
+        {/* ── Features ── */}
+        <div className="rent-features">
+          <div className="rent-features-inner">
+            <div className="rent-feature-card">
+              <div className="rent-feature-icon">⚡</div>
+              <h4>Fast Delivery</h4>
+              <p>Get your book delivered within 24 hours of placing a rental request.</p>
+            </div>
+            <div className="rent-feature-card">
+              <div className="rent-feature-icon">🔄</div>
+              <h4>Easy Returns</h4>
+              <p>We pick up the book from your doorstep when you're done reading.</p>
+            </div>
+            <div className="rent-feature-card">
+              <div className="rent-feature-icon">💰</div>
+              <h4>Affordable Plans</h4>
+              <p>Flexible rental periods with prices that fit every budget.</p>
             </div>
           </div>
         </div>
+
+        {/* ── Modal ── */}
+        {showModal && (
+          <div className="modal" style={{ display: "block" }} onClick={(e) => e.target === e.currentTarget && setShowModal(false)}>
+            <div className="modal-content">
+              <span className="close" onClick={() => setShowModal(false)}>&times;</span>
+              <h5>Coming Soon!</h5>
+              <p style={{ marginTop: 12, lineHeight: 1.7, color: "#555" }}>
+                Book renting is currently under development. Stay tuned - we're working hard
+                to bring you the best renting experience. In the meantime, explore our library
+                and build a wishlist!
+              </p>
+              <p style={{ marginTop: 8, color: "#ee7879", fontWeight: 600 }}>
+                Thank you for your patience 📚
+              </p>
+            </div>
+          </div>
+        )}
+
       </div>
     </Layout>
   );
 };
 
-export default Recycle;
+export default Rent;

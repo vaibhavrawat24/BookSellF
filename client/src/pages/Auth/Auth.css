@@ -1,3 +1,148 @@
-.register{
-    margin-top: 70px;
+/* ─── Auth pages (Login & Register) ──────────────────────── */
+.auth-page {
+  min-height: calc(100vh - 65px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9f7f4;
+  padding: 40px 16px;
+  font-family: "Calisto MT", serif;
+}
+
+.auth-card {
+  background: #fff;
+  border: 1px solid #ece8e1;
+  border-radius: 14px;
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+}
+
+.auth-card h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 6px;
+}
+
+.auth-card .auth-subtitle {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 28px;
+}
+
+/* ─── Fields ──────────────────────────────────────────────── */
+.auth-field {
+  margin-bottom: 16px;
+}
+
+.auth-field input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #e0dbd4;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  background: #fafaf8;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.auth-field input:focus {
+  border-color: #ee7879;
+  background: #fff;
+}
+
+.auth-field input::placeholder {
+  color: #bbb;
+}
+
+/* ─── Primary button ──────────────────────────────────────── */
+.btn-auth-primary {
+  width: 100%;
+  padding: 12px;
+  background: #ee7879;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  font-family: inherit;
+  margin-top: 4px;
+}
+
+.btn-auth-primary:hover {
+  background: #d9595a;
+  transform: translateY(-1px);
+}
+
+/* ─── Divider ─────────────────────────────────────────────── */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: #ccc;
+  font-size: 12px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #ece8e1;
+}
+
+/* ─── Secondary links ─────────────────────────────────────── */
+.auth-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.btn-auth-secondary {
+  width: 100%;
+  padding: 11px;
+  background: #fff;
+  color: #555;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  font-family: inherit;
+}
+
+.btn-auth-secondary:hover {
+  border-color: #ee7879;
+  color: #ee7879;
+}
+
+/* ─── Footer text ─────────────────────────────────────────── */
+.auth-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.auth-footer a,
+.auth-footer span {
+  color: #ee7879;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-footer a:hover,
+.auth-footer span:hover {
+  text-decoration: underline;
 }

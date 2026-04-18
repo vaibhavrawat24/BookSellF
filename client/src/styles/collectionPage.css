@@ -1,0 +1,361 @@
+/* ─── Shared Collection Page (BestSell, Trending, NewArrival, Manga) ── */
+.collection-page {
+  background: #f9f7f4;
+  min-height: calc(100vh - 65px);
+  font-family: "Calisto MT", serif;
+}
+
+/* ── Banner ── */
+.collection-banner {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.collection-banner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+}
+
+.collection-banner-text {
+  position: relative;
+  z-index: 1;
+  padding: 0 48px;
+  color: #fff;
+}
+
+.collection-banner-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.35);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.collection-banner-text h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #fff;
+}
+
+.collection-banner-text p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+  max-width: 520px;
+}
+
+/* ── Content area ── */
+.collection-content {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 28px 32px;
+}
+
+.collection-meta {
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 20px;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 20px;
+}
+
+/* reuse card styles from homepage */
+.collection-grid .card.m-2 {
+  margin: 0 !important;
+}
+
+/* ── Authors page ── */
+.authors-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  font-family: "Calisto MT", serif;
+}
+
+.authors-page h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+
+.authors-page .authors-subtitle {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 32px;
+}
+
+.authors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.author-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 20px;
+  background: #fff;
+  border: 1px solid #ece8e1;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Calisto MT", serif;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+  text-align: center;
+}
+
+.author-card:hover {
+  border-color: #ee7879;
+  color: #ee7879;
+  box-shadow: 0 4px 16px rgba(238,120,121,0.1);
+  text-decoration: none;
+}
+
+/* ── Rent page ── */
+.rent-page {
+  min-height: calc(100vh - 65px);
+  background: #f9f7f4;
+  font-family: "Calisto MT", serif;
+}
+
+.rent-hero {
+  display: flex;
+  gap: 64px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 64px 32px;
+}
+
+.rent-hero-image {
+  flex-shrink: 0;
+  width: 380px;
+}
+
+.rent-hero-image img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+}
+
+.rent-hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rent-tag {
+  display: inline-block;
+  background: #fde8ed;
+  color: #c04b6a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.rent-hero-content h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.rent-points {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rent-point {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.rent-point-icon {
+  width: 32px;
+  height: 32px;
+  background: #fde8ed;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.rent-point p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.btn-rent-now {
+  display: inline-block;
+  padding: 13px 36px;
+  background: #ee7879;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  width: fit-content;
+  margin-top: 8px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-rent-now:hover {
+  background: #d9595a;
+  transform: translateY(-2px);
+}
+
+.rent-features {
+  background: #fff;
+  border-top: 1px solid #ece8e1;
+  border-bottom: 1px solid #ece8e1;
+}
+
+.rent-features-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.rent-feature-card {
+  text-align: center;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #ece8e1;
+  border-radius: 12px;
+}
+
+.rent-feature-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.rent-feature-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 6px;
+}
+
+.rent-feature-card p {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Genres page ── */
+.genres-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  font-family: "Calisto MT", serif;
+}
+
+.genres-page h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+
+.genres-subtitle {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 32px;
+}
+
+.genres-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.genre-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  background: #fff;
+  border: 1px solid #ece8e1;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Calisto MT", serif;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.genre-card:hover {
+  border-color: #ee7879;
+  color: #ee7879;
+  box-shadow: 0 4px 16px rgba(238,120,121,0.1);
+  text-decoration: none;
+}
+
+.genre-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .collection-banner { height: 160px; }
+  .collection-banner-text { padding: 0 20px; }
+  .collection-banner-text h1 { font-size: 22px; }
+  .collection-content { padding: 20px 16px; }
+  .collection-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+  .authors-page { padding: 28px 16px; }
+  .authors-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .genres-page { padding: 28px 16px; }
+  .genres-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .rent-hero { flex-direction: column; gap: 28px; padding: 32px 20px; }
+  .rent-hero-image { width: 100%; }
+  .rent-hero-image img { height: 260px; }
+  .rent-hero-content h1 { font-size: 24px; }
+  .rent-features-inner { grid-template-columns: 1fr; }
+}

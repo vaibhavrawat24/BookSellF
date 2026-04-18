@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../../context/auth";
+import "../Auth/Auth.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -35,69 +36,49 @@ const Login = () => {
   };
 
   return (
-    <Layout title="Register - BookSellF">
-      <div className="register" style={{ fontFamily: "Calisto MT, serif" }}>
-        <h1>Login Page</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder="Enter your email"
-              required
-            />
+    <Layout title="Login - BookSellF">
+      <div className="auth-page">
+        <div className="auth-card">
+          <h1>Welcome back</h1>
+          <p className="auth-subtitle">Sign in to your BookSellF account</p>
+
+          <form onSubmit={handleSubmit}>
+            <div className="auth-field">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email address"
+                required
+              />
+            </div>
+            <div className="auth-field">
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                required
+              />
+            </div>
+            <button type="submit" className="btn-auth-primary">
+              Sign In
+            </button>
+          </form>
+
+          <div className="auth-divider">or</div>
+
+          <div className="auth-links">
+            <button className="btn-auth-secondary" onClick={() => navigate("/forgot-password")}>
+              Forgot Password
+            </button>
           </div>
-          <div className="mb-3">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Enter your password"
-              required
-            />
-          </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary"
-            style={{ marginBottom: "5px" }}
-          >
-            Login
-          </button>
-          <br />
-
-          <button
-            type="button"
-            className="btn btn-primary"
-            style={{ backgroundColor: "red", border: "red" }}
-            onClick={() => {
-              navigate("/forgot-password");
-            }}
-          >
-            Forgot Password
-          </button>
-          <br />
-
-          <button
-            type="button"
-            className="btn btn-primary"
-            style={{
-              backgroundColor: "green",
-              border: "green",
-              marginTop: "8px",
-            }}
-            onClick={() => {
-              navigate("/register");
-            }}
-          >
-            Register
-          </button>
-        </form>
+          <p className="auth-footer">
+            Don't have an account?{" "}
+            <span onClick={() => navigate("/register")}>Register</span>
+          </p>
+        </div>
       </div>
     </Layout>
   );
