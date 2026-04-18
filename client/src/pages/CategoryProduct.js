@@ -66,7 +66,7 @@ const CategoryProduct = () => {
                 onClick={() => navigate(`/product/${p.slug}`)}
               >
                 <img
-                  src={`/api/v1/product/product-photo/${p._id}`}
+                  src={`${process.env.REACT_APP_API || "http://localhost:3002"}/api/v1/product/product-photo/${p._id}`}
                   className="category card-img-top"
                   alt={p.name}
                 />

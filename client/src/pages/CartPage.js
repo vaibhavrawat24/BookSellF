@@ -98,7 +98,7 @@ const CartPage = () => {
               {cart.map((p) => (
                 <div className="cart-item" key={p._id}>
                   <img
-                    src={`/api/v1/product/product-photo/${p._id}`}
+                    src={`${process.env.REACT_APP_API || "http://localhost:3002"}/api/v1/product/product-photo/${p._id}`}
                     className="cart-item-img"
                     alt={p.name}
                     loading="lazy"

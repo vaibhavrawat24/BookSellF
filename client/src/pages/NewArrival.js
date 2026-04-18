@@ -53,7 +53,7 @@ const NewArrival = () => {
           <div className="collection-grid">
             {products?.map((p) => (
               <div className="card m-2" key={p._id} onClick={() => navigate(`/product/${p.slug}`)}>
-                <img src={`/api/v1/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} loading="lazy" />
+                <img src={`${process.env.REACT_APP_API || "http://localhost:3002"}/api/v1/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} loading="lazy" />
                 <div className="card-body">
                   <div className="popup">
                     {authors.filter((a) => a._id === p.author).map((a) => <span key={a._id}>{a.name}</span>)}
