@@ -3,10 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { GiBookCover } from "react-icons/gi";
 import { useAuth } from "../../context/auth";
 import { toast } from "react-hot-toast";
-import Dashboard from "./../../pages/user/Dashboard";
 import SearchInput from "../Form/SearchInput";
-import useCategory from "../../hooks/useCategory";
-import { useCart } from "../../context/cart";
 import {
   ShoppingCartOutlined,
   UserOutlined,
@@ -21,8 +18,6 @@ import "../Layout/layout.css";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
-  const [cart] = useCart();
-  const categories = useCategory();
 
   const handleLogout = () => {
     setAuth({
