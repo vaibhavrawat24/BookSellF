@@ -196,10 +196,10 @@ export const productFiltersController = async (req, res) => {
   try {
     const { checked, radio } = req.body;
     let args = {};
-    if (checked.length > 0) {
+    if (checked && checked.length > 0) {
       args.$or = [{ category: { $in: checked } }, { author: { $in: checked } }];
     }
-    if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
+    if (radio && radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
 
     const products = await productModel.find(args);
     res.status(200).send({

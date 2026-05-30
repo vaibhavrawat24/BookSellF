@@ -176,7 +176,9 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    filteredProduct();
+    if (selectedPrice !== "all" || selectedCategory !== "all" || selectedAuthor !== "all") {
+      filteredProduct();
+    }
   // eslint-disable-next-line
   }, [selectedPrice, selectedCategory, selectedAuthor]);
 
